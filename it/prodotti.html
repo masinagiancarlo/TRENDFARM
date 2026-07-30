@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prodotti - Trendfarm</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('../home_ufficio_trendfarm.png'); 
+            background-size: cover;            
+            background-position: center;       
+            background-repeat: no-repeat;      
+            background-attachment: fixed;      
+        }
+        
+        /* NAVBAR */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-links a:hover { color: #00bcd4; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* CONTENITORE CENTRALE */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 140px 20px 40px 20px;
+        }
+
+        .scheda-contenuto {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);          
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 950px;                     
+            width: 100%;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .scheda-contenuto h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #00bcd4;                        
+            border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+            padding-bottom: 10px;
+        }
+
+        #testo-dinamico {
+            font-size: 1.1rem;
+            line-height: 1.8;                      
+            color: #e0e0e0;
+            white-space: pre-line; 
+            margin-bottom: 40px; 
+        }
+
+        /* GRIGLIA PRODOTTI */
+        .griglia-prodotti {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .elemento-prodotto {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 8px;
+            max-width: 350px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .elemento-prodotto:hover {
+            transform: translateY(-5px);
+        }
+
+        .foto-scatola {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .nome-versione {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        /* BOTTONI DELLE AZIONI */
+        .area-pulsanti {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-azione {
+            display: block;
+            padding: 10px 15px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-prezzo {
+            background-color: transparent;
+            color: #00bcd4;
+            border: 1px solid #00bcd4;
+        }
+
+        .btn-prezzo:hover {
+            background-color: #00bcd4;
+            color: #000000;
+        }
+
+        .btn-download {
+            background-color: #00bcd4;
+            color: #000000;
+            border: 1px solid #00bcd4;
+        }
+
+        .btn-download:hover {
+            background-color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 10px; }
+            .nav-container { flex-direction: column; gap: 10px; width: 100%; }
+            .griglia-prodotti { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">TRENDFARM</a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="chi-siamo.html">Chi siamo</a></li>
+                <li><a href="prodotti.html" style="color: #00bcd4;">Prodotti</a></li>
+                <li><a href="prezzi.html">Prezzi</a></li>
+                <li><a href="download.html">Download</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+            <div class="dropdown">
+                <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
+                <div class="dropdown-content">
+                    <a href="prodotti.html">🇮🇹 Italiano</a>
+                    <a href="../en/products.html">🇬🇧 English</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="scheda-contenuto">
+            <h2>I Nostri Prodotti</h2>
+            
+            <div id="testo-dinamico">Caricamento descrizione...</div>
+
+            <div class="griglia-prodotti">
+                
+                <!-- SCATOLA 1 -->
+                <div class="elemento-prodotto">
+                    <img src="../scatola1.png" alt="Scatola Versione A" class="foto-scatola">
+                    <div class="nome-versione">Versione Standard</div>
+                    <div class="area-pulsanti">
+                        <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
+                        <!-- Punta direttamente alla radice del sito dove risiede lo ZIP -->
+                        <a href="../nexus_matrix_pro.zip" download class="btn-azione btn-download">Scarica NEXUS MATRIX PRO</a>
+                    </div>
+                </div>
+
+                <!-- SCATOLA 2 -->
+                <div class="elemento-prodotto">
+                    <img src="../scatola2.png" alt="Scatola Versione B" class="foto-scatola">
+                    <div class="nome-versione">Versione Premium</div>
+                    <div class="area-pulsanti">
+                        <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
+                        <a href="../nexus_matrix_pro.zip" download class="btn-azione btn-download">Scarica NEXUS MATRIX PRO</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        fetch('testo-prodotti.txt')
+            .then(response => {
+                if (!response.ok) throw new Error('File non trovato');
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('testo-dinamico').innerText = data;
+            })
+            .catch(error => {
+                document.getElementById('testo-dinamico').innerText = "Errore nel caricamento della descrizione.";
+            });
+    </script>
+
+</body>
+</html>
