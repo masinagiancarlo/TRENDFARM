@@ -52,7 +52,7 @@
             padding: 120px 20px 40px 20px;
         }
 
-        /* RIQUADRO TRASPARENTE */
+        /* RIQUADRO TRASPARENTE STILE VETRO SFOCATO */
         .scheda-contenuto {
             background-color: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);          
@@ -65,29 +65,22 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
+        /* TITOLO "CHI SIAMO" PERFETTAMENTE CENTRATO */
         .scheda-contenuto h2 {
             font-size: 2.2rem;
             margin-bottom: 20px;
             color: #00bcd4;                        
             border-bottom: 2px solid rgba(0, 188, 212, 0.3);
             padding-bottom: 10px;
+            text-align: center; /* Forza la centratura del titolo */
         }
 
-        .scheda-contenuto h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: #00bcd4;                        
-            border-bottom: 2px solid rgba(0, 188, 212, 0.3);
-            padding-bottom: 10px;
-            text-align: center; /* <--- Aggiungi questa riga per centrare il titolo */
-        }
-        
-        /* Stile del testo letto dal file esterno */
+        /* TESTO LETTO DAL FILE ESTERNO */
         #testo-dinamico {
             font-size: 1.1rem;
             line-height: 1.8;                      
             color: #e0e0e0;
-            white-space: pre-line; /* Mantiene gli "A capo" del file di testo */
+            white-space: pre-line; 
         }
 
         @media (max-width: 768px) {
@@ -122,12 +115,10 @@
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>Chi Siamo</h2>
-            <!-- Il testo apparirà automaticamente dentro questo blocco -->
             <div id="testo-dinamico">Caricamento in corso...</div>
         </div>
     </main>
 
-    <!-- SCRIPT CHE LEGGE IL FILE DI TESTO ESTERNO -->
     <script>
         fetch('testo-chi-siamo.txt')
             .then(response => {
