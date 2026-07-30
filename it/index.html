@@ -11,7 +11,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            /* Recuperiamo l'immagine dalla cartella superiore usando ../ */
             background-image: url('../home_ufficio_trendfarm.png'); 
             background-size: cover;            
             background-position: center;       
@@ -36,18 +35,58 @@
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
         
-        /* SELETTORE LINGUA CON EMOTICON BANDIERE */
-        .lang-switcher { display: flex; gap: 10px; font-size: 1.3rem; }
-        .lang-switcher a { text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
-        .lang-switcher a.active { opacity: 1; border-bottom: 2px solid #00bcd4; }
-        .lang-switcher a:hover { opacity: 1; }
+        /* STRUTTURA DEL MENU A DISCESA (DROPDOWN) */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        /* Il bottone principale del menu */
+        .dropdown-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 16px;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* La lista delle lingue nascosta di default */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            min-width: 140px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+            border-radius: 4px;
+            z-index: 1;
+            margin-top: 5px;
+        }
+        /* I link dentro il menu a discesa */
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        /* Mostra il menu quando si passa il mouse sopra */
+        .dropdown:hover .dropdown-content { display: block; }
 
         .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 100px 20px; }
         .titolo-principale { color: white; font-size: 3.5rem; text-align: center; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); }
         
         @media (max-width: 768px) {
             .navbar { flex-direction: column; gap: 10px; }
-            .nav-container { flex-direction: column; gap: 10px; }
+            .nav-container { flex-direction: column; gap: 10px; width: 100%; }
+            .dropdown { width: 100%; text-align: center; }
+            .dropdown-btn { width: 100%; justify-content: center; }
+            .dropdown-content { position: relative; width: 100%; }
         }
     </style>
 </head>
@@ -62,10 +101,16 @@
                 <li><a href="download.html">Download</a></li>
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
-            <!-- Cambia lingua: le bandiere usano le emoji di sistema (leggere e veloci) -->
-            <div class="lang-switcher">
-                <a href="index.html" class="active" title="Italiano">🇮🇹</a>
-                <a href="../en/index.html" title="English">🇬🇧</a>
+            
+            <!-- MENU A DISCESA DELLE LINGUE -->
+            <div class="dropdown">
+                <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
+                <div class="dropdown-content">
+                    <a href="index.html">🇮🇹 Italiano</a>
+                    <a href="../en/index.html">🇬🇧 English</a>
+                    <!-- In futuro ti basterà aggiungere qui sotto le nuove nazioni così: -->
+                    <!-- <a href="../es/index.html">🇪🇸 Español</a> -->
+                </div>
             </div>
         </div>
     </nav>
