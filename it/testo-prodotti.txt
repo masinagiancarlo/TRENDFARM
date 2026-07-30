@@ -1,34 +1,5 @@
-======================================================================
-     NEXUS MATRIX PRO: PRESENTAZIONE ESSENZIALE DEL SISTEMA
-======================================================================
-
-COS'È E A COSA SERVE
-NEXUS MATRIX PRO è un software d'élite di trading algoritmico per 
-MetaTrader 4, specializzato sul cambio EURUSD. Il sistema automatizza 
-la gestione dei mercati eliminando totalmente l'emotività. Coordina 
-simultaneamente due panieri di memoria indipendenti per ottimizzare 
-gli ingressi e le uscite sul server del broker, riducendo al minimo 
-i tempi di reazione rispetto ai robot tradizionali.
-
-A CHI È RIVOLTO
-La sua struttura modulare è progettata per due target specifici:
-1. TRADER PRIVATI E PROFESSIONISTI: Chi cerca uno strumento rigido 
-   e sicuro per presidiare i grafici 24 ore su 24 con paracadute di 
-   protezione e trailing stop millimetrici.
-2. RETE COMMERCIALE TRENDFARM: Chi vuole distribuire un prodotto 
-   scalabile, offrendo la versione economica LIGHT (solo modulo 
-   standard) o la versione completa PREMIUM/GOLD (multi-modulo).
-
-LE POTENZIALITÀ CHIAVE
-- 5 MOTORI STRATEGICI: Versioni intercambiabili e indipendenti 
-  (Standard, Breakout, Hedge, Reverse, Chaser) nella variante Gold.
-- OPERATIVITÀ BILATERALE: Permette di cavalcare i cambi di trend 
-  aprendo panieri contrari per compensare il bilancio live.
-- SCUDO FINANZIARIO MUTUO SOCCORSO: Blocca l'esposizione e vieta 
-  le martingale pesanti se la plancia è già bilanciata da due trade opposti.
-- PARACADUTE DI EMERGENZA: Stop Loss reale impresso sul server del 
-  broker a tolleranza zero contro blackout o disconnessioni.
-- RECUPERO INTELLIGENTE RAM: Se la sessione chiude in negativo, il 
-  sistema salva il dato sul disco e attiva il paniere a lotti doppi 
-  il mattino successivo per recuperare il passivo.
-======================================================================
+Il sistema NEXUS MATRIX e' una piattaforma di trading automatico
+composta da 5 motori strategici indipendenti. Ogni modulo possiede
+una propria costituzione rigida e regole di gestione del rischio
+progettate per proteggere il capitale e massimizzare i profitti
+nelle diverse condizioni di mercato.
