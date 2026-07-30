@@ -5,36 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trendfarm</title>
     <style>
+        /* Reset iniziale */
         * {
             box-sizing: border-box;
-        }
-        body {
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             
-            /* Sfondo configurato per il percorso tutto minuscolo */
+            /* Il tuo sfondo fisso */
             background-image: url('home_ufficio_trendfarm.png'); 
             background-size: cover;            
             background-position: center;       
             background-repeat: no-repeat;      
             background-attachment: fixed;      
         }
+
+        /* BARRA DEL MENU SUPERIORE */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.75); /* Sfondo nero semi-trasparente */
+            backdrop-filter: blur(5px); /* Effetto vetro sfocato molto moderno */
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Nome dell'azienda nel menu (Logo testuale) */
+        .logo {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        /* Lista dei link del menu */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        /* Effetto quando si passa il mouse sopra i link */
+        .nav-links a:hover {
+            color: #00bcd4; /* Colore azzurro moderno */
+        }
+
+        /* CONTENUTO CENTRALE DELLA PAGINA */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 40px 20px; /* Spazio in alto per non finire sotto il menu */
+        }
+
         .titolo-principale {
             color: white;
-            font-family: Arial, sans-serif;
-            font-size: 3rem;
+            font-size: 3.5rem;
             text-align: center;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); 
+        }
+
+        /* Adattamento per schermi piccoli (Smartphone) */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .titolo-principale {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1 class="titolo-principale">Benvenuti in Trendfarm</h1>
+    <!-- BARRA DI NAVIGAZIONE IN ALTO -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">TRENDFARM</a>
+        <ul class="nav-links">
+            <li><a href="chi-siamo.html">Chi siamo</a></li>
+            <li><a href="prodotti.html">Prodotti</a></li>
+            <li><a href="download.html">Download</a></li>
+            <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENUTO PRINCIPALE AL CENTRO -->
+    <main class="main-content">
+        <h1 class="titolo-principale">Benvenuti in Trendfarm</h1>
+    </main>
 
 </body>
 </html>
