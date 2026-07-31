@@ -20,7 +20,26 @@
         
         /* NAVBAR */
         .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
-        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        
+        /* LOGO COORDINATO (Immagine + Testo Bicolore) */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .img-logo {
+            height: 38px;
+            width: auto;
+        }
+        .testo-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .colore-trend { color: #dca122; } /* Oro dal logo */
+        .colore-farm { color: #0b2f8f; }  /* Blu dal logo */
+
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
@@ -130,7 +149,14 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">TRENDFARM</a>
+        <!-- AGGIORNATO: Struttura bicolore + Immagine Logo -->
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        
         <div class="nav-container">
             <ul class="nav-links">
                 <li><a href="chi-siamo.html">Chi siamo</a></li>
@@ -152,7 +178,6 @@
         <div class="scheda-contenuto">
             <h2>Contattaci</h2>
             
-            <!-- ATTENZIONE: Sostituisci "IL_TUO_FORM_ID" con il codice che ti dà Formspree -->
             <form action="https://formspree.io/f/mdaqvwbb" method="POST">
                 
                 <div class="form-gruppo">
