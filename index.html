@@ -1,8 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trendfarm</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container-sicurezza {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 400px;
+            width: 100%;
+        }
+        .logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .img-logo {
+            height: 45px;
+            width: auto;
+        }
+        .testo-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #0b2f8f; }
+        .links-lingua {
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        .links-lingua a {
+            color: #0b2f8f;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 10px;
+            transition: color 0.2s;
+        }
+        .links-lingua a:hover {
+            color: #00bcd4;
+        }
+    </style>
     <script>
         // Rileva la lingua del browser
         var lingua = navigator.language || navigator.userLanguage; 
@@ -16,9 +70,19 @@
     </script>
 </head>
 <body>
-    <!-- Pagina di sicurezza se i JavaScript sono disattivati -->
-    <p style="text-align:center; margin-top:50px; font-family:Arial;">
-        <a href="./it/index.html">Italiano</a> | <a href="./en/index.html">English</a>
-    </p>
+
+    <!-- Contenuto di sicurezza se i JavaScript sono disattivati -->
+    <div class="container-sicurezza">
+        <div class="logo-box">
+            <img src="logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </div>
+        <div class="links-lingua">
+            <a href="./it/index.html">🇮🇹 Italiano</a> | <a href="./en/index.html">🇬🇧 English</a>
+        </div>
+    </div>
+
 </body>
 </html>
