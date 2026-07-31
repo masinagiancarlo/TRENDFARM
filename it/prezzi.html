@@ -33,8 +33,30 @@
         .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 800px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
         .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 20px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
         
-        #testo-dinamico { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; text-align: left; }
+        #testo-dinamico { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; text-align: left; margin-bottom: 30px; }
         
+        /* STILE DEL BOTTONE DI DOWNLOAD AGGIORNATO */
+        .btn-download {
+            display: inline-block;
+            max-width: 320px;
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #00bcd4;
+            color: #000000;
+            border: 1px solid #00bcd4;
+            border-radius: 4px;
+            transition: background 0.2s, border-color 0.2s;
+            margin: 10px auto 0 auto;
+        }
+
+        .btn-download:hover {
+            background-color: #ffffff;
+            border-color: #ffffff;
+        }
+
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } }
     </style>
 </head>
@@ -61,13 +83,15 @@
         <div class="scheda-contenuto">
             <h2>Listino Prezzi</h2>
             <div id="testo-dinamico">Caricamento listino...</div>
+            
+            <!-- CORRETTO: Nome del file zip e scritta pulsante in italiano -->
+            <a href="../nexus_matrix.zip" download class="btn-download">Scarica NEXUS MATRIX GOLD</a>
         </div>
     </main>
     <script>
         fetch('testo-prezzi.txt')
             .then(response => { if (!response.ok) throw new Error('File non trovato'); return response.text(); })
             .then(data => { 
-                // Questo comando trasforma i **testo** in vero grassetto HTML
                 let testoFormattato = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 document.getElementById('testo-dinamico').innerHTML = testoFormattato; 
             })
