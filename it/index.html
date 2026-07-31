@@ -29,7 +29,26 @@
             width: 100%;
             z-index: 1000;
         }
-        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        
+        /* LOGO COORDINATO (Immagine + Testo Bicolore) */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .img-logo {
+            height: 38px;
+            width: auto;
+        }
+        .testo-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .colore-trend { color: #dca122; } /* Oro dal logo */
+        .colore-farm { color: #0b2f8f; }  /* Blu dal logo */
+
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
@@ -40,7 +59,6 @@
             position: relative;
             display: inline-block;
         }
-        /* Il bottone principale del menu */
         .dropdown-btn {
             background: rgba(255, 255, 255, 0.1);
             color: white;
@@ -53,7 +71,6 @@
             align-items: center;
             gap: 8px;
         }
-        /* LA LISTA DELLE LINGUE */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -64,9 +81,8 @@
             border-radius: 0 0 4px 4px;
             z-index: 1;
             margin-top: 0;
-            padding-top: 5px; /* <--- Metti questo */
+            padding-top: 5px;
         }
-        /* I link dentro il menu a discesa */
         .dropdown-content a {
             color: white;
             padding: 12px 16px;
@@ -76,7 +92,6 @@
             font-size: 0.95rem;
         }
         .dropdown-content a:hover { background-color: #00bcd4; color: black; }
-        /* Mostra il menu quando si passa il mouse sopra */
         .dropdown:hover .dropdown-content { display: block; }
 
         .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 100px 20px; }
@@ -94,7 +109,14 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">TRENDFARM</a>
+        <!-- AGGIORNATO: Struttura bicolore + Immagine Logo -->
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        
         <div class="nav-container">
             <ul class="nav-links">
                 <li><a href="chi-siamo.html">Chi siamo</a></li>
@@ -103,14 +125,11 @@
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
             
-            <!-- MENU A DISCESA DELLE LINGUE -->
             <div class="dropdown">
                 <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
                 <div class="dropdown-content">
                     <a href="index.html">🇮🇹 Italiano</a>
                     <a href="../en/index.html">🇬🇧 English</a>
-                    <!-- In futuro ti basterà aggiungere qui sotto le nuove nazioni così: -->
-                    <!-- <a href="../es/index.html">🇪🇸 Español</a> -->
                 </div>
             </div>
         </div>
