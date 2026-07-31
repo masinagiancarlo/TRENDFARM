@@ -31,7 +31,26 @@
             width: 100%;
             z-index: 1000;
         }
-        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        
+        /* LOGO COORDINATO (Immagine + Testo Bicolore) */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .img-logo {
+            height: 38px;
+            width: auto;
+        }
+        .testo-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .colore-trend { color: #dca122; } /* Oro dal logo */
+        .colore-farm { color: #0b2f8f; }  /* Blu dal logo */
+
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
@@ -72,7 +91,7 @@
             color: #00bcd4;                        
             border-bottom: 2px solid rgba(0, 188, 212, 0.3);
             padding-bottom: 10px;
-            text-align: center; /* Forza la centratura del titolo */
+            text-align: center; 
         }
 
         /* TESTO LETTO DAL FILE ESTERNO */
@@ -81,7 +100,7 @@
             line-height: 1.8;                      
             color: #e0e0e0;
             white-space: pre-line; 
-            text-align: center; /* <--- AGGIUNGI QUESTO PER CENTRARE TUTTO IL TESTO */
+            text-align: center; 
         }
 
         @media (max-width: 768px) {
@@ -95,7 +114,14 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">TRENDFARM</a>
+        <!-- AGGIORNATO: Struttura bicolore + Immagine Logo -->
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        
         <div class="nav-container">
             <ul class="nav-links">
                 <li><a href="chi-siamo.html" style="color: #00bcd4;">Chi siamo</a></li>
