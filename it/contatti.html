@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti - Trendfarm</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('../home_ufficio_trendfarm.png'); 
+            background-size: cover;            
+            background-position: center;       
+            background-repeat: no-repeat;      
+            background-attachment: fixed;      
+        }
+        
+        /* NAVBAR */
+        .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-links a:hover { color: #00bcd4; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* CONTENITORE CENTRALE */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 140px 20px 40px 20px;
+        }
+
+        .scheda-contenuto {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);          
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 600px; /* Più stretto per i moduli */
+            width: 100%;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .scheda-contenuto h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #00bcd4;                        
+            border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        /* STRUTTURA DEL MODULO (FORM) */
+        .form-gruppo {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-gruppo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #e0e0e0;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #00bcd4;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Scatola di selezione per l'oggetto personalizzabile */
+        select.form-control {
+            cursor: pointer;
+        }
+        select.form-control option {
+            background-color: #1a1a1a; /* Colore scuro per i testi del menu a discesa */
+            color: white;
+        }
+
+        .btn-invia {
+            width: 100%;
+            padding: 14px;
+            background-color: #00bcd4;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-invia:hover {
+            background-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 10px; }
+            .nav-container { flex-direction: column; gap: 10px; width: 100%; }
+            .scheda-contenuto { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">TRENDFARM</a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="chi-siamo.html">Chi siamo</a></li>
+                <li><a href="prodotti.html">Prodotti</a></li>
+                <li><a href="prezzi.html">Prezzi</a></li>
+                <li><a href="contatti.html" style="color: #00bcd4;">Contatti</a></li>
+            </ul>
+            <div class="dropdown">
+                <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
+                <div class="dropdown-content">
+                    <a href="contatti.html">🇮🇹 Italiano</a>
+                    <a href="../en/contacts.html">🇬🇧 English</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="scheda-contenuto">
+            <h2>Contattaci</h2>
+            
+            <!-- ATTENZIONE: Sostituisci "IL_TUO_FORM_ID" con il codice che ti dà Formspree -->
+            <form action="https://formspree.io/f/mdaqvwbb" method="POST">
+                
+                <div class="form-gruppo">
+                    <label for="nome">Nome / Azienda</label>
+                    <input type="text" name="name" id="nome" class="form-control" placeholder="Inserisci il tuo nome" required>
+                </div>
+
+                <div class="form-gruppo">
+                    <label for="email">Indirizzo Email</label>
+                    <input type="email" name="_replyto" id="email" class="form-control" placeholder="nome@esempio.com" required>
+                </div>
+
+                <!-- OGGETTO PERSONALIZZABILE A SCELTA -->
+                <div class="form-gruppo">
+                    <label for="oggetto">Oggetto della richiesta</label>
+                    <select name="subject" id="oggetto" class="form-control" required>
+                        <option value="" disabled selected>Seleziona un'opzione...</option>
+                        <option value="Informazioni Generali">Informazioni Generali</option>
+                        <option value="Informazioni Commerciali">Informazioni Commerciali</option>
+                        <option value="Richiesta Preventivo">Richiesta Preventivo</option>
+                        <option value="Assistenza Tecnica">Assistenza Tecnica</option>
+                        <option value="Altro">Altro motivo</option>
+                    </select>
+                </div>
+
+                <div class="form-gruppo">
+                    <label for="messaggio">Messaggio</label>
+                    <textarea name="message" id="messaggio" class="form-control" rows="5" placeholder="Scrivi qui la tua richiesta..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-invia">Invia Messaggio</button>
+            </form>
+
+        </div>
+    </main>
+
+</body>
+</html>
