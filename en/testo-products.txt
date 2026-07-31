@@ -1,5 +1,5 @@
 The NEXUS MATRIX system is an automated trading platform composed of 5 
-independent strategic engines. Each module possesses its own rigid 
+independent strategic engines (GOLD version). Each module possesses its own rigid 
 constitution and risk management rules designed to protect capital and 
 maximize profits under varying market conditions.
 
