@@ -31,7 +31,26 @@
             width: 100%;
             z-index: 1000;
         }
-        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        
+        /* LOGO COORDINATO (Immagine + Testo Bicolore) */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .img-logo {
+            height: 38px;
+            width: auto;
+        }
+        .testo-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .colore-trend { color: #dca122; } /* Oro dal logo */
+        .colore-farm { color: #0b2f8f; }  /* Blu dal logo */
+
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
@@ -63,7 +82,7 @@
             width: 100%;
             color: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center; /* CENTRAZIONE TOTALE DI TUTTO IL RIQUADRO */
+            text-align: center; 
         }
 
         /* TITOLO "ABOUT US" CENTRATO */
@@ -82,7 +101,7 @@
             line-height: 1.8;                      
             color: #e0e0e0;
             white-space: pre-line; 
-            text-align: center; /* FORZA LA CENTRATURA DI OGNI RIGA */
+            text-align: center; 
         }
 
         @media (max-width: 768px) {
@@ -96,7 +115,14 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">TRENDFARM</a>
+        <!-- AGGIORNATO: Struttura bicolore + Immagine Logo -->
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        
         <div class="nav-container">
             <ul class="nav-links">
                 <li><a href="about-us.html" style="color: #00bcd4;">About us</a></li>
