@@ -1,9 +1,3 @@
-The NEXUS MATRIX system is an automated trading platform composed of 5 
-independent strategic engines (GOLD version). Each module possesses its 
-own rigid constitution and risk management rules designed to protect 
-capital and maximize profits under varying market conditions.
+The NEXUS MATRIX system is an automated **trading platform** composed of 5 independent strategic engines (GOLD version). Each module possesses its own rigid constitution and **risk management** rules designed to protect capital and maximize profits in different **market** conditions.
 
-Below, you can download the product for free in its TRIAL version, 
-which offers you a 30-day trial of the full Multi-Module Gold version. 
-Afterward, if you are satisfied with the performance, you can purchase 
-a commercial license.
+Below you can **download** the product in a TRIAL version **for free**, which offers you a 30-day trial of the Gold Multi-Module version, then if you are satisfied, you can purchase a commercial license.
