@@ -1,0 +1,3 @@
+- **Operatività 24 ore su 24**: I 5 motori scansionano i mercati continuamente, eliminando la necessità di rimanere ore davanti ai grafici.
+- **Controllo totale dell'emotività**: Il software esegue gli ordini seguendo regole matematiche rigide, azzerando gli errori dovuti alla paura o all'avidità.
+- **Gestione del rischio automatizzata**: Ogni modulo calcola istantaneamente la size corretta per proteggere il tuo capitale.
