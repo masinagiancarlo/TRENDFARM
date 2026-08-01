@@ -175,16 +175,22 @@
     </main>
 
     <script>
+        // AGGIORNATO: Ora legge gli asterischi e attiva il grassetto anche per la descrizione iniziale
         fetch('testo-prodotti.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
-            .then(data => { document.getElementById('testo-dinamico').innerText = data; })
+            .then(data => { 
+                let testoFormattato = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                document.getElementById('testo-dinamico').innerHTML = testoFormattato; 
+            })
             .catch(error => { document.getElementById('testo-dinamico').innerText = "Errore nel caricamento."; });
 
+        // Legge il secondo file dei benefici e attiva i grassetti con gli asterischi
         fetch('testo-altro-prodotti.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => {
-                let testoFormattato = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                document.getElementById('testo-altro').innerHTML = testoFormattato;
+                let testoFormattato = data.replace(/\*\frac13(.*?)\*\*/g, '<strong>$1</strong>');
+                let pulito = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                document.getElementById('testo-altro').innerHTML = pulito;
             })
             .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
     </script>
