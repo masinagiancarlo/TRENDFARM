@@ -1,0 +1,3 @@
+- **24/7 Automated Operation**: The 5 engines scan the markets continuously, eliminating the need to spend hours in front of charts.
+- **Total Emotional Control**: The software executes orders following strict mathematical rules, erasing errors caused by fear or greed.
+- **Automated Risk Management**: Each module instantly calculates the correct size to protect your capital.
