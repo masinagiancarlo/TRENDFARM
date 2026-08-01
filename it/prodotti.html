@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Piattaforma di trading automatico professionale con 5 motori strategici indipendenti. Scarica la versione TRIAL gratuita per 30 giorni.">
+    <meta name="description" content="Scopri i prodotti NEXUS MATRIX nelle versioni Light e Gold. Piattaforma di trading automatico multi-modulo per la protezione del capitale.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prodotti - Trendfarm</title>
     <style>
@@ -33,24 +33,12 @@
             z-index: 1000;
         }
         
-        /* LOGO COORDINATO (Immagine + Testo Bicolore) */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-        .img-logo {
-            height: 38px;
-            width: auto;
-        }
-        .testo-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-        .colore-trend { color: #dca122; } /* Oro dal logo */
-        .colore-farm { color: #0b2f8f; }  /* Blu dal logo */
+        /* LOGO COORDINATO */
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .img-logo { height: 38px; width: auto; }
+        .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #0b2f8f; }
 
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
@@ -67,9 +55,11 @@
         .main-content {
             flex-grow: 1;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 140px 20px 40px 20px;
+            gap: 30px;
         }
 
         .scheda-contenuto {
@@ -93,89 +83,30 @@
             padding-bottom: 10px;
         }
 
-        #testo-dinamico {
+        #testo-dinamico, #testo-altro {
             font-size: 1.1rem;
             line-height: 1.8;                      
             color: #e0e0e0;
             white-space: pre-line; 
-            margin-bottom: 40px; 
         }
+        
+        #testo-dinamico { margin-bottom: 40px; }
+        #testo-altro { text-align: left; }
 
         /* GRIGLIA PRODOTTI */
-        .griglia-prodotti {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
+        .griglia-prodotti { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .elemento-prodotto { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 8px; max-width: 350px; width: 100%; transition: transform 0.3s ease; }
+        .elemento-prodotto:hover { transform: translateY(-5px); }
+        .foto-scatola { max-width: 100%; height: auto; border-radius: 6px; margin-bottom: 20px; }
+        .nome-versione { font-size: 1.4rem; font-weight: bold; color: #ffffff; margin-bottom: 15px; }
 
-        .elemento-prodotto {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 8px;
-            max-width: 350px;
-            width: 100%;
-            transition: transform 0.3s ease;
-        }
-
-        .elemento-prodotto:hover {
-            transform: translateY(-5px);
-        }
-
-        .foto-scatola {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-
-        .nome-versione {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-
-        /* BOTTONI DELLE AZIONI */
-        .area-pulsanti {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .btn-azione {
-            display: block;
-            padding: 10px 15px;
-            font-size: 0.95rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .btn-prezzo {
-            background-color: transparent;
-            color: #00bcd4;
-            border: 1px solid #00bcd4;
-        }
-
-        .btn-prezzo:hover {
-            background-color: #00bcd4;
-            color: #000000;
-        }
-
-        .btn-download {
-            background-color: #00bcd4;
-            color: #000000;
-            border: 1px solid #00bcd4;
-        }
-
-        .btn-download:hover {
-            background-color: #ffffff;
-            border-color: #ffffff;
-        }
+        /* BOTTONI AZIONI */
+        .area-pulsanti { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        .btn-azione { display: block; padding: 10px 15px; font-size: 0.95rem; font-weight: bold; text-decoration: none; border-radius: 4px; transition: background 0.2s, color 0.2s; }
+        .btn-prezzo { background-color: transparent; color: #00bcd4; border: 1px solid #00bcd4; }
+        .btn-prezzo:hover { background-color: #00bcd4; color: #000000; }
+        .btn-download { background-color: #00bcd4; color: #000000; border: 1px solid #00bcd4; }
+        .btn-download:hover { background-color: #ffffff; border-color: #ffffff; }
 
         @media (max-width: 768px) {
             .navbar { flex-direction: column; gap: 10px; }
@@ -187,14 +118,12 @@
 <body>
 
     <nav class="navbar">
-        <!-- AGGIORNATO: Struttura bicolore + Immagine Logo -->
         <a href="index.html" class="logo-container">
             <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
             <div class="testo-logo">
                 <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
             </div>
         </a>
-        
         <div class="nav-container">
             <ul class="nav-links">
                 <li><a href="chi-siamo.html">Chi siamo</a></li>
@@ -213,14 +142,12 @@
     </nav>
 
     <main class="main-content">
+        <!-- SCHEDA 1: I PRODOTTI CON LE SCATOLE -->
         <div class="scheda-contenuto">
             <h2>I Nostri Prodotti</h2>
-            
             <div id="testo-dinamico">Caricamento descrizione...</div>
 
             <div class="griglia-prodotti">
-                
-                <!-- SCATOLA 1 -->
                 <div class="elemento-prodotto">
                     <img src="../scatola1.png" alt="Scatola Versione A" class="foto-scatola">
                     <div class="nome-versione">Versione Light</div>
@@ -229,8 +156,6 @@
                         <a href="../nexus_matrix.zip" download class="btn-azione btn-download">Scarica NEXUS MATRIX GOLD</a>
                     </div>
                 </div>
-
-                <!-- SCATOLA 2 -->
                 <div class="elemento-prodotto">
                     <img src="../scatola2.png" alt="Scatola Versione B" class="foto-scatola">
                     <div class="nome-versione">Versione Gold</div>
@@ -239,23 +164,29 @@
                         <a href="../nexus_matrix.zip" download class="btn-azione btn-download">Scarica NEXUS MATRIX GOLD</a>
                     </div>
                 </div>
-
             </div>
+        </div>
+
+        <!-- SCHEDA 2: NUOVA SEZIONE BENEFICI LETTA DA FILE ESTERNO -->
+        <div class="scheda-contenuto">
+            <h2>Come NEXUS MATRIX ti aiuta tutti i giorni</h2>
+            <div id="testo-altro">Caricamento benefici...</div>
         </div>
     </main>
 
     <script>
         fetch('testo-prodotti.txt')
-            .then(response => {
-                if (!response.ok) throw new Error('File non trovato');
-                return response.text();
-            })
+            .then(response => { if (!response.ok) throw new Error(); return response.text(); })
+            .then(data => { document.getElementById('testo-dinamico').innerText = data; })
+            .catch(error => { document.getElementById('testo-dinamico').innerText = "Errore nel caricamento."; });
+
+        fetch('testo-altro-prodotti.txt')
+            .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => {
-                document.getElementById('testo-dinamico').innerText = data;
+                let testoFormattato = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                document.getElementById('testo-altro').innerHTML = testoFormattato;
             })
-            .catch(error => {
-                document.getElementById('testo-dinamico').innerText = "Errore nel caricamento della descrizione.";
-            });
+            .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
     </script>
 
 </body>
