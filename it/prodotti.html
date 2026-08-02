@@ -39,17 +39,20 @@
         .dropdown:hover .dropdown-content { display: block; }
 
         /* CONTENITORE CENTRALE */
-        .main-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; gap: 30px; }
-        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 950px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
-        .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 20px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
+        .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
+        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 950px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; text-align: center; }
         
         #testo-dinamico, #testo-altro { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; }
-        #testo-dinamico { margin-bottom: 40px; }
+        #testo-dinamico { margin-bottom: 40px; text-align: center; }
+        
+        /* Titolo interno per la seconda sezione di testo */
+        .titolo-secondario { font-size: 1.8rem; color: #00bcd4; margin: 40px 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; }
         #testo-altro { text-align: left; }
 
         /* GRIGLIA PRODOTTI */
-        .griglia-prodotti { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-        .elemento-prodotto { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 8px; max-width: 380px; width: 100%; transition: transform 0.3s ease; }
+        .griglia-prodotti { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 20px; }
+        .elemento-prodotto { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 8px; max-width: 380px; width: 100%; transition: transform 0.3s ease; text-align: center; }
         .elemento-prodotto:hover { transform: translateY(-5px); }
         .foto-scatola { max-width: 100%; height: auto; border-radius: 6px; margin-bottom: 15px; }
         .nome-versione { font-size: 1.4rem; font-weight: bold; color: #ffffff; margin-bottom: 15px; }
@@ -62,7 +65,7 @@
         .btn-azione { display: block; width: 100%; padding: 10px 15px; font-size: 0.95rem; font-weight: bold; text-decoration: none; border-radius: 4px; text-align: center; cursor: pointer; transition: background 0.2s, color 0.2s; }
         .btn-prezzo { background-color: transparent; color: #00bcd4; border: 1px solid #00bcd4; margin-bottom: 5px; }
         .btn-prezzo:hover { background-color: #00bcd4; color: #000000; }
-        .btn-invia-richiesta { background-color: #00bcd4; color: #000000; border: 1px solid #00bcd4; }
+        .btn-invia-richiesta { background-color: #00bcd4; color: #000000; border: 1px solid #00bcd4; font-family: inherit; }
         .btn-invia-richiesta:hover { background-color: #ffffff; border-color: #ffffff; }
 
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } .griglia-prodotti { gap: 20px; } }
@@ -97,8 +100,11 @@
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>I Nostri Prodotti</h2>
+            
+            <!-- 1. IN ALTO: Testo della descrizione iniziale -->
             <div id="testo-dinamico">Caricamento descrizione...</div>
 
+            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form Web3Forms -->
             <div class="griglia-prodotti">
                 <!-- SCATOLA 1 -->
                 <div class="elemento-prodotto">
@@ -134,11 +140,11 @@
                     </form>
                 </div>
             </div>
-        </div>
 
-        <div class="scheda-contenuto">
-            <h2>Come NEXUS MATRIX ti aiuta tutti i giorni</h2>
+            <!-- 3. IN BASSO: Titolo e seconda sezione con la lista benefici -->
+            <div class="titolo-secondario">Come NEXUS MATRIX ti aiuta tutti i giorni</div>
             <div id="testo-altro">Caricamento benefici...</div>
+            
         </div>
     </main>
 
