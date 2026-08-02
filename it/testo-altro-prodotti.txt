@@ -26,5 +26,5 @@ Ricapitolando, i moduli operativi indipendenti che agiscono secondo strategie ma
 
 - Il **modulo chaser**: un motore d assalto progettato per inseguire i trend piu violenti del mercato, incrementando le posizioni a favore di slancio volumetrico per **massimizzare i profitti** durante le estensioni repentine dei prezzi.
 
-- Il **modulo scalping**: (prossimamente) opera sui **time-frame minimi** con ordini rapidissimi a zero millisecondi di lag, catturando **micro-profitti** sui movimenti parassiti dello **spread**.
+- Il **modulo scalping**: (prossimamente) opera sui **time-frame minimi** con ordini rapidissimi a zero millisecondi di lag (solo su Conti True ECN), catturando **micro-profitti** sui movimenti parassiti dello **spread**.
 
