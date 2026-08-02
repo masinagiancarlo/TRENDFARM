@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Trendfarm</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('../home_ufficio_trendfarm.png'); 
+            background-size: cover;            
+            background-position: center;       
+            background-repeat: no-repeat;      
+            background-attachment: fixed;      
+        }
+        
+        /* NAVBAR */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        /* LOGO COORDINATO */
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .img-logo { height: 38px; width: auto; }
+        .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #0b2f8f; }
+
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-links a:hover { color: #00bcd4; }
+
+        /* CONTENITORE CENTRALE */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 140px 20px 40px 20px;
+        }
+
+        .scheda-contenuto {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);          
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 700px;                     
+            width: 100%;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .scheda-contenuto h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #00bcd4;                        
+            border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .testo-grazie {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .istruzioni {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 30px;
+        }
+        .istruzioni ol {
+            padding-left: 20px;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .istruzioni li {
+            margin-bottom: 8px;
+        }
+        
+        /* BOTTONE AZZURRO DI DOWNLOAD DIRETTO INGLESE */
+        .btn-download-diretto {
+            display: inline-block;
+            max-width: 340px;
+            width: 100%;
+            padding: 14px 25px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #00bcd4;
+            color: #000000;
+            border: 1px solid #00bcd4;
+            border-radius: 4px;
+            transition: background 0.2s, border-color 0.2s;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        .btn-download-diretto:hover {
+            background-color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 10px; }
+            .nav-container { flex-direction: column; gap: 10px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="about-us.html">About us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="prices.html">Prices</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="scheda-contenuto">
+            <h2>Request Received!</h2>
+            <p class="testo-grazie">Thank you for your interest. Your email address has been successfully registered in our system.</p>
+            
+            <div class="istruzioni">
+                <strong style="color: #00bcd4; display:block; margin-bottom:10px;">What to do now:</strong>
+                <ol>
+                    <li>Click the blue button below to download the software setup.</li>
+                    <li>Extract the contents of the .zip file onto your computer.</li>
+                    <li>Follow the included technical guide to interface it with your platform.</li>
+                    <li>Upon first launch, enter the same email address to activate your 30-day Gold Trial.</li>
+                </ol>
+            </div>
+            
+            <!-- Link diretto allo zip nella radice principale -->
+            <a href="../nexus_matrix.zip" download class="btn-download-diretto">Download the TRIAL</a>
+        </div>
+    </main>
+
+</body>
+</html>
