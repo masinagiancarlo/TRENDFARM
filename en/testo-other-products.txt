@@ -17,5 +17,5 @@ Developed to be the definitive **metatrader expert advisor**, the software adapt
 
 The **chaser module**: an assault engine designed to chase the most violent market trends, increasing positions in favor of volume momentum to **maximize profits** during sudden price extensions.
 
-The **scalping module**: (coming soon) operates on **minimum time-frames** with ultra-fast orders at zero milliseconds of lag, capturing **micro-profits** on parasitic **spread** movements.
+The **scalping module**: (coming soon) operates on **minimum time-frames** with ultra-fast orders at zero milliseconds of lag (only on True ECN Accounts), capturing **micro-profits** on parasitic **spread** movements.
 
