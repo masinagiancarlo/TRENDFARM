@@ -83,14 +83,19 @@
             
             <div class="sezione-richiesta-prezzi">
                 <h3>Richiedi la tua versione di prova Gold</h3>
-                <form action="https://web3forms.com" method="POST">
-                    <input type="hidden" name="access_key" value="1e65446d-f73d-49e4-9fcc-584e25311fe6">
-                    <input type="hidden" name="subject" value="Richiesta Nexus Trial - Dalla pagina Prezzi">
-                    <input type="hidden" name="redirect" value="https://github.io">
-                    <input type="checkbox" name="botcheck" style="display: none;">
-                    <input type="text" name="name" placeholder="Inserisci il tuo Nome / Azienda" required>
-                    <input type="email" name="email" placeholder="Inserisci il tuo indirizzo Email" required>
-                    <button type="submit" class="btn-invia-prezzi">Scarica NEXUS MATRIX GOLD</button>
+                    <form class="mini-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="1e65446d-f73d-49e4-9fcc-584e25311fe6">
+                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Light">
+                        <input type="hidden" name="redirect" value="https://masinagiancarlo.github.io/trendfarm/it/grazie.html">
+                        <input type="checkbox" name="botcheck" style="display: none;">
+                        <input type="text" name="name" placeholder="Il tuo Nome" required>
+                        <input type="email" name="email" placeholder="La tua Email" required>
+
+                        <!-- AGGIUNTO: Quadratino hCaptcha di sicurezza -->
+                        <div class="h-captcha" data-captcha="true" style="margin-bottom: 10px; transform:scale(0.85); transform-origin:0 0;"></div>
+
+                        <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
+                    </form> 
                 </form>
             </div>
         </div>
