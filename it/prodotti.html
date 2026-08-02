@@ -112,10 +112,10 @@
                     <div class="nome-versione">Versione Light</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" action="https://web3forms.com" method="POST">
+                    <form class="mini-form" action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="1e65446d-f73d-49e4-9fcc-584e25311fe6">
                         <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Light">
-                        <input type="hidden" name="redirect" value="https://github.io">
+                        <input type="hidden" name="redirect" value="https://masinagiancarlo.github.io/trendfarm/it/grazie.html">
                         <input type="checkbox" name="botcheck" style="display: none;">
                         <input type="text" name="name" placeholder="Il tuo Nome" required>
                         <input type="email" name="email" placeholder="La tua Email" required>
@@ -129,10 +129,10 @@
                     <div class="nome-versione">Versione Gold</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" action="https://web3forms.com" method="POST">
+                    <form class="mini-form" action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="1e65446d-f73d-49e4-9fcc-584e25311fe6">
                         <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Gold">
-                        <input type="hidden" name="redirect" value="https://github.io">
+                        <input type="hidden" name="redirect" value="https://masinagiancarlo.github.io/trendfarm/it/grazie.html">
                         <input type="checkbox" name="botcheck" style="display: none;">
                         <input type="text" name="name" placeholder="Il tuo Nome" required>
                         <input type="email" name="email" placeholder="La tua Email" required>
@@ -149,21 +149,23 @@
     </main>
 
     <script>
+        // Carica la descrizione iniziale supportando i doppi asterischi per il grassetto
         fetch('testo-prodotti.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => { 
                 let testoFormattato = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 document.getElementById('testo-dinamico').innerHTML = testoFormattato; 
             })
-            .catch(error => { document.getElementById('testo-dinamico').innerText = "Errore nel caricamento."; });
+            .catch(error => { document.getElementById('testo-dinamico').innerText = "Errore nel caricamento della descrizione."; });
 
+        // CORRETTO: Carica l'elenco dei benefici inferiore senza errori di battitura
         fetch('testo-altro-prodotti.txt')
-            .then(response => { if (!response.ok) throw new Error('File non trovato'); return response.text(); })
-            .then(data => { 
-                let testoFormattato = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                document.getElementById('testo-dinamico').innerHTML = testoFormattato; 
+            .then(response => { if (!response.ok) throw new Error(); return response.text(); })
+            .then(data => {
+                let pulito = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                document.getElementById('testo-altro').innerHTML = pulito;
             })
-            .catch(error => { document.getElementById('testo-dinamico').innerText = "Errore nel caricamento dei benefici."; });
+            .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
     </script>
 </body>
 </html>
