@@ -7,19 +7,23 @@
     <title>Prices - Trendfarm</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             background-image: url('../home_ufficio_trendfarm.png'); 
-            background-size: cover; 
-            background-position: center; 
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
+            background-size: cover;            
+            background-position: center;       
+            background-repeat: no-repeat;      
+            background-attachment: fixed;      
         }
         .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
-        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .img-logo { height: 38px; width: auto; }
+        .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #0b2f8f; }
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
@@ -33,37 +37,26 @@
         .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
         .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 800px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
         .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 20px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
-        
         #testo-dinamico { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; text-align: left; margin-bottom: 30px; }
         
-        /* STILE DEL BOTTONE IN INGLESE */
-        .btn-download {
-            display: inline-block;
-            max-width: 320px;
-            width: 100%;
-            padding: 12px 20px;
-            font-size: 0.95rem;
-            font-weight: bold;
-            text-decoration: none;
-            background-color: #00bcd4;
-            color: #000000;
-            border: 1px solid #00bcd4;
-            border-radius: 4px;
-            transition: background 0.2s, border-color 0.2s;
-            margin: 10px auto 0 auto;
-        }
-
-        .btn-download:hover {
-            background-color: #ffffff;
-            border-color: #ffffff;
-        }
-
+        /* INTEGRAZIONE FORM IN INGLESE COORDIDATO */
+        .sezione-richiesta-prezzi { max-width: 450px; margin: 20px auto 0 auto; background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
+        .sezione-richiesta-prezzi h3 { font-size: 1.2rem; color: #00bcd4; margin-bottom: 15px; text-align: center; }
+        .sezione-richiesta-prezzi input { width: 100%; padding: 12px; margin-bottom: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.95rem; }
+        .sezione-richiesta-prezzi input:focus { outline: none; border-color: #00bcd4; }
+        .btn-invia-prezzi { display: block; width: 100%; padding: 12px; background-color: #00bcd4; color: black; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; text-align: center; }
+        .btn-invia-prezzi:hover { background-color: #ffffff; }
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="logo">TRENDFARM</a>
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
         <div class="nav-container">
             <ul class="nav-links">
                 <li><a href="about-us.html">About us</a></li>
@@ -84,9 +77,15 @@
         <div class="scheda-contenuto">
             <h2>Price List</h2>
             <div id="testo-dinamico">Loading prices...</div>
-            
-            <!-- Link aggiornato allo zip corretto e bottone tradotto -->
-            <a href="../nexus_matrix.zip" download class="btn-download">Download NEXUS MATRIX GOLD</a>
+            <div class="sezione-richiesta-prezzi">
+                <h3>Request your Gold trial version</h3>
+                <form action="https://formspree.io/f/mwvggpwb" method="POST">
+                    <input type="hidden" name="subject" value="Richiesta Nexus Trial - Dalla pagina Prezzi (EN)">
+                    <input type="text" name="name" placeholder="Enter your Name / Company" required>
+                    <input type="email" name="_replyto" placeholder="Enter your Email address" required>
+                    <button type="submit" class="btn-invia-prezzi">Download NEXUS MATRIX GOLD</button>
+                </form>
+            </div>
         </div>
     </main>
     <script>
@@ -96,7 +95,7 @@
                 let testoFormattato = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 document.getElementById('testo-dinamico').innerHTML = testoFormattato; 
             })
-            .catch(error => { document.getElementById('testo-dinamico').innerText = "Error loading prices."; });
+            .catch(error => { document.getElementById('testo-prices').innerText = "Error loading prices."; });
     </script>
 </body>
 </html>
