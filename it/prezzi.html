@@ -24,6 +24,7 @@
         .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
         .colore-trend { color: #dca122; }
         .colore-farm { color: #0b2f8f; }
+
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
@@ -37,13 +38,17 @@
         .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
         .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 800px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
         .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 20px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
+        
         #testo-dinamico { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; text-align: left; margin-bottom: 30px; }
+        
         .sezione-richiesta-prezzi { max-width: 450px; margin: 20px auto 0 auto; background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
         .sezione-richiesta-prezzi h3 { font-size: 1.2rem; color: #00bcd4; margin-bottom: 15px; text-align: center; }
         .sezione-richiesta-prezzi input { width: 100%; padding: 12px; margin-bottom: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.95rem; }
         .sezione-richiesta-prezzi input:focus { outline: none; border-color: #00bcd4; }
+        
         .btn-invia-prezzi { display: block; width: 100%; padding: 12px; background-color: #00bcd4; color: black; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; text-align: center; }
         .btn-invia-prezzi:hover { background-color: #ffffff; }
+
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } }
     </style>
 </head>
@@ -75,13 +80,17 @@
         <div class="scheda-contenuto">
             <h2>Listino Prezzi</h2>
             <div id="testo-dinamico">Caricamento listino...</div>
+            
             <div class="sezione-richiesta-prezzi">
                 <h3>Richiedi la tua versione di prova Gold</h3>
-                <form action="https://formspree.io/f/mwvggpwb" method="POST">
+                <form action="https://web3forms.com" method="POST">
+                    <input type="hidden" name="access_key" value="1e65446d-f73d-49e4-9fcc-584e25311fe6">
                     <input type="hidden" name="subject" value="Richiesta Nexus Trial - Dalla pagina Prezzi">
+                    <input type="hidden" name="redirect" value="https://github.io">
+                    <input type="checkbox" name="botcheck" style="display: none;">
                     <input type="text" name="name" placeholder="Inserisci il tuo Nome / Azienda" required>
-                    <input type="email" name="_replyto" placeholder="Inserisci il tuo indirizzo Email" required>
-                    <button type="submit" class="btn-invia-prezzi">Richiedi TRIAL 30gg</button>
+                    <input type="email" name="email" placeholder="Inserisci il tuo indirizzo Email" required>
+                    <button type="submit" class="btn-invia-prezzi">Scarica NEXUS MATRIX GOLD</button>
                 </form>
             </div>
         </div>
