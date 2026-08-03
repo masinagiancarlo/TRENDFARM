@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Professional algorithmic trading platform with 5 independent strategic engines. Download the free 30-day TRIAL version.">
+    <meta name="description" content="Contact the Trendfarm team. Request commercial information, custom quotes, or technical support for the Nexus platform.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts - Trendfarm</title>
     <style>
@@ -22,7 +22,7 @@
         /* NAVBAR */
         .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
         
-        /* LOGO COORDINATO (Immagine + Testo Bicolore) */
+        /* COORDINATED LOGO (Image + Two-color Text) */
         .logo-container {
             display: flex;
             align-items: center;
@@ -38,8 +38,8 @@
             font-weight: bold;
             letter-spacing: 1px;
         }
-        .colore-trend { color: #dca122; } /* Oro dal logo */
-        .colore-farm { color: #0b2f8f; }  /* Blu dal logo */
+        .colore-trend { color: #dca122; } /* Gold from logo */
+        .colore-farm { color: #0b2f8f; }  /* Blue from logo */
 
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
@@ -52,7 +52,7 @@
         .dropdown-content a:hover { background-color: #00bcd4; color: black; }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* CONTENITORE CENTRALE */
+        /* CENTRAL CONTAINER */
         .main-content {
             flex-grow: 1;
             display: flex;
@@ -67,7 +67,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 40px;
             border-radius: 12px;
-            max-width: 600px;
+            max-width: 600px; /* Narrower for forms */
             width: 100%;
             color: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -82,7 +82,7 @@
             text-align: center;
         }
 
-        /* STRUTTURA DEL MODULO (FORM) */
+        /* FORM GROUP STRUCTURE */
         .form-gruppo {
             margin-bottom: 20px;
             text-align: left;
@@ -94,7 +94,6 @@
             font-weight: 500;
             color: #e0e0e0;
         }
-
         .form-control {
             width: 100%;
             padding: 12px;
@@ -113,11 +112,13 @@
             background: rgba(255, 255, 255, 0.15);
         }
 
+        /* Dropdown selection box style */
         select.form-control {
             cursor: pointer;
         }
-        select.form-control option {
-            background-color: #1a1a1a;
+        
+		select.form-control option {
+            background-color: #1a1a1a; /* Dark color for dropdown option text */
             color: white;
         }
 
@@ -149,9 +150,15 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">TRENDFARM</a>
+        <!-- COORDINATED LOGO: Image + Two-color Text -->
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Trendfarm Logo" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        
         <div class="nav-container">
-            <!-- MENU INGLESE -->
             <ul class="nav-links">
                 <li><a href="about-us.html">About us</a></li>
                 <li><a href="products.html">Products</a></li>
@@ -184,16 +191,16 @@
                     <input type="email" name="_replyto" id="email" class="form-control" placeholder="name@example.com" required>
                 </div>
 
-                <!-- OGGETTO IN INGLESE MA CON VALORI MAI TRADOTTI PER I FILTRI DELLA TUA EMAIL -->
+                <!-- CUSTOMIZABLE SUBJECT SELECTION -->
                 <div class="form-gruppo">
-                    <label for="oggetto">Subject</label>
+                    <label for="oggetto">Subject of the request</label>
                     <select name="subject" id="oggetto" class="form-control" required>
                         <option value="" disabled selected>Select an option...</option>
-                        <option value="Informazioni Generali">General Information</option>
-                        <option value="Informazioni Commerciali">Commercial Information</option>
-                        <option value="Richiesta Preventivo">Quote Request</option>
-                        <option value="Assistenza Tecnica">Technical Support</option>
-                        <option value="Altro">Other</option>
+                        <option value="General Information">General Information</option>
+                        <option value="Commercial Information">Commercial Information</option>
+                        <option value="Quote Request">Quote Request</option>
+                        <option value="Technical Support">Technical Support</option>
+                        <option value="Other">Other reason</option>
                     </select>
                 </div>
 
