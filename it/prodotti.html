@@ -78,47 +78,33 @@
         <div class="scheda-contenuto">
             <h2>I Nostri Prodotti</h2>
             <div id="testo-dinamico">Caricamento descrizione...</div>
-            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form ad attivazione automatica -->
+            <!-- 2. AL CENTRO: Le Scatole con i form nativi Formspree (Filtro Spam Invisibile Attivo) -->
             <div class="griglia-prodotti">
-                <!-- SCATOLA 1 (LIGHT) -->
+                <!-- SCATOLA 1 -->
                 <div class="elemento-prodotto">
                     <img src="../scatola1.png" alt="Versione Light" class="foto-scatola">
                     <div class="nome-versione">Versione Light</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" action="https://formsubmit.co/info-it@trendfarm.it" method="POST">
-                        <!-- Indirizzo per il redirect forzato alla pagina grazie.html -->
-                        <input type="hidden" name="_next" value="https://trendfarm-labs.github.io/trendfarm/it/grazie.html">
-                        <!-- Oggetto della mail che arriva a te su Aruba -->
-                        <input type="hidden" name="_subject" value="Richiesta Nexus Trial - IT">
-                        <!-- Disattiva la brutta pagina di controllo intermedia di FormSubmit -->
-                        <input type="hidden" name="_captcha" value="false">
+                    <form class="mini-form" action="https://formspree.io/f/mwvggpwb" method="POST">
+                        <!-- Oggetto per identificare la provenienza della richiesta -->
+                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Light">
                         
-                        <!-- RIGHE FONDAMENTALI: Dicono ad Aruba di rispondere al cliente e non a FormSubmit -->
-                        <input type="hidden" name="_replyto" value="%email%">
-                        <input type="hidden" name="_cc" value="%email%">
-                          
                         <input type="text" name="Nome" placeholder="Il tuo Nome" required style="width: 100%; display: block;">
                         <input type="email" name="Email" placeholder="La tua Email" required style="width: 100%; display: block;">
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
 
-                <!-- SCATOLA 2 (GOLD) -->
+                <!-- SCATOLA 2 -->
                 <div class="elemento-prodotto">
                     <img src="../scatola2.png" alt="Versione Gold" class="foto-scatola">
                     <div class="nome-versione">Versione Gold</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" action="https://formsubmit.co/info-it@trendfarm.it" method="POST">
-                        <input type="hidden" name="_next" value="https://trendfarm-labs.github.io/trendfarm/it/grazie.html">
-                        <input type="hidden" name="_subject" value="Richiesta Nexus Trial - IT">
-                        <input type="hidden" name="_captcha" value="false">
+                    <form class="mini-form" action="https://formspree.io/f/mwvggpwb" method="POST">
+                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Gold">
                         
-                        <!-- RIGHE FONDAMENTALI: Dicono ad Aruba di rispondere al cliente e non a FormSubmit -->
-                        <input type="hidden" name="_replyto" value="%email%">
-                        <input type="hidden" name="_cc" value="%email%">
-                          
                         <input type="text" name="Nome" placeholder="Il tuo Nome" required style="width: 100%; display: block;">
                         <input type="email" name="Email" placeholder="La tua Email" required style="width: 100%; display: block;">
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
