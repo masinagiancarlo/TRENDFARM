@@ -141,6 +141,7 @@
             })
             .catch(error => { document.getElementById('testo-dinamico').innerText = "Error loading description."; });
 
+        // CORRETTO: Ora punta esattamente a testo-other-products.txt
         fetch('testo-other-products.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => {
@@ -164,7 +165,7 @@
                 const dataObj = {
                     name: form.querySelector('input[name="user_name"]').value,
                     email: form.querySelector('input[name="user_email"]').value,
-                    subject: 'Richiesta Nexus Trial - EN'
+                    subject: 'Richiesta Nexus Trial - Versione ' + versione + ' (EN)'
                 };
 
                 // Silent background transmission
