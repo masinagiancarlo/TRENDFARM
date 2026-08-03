@@ -94,9 +94,10 @@
                         <!-- Disattiva la brutta pagina di controllo intermedia di FormSubmit -->
                         <input type="hidden" name="_captcha" value="false">
                         
-                        <!-- TESTO DELL'E-MAIL DI RISPOSTA AUTOMATICA CHE ARRIVA AL CLIENTE -->
-                        <input type="hidden" name="_autoresponse" value="Grazie per l'interesse. Puoi scaricare la tua versione TRIAL di 30 giorni cliccando sul link sicuro qui sotto: https://trendfarm-labs.github.io/trendfarm/nexus_matrix.zip -- Supporto: assistenza@trendfarm.it">
-                        
+                        <!-- RIGHE FONDAMENTALI: Dicono ad Aruba di rispondere al cliente e non a FormSubmit -->
+                        <input type="hidden" name="_replyto" value="%email%">
+                        <input type="hidden" name="_cc" value="%email%">
+                          
                         <input type="text" name="Nome" placeholder="Il tuo Nome" required style="width: 100%; display: block;">
                         <input type="email" name="Email" placeholder="La tua Email" required style="width: 100%; display: block;">
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
@@ -114,9 +115,10 @@
                         <input type="hidden" name="_subject" value="Richiesta Nexus Trial - IT">
                         <input type="hidden" name="_captcha" value="false">
                         
-                        <!-- TESTO DELL'E-MAIL DI RISPOSTA AUTOMATICA CHE ARRIVA AL CLIENTE -->
-                        <input type="hidden" name="_autoresponse" value="Grazie per l'interesse. Puoi scaricare la tua versione TRIAL di 30 giorni cliccando sul link sicuro qui sotto: https://trendfarm-labs.github.io/trendfarm/nexus_matrix.zip -- Supporto: assistenza@trendfarm.it">
-                        
+                        <!-- RIGHE FONDAMENTALI: Dicono ad Aruba di rispondere al cliente e non a FormSubmit -->
+                        <input type="hidden" name="_replyto" value="%email%">
+                        <input type="hidden" name="_cc" value="%email%">
+                          
                         <input type="text" name="Nome" placeholder="Il tuo Nome" required style="width: 100%; display: block;">
                         <input type="email" name="Email" placeholder="La tua Email" required style="width: 100%; display: block;">
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
