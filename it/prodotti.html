@@ -56,7 +56,7 @@
         .foto-scatola { max-width: 100%; height: auto; border-radius: 6px; margin-bottom: 15px; }
         .nome-versione { font-size: 1.4rem; font-weight: bold; color: #ffffff; margin-bottom: 15px; }
 
-        /* MINI FORM STANDARD */
+        /* MINI FORM COORDIDATO */
         .mini-form { text-align: left; margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
         .mini-form input { width: 100%; padding: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.9rem; }
         .mini-form input:focus { outline: none; border-color: #00bcd4; }
@@ -93,7 +93,7 @@
         <div class="scheda-contenuto">
             <h2>I Nostri Prodotti</h2>
             <div id="testo-dinamico">Caricamento descrizione...</div>
-            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form nativi Formbold -->
+            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form Formspree e sblocco Redirect -->
             <div class="griglia-prodotti">
                 <!-- SCATOLA 1 -->
                 <div class="elemento-prodotto">
@@ -101,10 +101,9 @@
                     <div class="nome-versione">Versione Light</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" action="https://formbold.com/s/6rBbJ" method="POST">
-                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Light">
+                    <form class="mini-form-spree" data-version="Light">
                         <input type="text" name="name" placeholder="Il tuo Nome" required>
-                        <input type="email" name="email" placeholder="La tua Email" required>
+                        <input type="email" name="_replyto" placeholder="La tua Email" required>
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
@@ -115,10 +114,9 @@
                     <div class="nome-versione">Versione Gold</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" action="https://formbold.com/s/6rBbJ" method="POST">
-                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Gold">
+                    <form class="mini-form-spree" data-version="Gold">
                         <input type="text" name="name" placeholder="Il tuo Nome" required>
-                        <input type="email" name="email" placeholder="La tua Email" required>
+                        <input type="email" name="_replyto" placeholder="La tua Email" required>
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
@@ -132,7 +130,7 @@
     </main>
 
     <script>
-        // Lettura dei file di testo dinamici e conversione dei doppi asterischi in grassetto
+        // 1. Lettura dei file di testo dinamici e conversione dei doppi asterischi in grassetto
         fetch('testo-prodotti.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => { 
@@ -148,6 +146,46 @@
                 document.getElementById('testo-altro').innerHTML = pulito;
             })
             .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
+
+        // 2. Gestione invio AJAX Formspree + Reindirizzamento forzato automatico gratuito a grazie.html
+        document.querySelectorAll('.mini-form-spree').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const versione = form.getAttribute('data-version');
+                const vecchioTesto = submitBtn.innerText;
+                
+                submitBtn.innerText = "Invio in corso...";
+                submitBtn.disabled = true;
+
+                // Creazione del pacchetto dati specifico richiesto da Formspree
+                const dataObj = {
+                    name: form.querySelector('input[name="name"]').value,
+                    _replyto: form.querySelector('input[name="email"]').value,
+                    subject: 'Richiesta Nexus Trial - Versione ' + versione
+                };
+
+                // Spedizione in background all'endpoint Formspree mwvggpwb
+                fetch('https://formspree.io/f/mwvggpwb', {
+                    method: 'POST',
+                    body: JSON.stringify(dataObj),
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json' 
+                    }
+                })
+                .then(response => {
+                    // Successo! Dirotta istantaneamente e gratuitamente l'utente sulla tua pagina grazie.html
+                    window.location.href = 'https://masinagiancarlo.github.io/trendfarm/it/grazie.html';
+                })
+                .catch(error => {
+                    alert('Si è verificato un errore di trasmissione. Riprova tra pochi istanti.');
+                    submitBtn.innerText = vecchioTesto;
+                    submitBtn.disabled = false;
+                });
+            });
+        });
     </script>
 </body>
 </html>
