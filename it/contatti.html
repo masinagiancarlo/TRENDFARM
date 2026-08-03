@@ -242,16 +242,15 @@
                         'Accept': 'application/json' 
                     }
                 })
-                .then(response => {
-                    // Svuota il form e salta subito alla Home italiana senza messaggi
-                    formContatti.reset();
-                    window.location.href = 'index.html';
-                })
-                .catch(error => {
-                    // Backup di sicurezza contro i blocchi di rete: reindirizza comunque
-                    formContatti.reset();
-                    window.location.href = 'index.html';
-                });
+				// Cerca questa sezione in fondo a it/contatti.html e modificala così:
+				.then(response => {
+					formContatti.reset();
+					window.location.href = 'messaggio-inviato.html'; // <--- AGGIORNATO QUI
+				})
+				.catch(error => {
+					formContatti.reset();
+					window.location.href = 'messaggio-inviato.html'; // <--- AGGIORNATO QUI
+				});
             });
         }
     </script>
