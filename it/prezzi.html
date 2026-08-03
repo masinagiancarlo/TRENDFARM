@@ -48,9 +48,12 @@
         
         .btn-invia-prezzi { display: block; width: 100%; padding: 12px; background-color: #00bcd4; color: black; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; text-align: center; }
         .btn-invia-prezzi:hover { background-color: #ffffff; }
-
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } }
     </style>
+
+    <!-- ATTIVAZIONE SBLOCCO DI SICUREZZA IN CIMA -->
+    <script src="https://web3forms.com" async defer></script>
+
 </head>
 <body>
     <nav class="navbar">
@@ -83,22 +86,19 @@
             
             <div class="sezione-richiesta-prezzi">
                 <h3>Richiedi la tua versione di prova Gold</h3>
-                   
-             <div class="sezione-richiesta-prezzi">
-                <h3>Richiedi la tua versione di prova Gold</h3>
                 <form action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="1e65446d-f73d-49e4-9fcc-584e25311fe6">
                     <input type="hidden" name="subject" value="Richiesta Nexus Trial - Dalla pagina Prezzi">
                     <input type="hidden" name="redirect" value="https://masinagiancarlo.github.io/trendfarm/it/grazie.html">
                     <input type="checkbox" name="botcheck" style="display: none;">
-        
+                    
                     <input type="text" name="name" placeholder="Inserisci il tuo Nome / Azienda" required>
                     <input type="email" name="email" placeholder="Inserisci il tuo indirizzo Email" required>
-        
-                    <!-- AGGIUNTO: Quadratino hCaptcha di sicurezza -->
-                    <div class="h-captcha" data-captcha="true" style="margin-bottom: 12px;"></div>
-        
-                    <button type="submit" class="btn-invia-prezzi">Richiedi TRIAL 30gg</button>
+                    
+                    <!-- CHIAVE SBLOCCO WIDGET FORZATO -->
+                    <div class="h-captcha" data-sitekey="f5572928-e215-46aa-b002-990ffb75f78c" style="margin-bottom: 12px;"></div>
+                    
+                    <button type="submit" class="btn-invia-prezzi">Scarica NEXUS MATRIX GOLD</button>
                 </form>
             </div>
         </div>
@@ -112,8 +112,5 @@
             })
             .catch(error => { document.getElementById('testo-dinamico').innerText = "Errore nel caricamento dei prezzi."; });
     </script>
-    <!-- MOTORE DI ATTIVAZIONE CAPTCHA -->
-    <script src="https://web3forms.com" async defer></script>
 </body>
 </html>
-
