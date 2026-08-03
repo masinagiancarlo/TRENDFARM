@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Discover NEXUS MATRIX products in Light and Gold versions. Multi-module algorithmic trading platform built for capital protection.">
+    <meta name="description" content="Discover NEXUS MATRIX products in Light and Gold versions. Multi-module automated trading platform built for capital protection.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - Trendfarm</title>
     <style>
@@ -18,50 +18,58 @@
             background-repeat: no-repeat;      
             background-attachment: fixed;      
         }
+        
+        /* NAVBAR */
         .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .img-logo { height: 38px; width: auto; }
         .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
         .colore-trend { color: #dca122; }
         .colore-farm { color: #0b2f8f; }
+
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
+        
+        /* LANGUAGE DROPDOWN */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
-        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
         .dropdown-content a:hover { background-color: #00bcd4; color: black; }
         .dropdown:hover .dropdown-content { display: block; }
-        .main-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; gap: 30px; }
-        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 950px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
-        .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 20px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
+
+        /* CENTRAL CONTAINER */
+        .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
+        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 950px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; text-align: center; }
+        
         #testo-dinamico, #testo-altro { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; }
-        #testo-dinamico { margin-bottom: 40px; }
+        #testo-dinamico { margin-bottom: 40px; text-align: center; }
+        .titolo-secondario { font-size: 1.8rem; color: #00bcd4; margin: 40px 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; }
         #testo-altro { text-align: left; }
-        .griglia-prodotti { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-        .elemento-prodotto { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 8px; max-width: 380px; width: 100%; transition: transform 0.3s ease; }
+        .griglia-prodotti { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 20px; }
+        .elemento-prodotto { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 8px; max-width: 380px; width: 100%; transition: transform 0.3s ease; text-align: center; }
         .elemento-prodotto:hover { transform: translateY(-5px); }
         .foto-scatola { max-width: 100%; height: auto; border-radius: 6px; margin-bottom: 15px; }
         .nome-versione { font-size: 1.4rem; font-weight: bold; color: #ffffff; margin-bottom: 15px; }
-        
-        /* MINI FORM INGLESE */
         .mini-form { text-align: left; margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
         .mini-form input { width: 100%; padding: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.9rem; }
         .mini-form input:focus { outline: none; border-color: #00bcd4; }
         .btn-azione { display: block; width: 100%; padding: 10px 15px; font-size: 0.95rem; font-weight: bold; text-decoration: none; border-radius: 4px; text-align: center; cursor: pointer; transition: background 0.2s, color 0.2s; }
         .btn-prezzo { background-color: transparent; color: #00bcd4; border: 1px solid #00bcd4; margin-bottom: 5px; }
         .btn-prezzo:hover { background-color: #00bcd4; color: #000000; }
-        .btn-invia-richiesta { background-color: #00bcd4; color: #000000; border: 1px solid #00bcd4; }
+        .btn-invia-richiesta { background-color: #00bcd4; color: #000000; border: 1px solid #00bcd4; font-family: inherit; }
         .btn-invia-richiesta:hover { background-color: #ffffff; border-color: #ffffff; }
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } .griglia-prodotti { gap: 20px; } }
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <a href="index.html" class="logo-container">
-            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <img src="../logo.png" alt="Trendfarm Logo" class="img-logo">
             <div class="testo-logo">
                 <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
             </div>
@@ -73,6 +81,7 @@
                 <li><a href="prices.html">Prices</a></li>
                 <li><a href="contacts.html">Contacts</a></li>
             </ul>
+            
             <div class="dropdown">
                 <button class="dropdown-btn">🇬🇧 English ▾</button>
                 <div class="dropdown-content">
@@ -82,43 +91,48 @@
             </div>
         </div>
     </nav>
+
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>Our Products</h2>
             <div id="testo-dinamico">Loading description...</div>
+            <!-- 2. CENTER: Products Grid with respective Formspree forms -->
             <div class="griglia-prodotti">
-                <!-- SCATOLA 1 -->
+                <!-- BOX 1 -->
                 <div class="elemento-prodotto">
-                    <img src="../scatola1.png" alt="Box Version A" class="foto-scatola">
+                    <img src="../scatola1.png" alt="Light Version" class="foto-scatola">
                     <div class="nome-versione">Light Version</div>
-                    <a href="prices.html" class="btn-azione btn-prezzo">View Price</a>
-                    <form class="mini-form" action="https://formspree.io/f/mwvggpwb" method="POST">
-                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Light (EN)">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="_replyto" placeholder="Your Email" required>
-                        <button type="submit" class="btn-azione btn-invia-richiesta">Request 30-day TRIAL</button>
+                    <a href="prices.html" class="btn-azione btn-prezzo">See Price</a>
+                    
+                    <form class="mini-form" data-version="Light">
+                        <input type="text" name="user_name" placeholder="Your Name" required style="width: 100%; display: block;">
+                        <input type="email" name="user_email" placeholder="Your Email" required style="width: 100%; display: block;">
+                        <button type="submit" class="btn-azione btn-invia-richiesta">Try 30 days TRIAL</button>
                     </form>
                 </div>
-                <!-- SCATOLA 2 -->
+                <!-- BOX 2 -->
                 <div class="elemento-prodotto">
-                    <img src="../scatola2.png" alt="Box Version B" class="foto-scatola">
+                    <img src="../scatola2.png" alt="Gold Version" class="foto-scatola">
                     <div class="nome-versione">Gold Version</div>
-                    <a href="prices.html" class="btn-azione btn-prezzo">View Price</a>
-                    <form class="mini-form" action="https://formspree.io/f/mwvggpwb" method="POST">
-                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Gold (EN)">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="_replyto" placeholder="Your Email" required>
-                        <button type="submit" class="btn-azione btn-invia-richiesta">Request 30-day TRIAL</button>
+                    <a href="prices.html" class="btn-azione btn-prezzo">See Price</a>
+                    
+                    <form class="mini-form" data-version="Gold">
+                        <input type="text" name="user_name" placeholder="Your Name" required style="width: 100%; display: block;">
+                        <input type="email" name="user_email" placeholder="Your Email" required style="width: 100%; display: block;">
+                        <button type="submit" class="btn-azione btn-invia-richiesta">Try 30 days TRIAL</button>
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="scheda-contenuto">
-            <h2>How NEXUS MATRIX helps you every day</h2>
+
+            <!-- 3. BOTTOM: Title and second section with benefits list -->
+            <div class="titolo-secondario">How NEXUS MATRIX helps you every day</div>
             <div id="testo-altro">Loading benefits...</div>
+            
         </div>
     </main>
+
     <script>
+        // 1. Fetch dynamic text files and convert double asterisks to strong tags
         fetch('testo-products.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => { 
@@ -126,13 +140,52 @@
                 document.getElementById('testo-dinamico').innerHTML = testoFormattato; 
             })
             .catch(error => { document.getElementById('testo-dinamico').innerText = "Error loading description."; });
-        fetch('testo-other-products.txt')
+
+        fetch('testo-altro-products.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => {
                 let pulito = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 document.getElementById('testo-altro').innerHTML = pulito;
             })
             .catch(error => { document.getElementById('testo-altro').innerText = "Error loading benefits."; });
+
+        // 2. Lightweight Formspree AJAX submission management (Saves data and redirects to thanks.html)
+        document.querySelectorAll('.mini-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const versione = form.getAttribute('data-version');
+                
+                submitBtn.innerText = "Sending...";
+                submitBtn.disabled = true;
+
+                // Create the clean data package for Formspree (ID mwvggpwb)
+                const dataObj = {
+                    name: form.querySelector('input[name="user_name"]').value,
+                    email: form.querySelector('input[name="user_email"]').value,
+                    subject: 'Richiesta Nexus Trial - EN'
+                };
+
+                // Silent background transmission
+                fetch('https://formspree.io/f/mwvggpwb', {
+                    method: 'POST',
+                    body: JSON.stringify(dataObj),
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json' 
+                    }
+                })
+                .then(response => {
+                    // Success: immediately redirect to the English thanks page
+                    window.location.href = 'https://trendfarm-labs.github.io/trendfarm/it/grazie.html';
+                })
+                .catch(error => {
+                    // Backup redirect to ensure the user gets their download
+                    window.location.href = 'https://trendfarm-labs.github.io/trendfarm/it/grazie.html';
+                });
+            });
+        });
     </script>
 </body>
 </html>
