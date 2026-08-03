@@ -22,7 +22,7 @@
         /* NAVBAR */
         .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
         
-        /* COORDINATED LOGO (Image + Two-color Text) */
+        /* COORDINATED LOGO */
         .logo-container {
             display: flex;
             align-items: center;
@@ -38,8 +38,8 @@
             font-weight: bold;
             letter-spacing: 1px;
         }
-        .colore-trend { color: #dca122; } /* Gold from logo */
-        .colore-farm { color: #0b2f8f; }  /* Blue from logo */
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #0b2f8f; }
 
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
@@ -48,7 +48,7 @@
         .dropdown { position: relative; display: inline-block; }
         .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
-        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
         .dropdown-content a:hover { background-color: #00bcd4; color: black; }
         .dropdown:hover .dropdown-content { display: block; }
 
@@ -67,7 +67,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 40px;
             border-radius: 12px;
-            max-width: 600px; /* Narrower for forms */
+            max-width: 600px;
             width: 100%;
             color: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -82,7 +82,7 @@
             text-align: center;
         }
 
-        /* FORM GROUP STRUCTURE */
+        /* FORM STRUCTURE */
         .form-gruppo {
             margin-bottom: 20px;
             text-align: left;
@@ -94,6 +94,7 @@
             font-weight: 500;
             color: #e0e0e0;
         }
+
         .form-control {
             width: 100%;
             padding: 12px;
@@ -112,13 +113,11 @@
             background: rgba(255, 255, 255, 0.15);
         }
 
-        /* Dropdown selection box style */
         select.form-control {
             cursor: pointer;
         }
-        
-		select.form-control option {
-            background-color: #1a1a1a; /* Dark color for dropdown option text */
+        select.form-control option {
+            background-color: #1a1a1a;
             color: white;
         }
 
@@ -134,6 +133,7 @@
             cursor: pointer;
             transition: background 0.2s;
             margin-top: 10px;
+            font-family: inherit;
         }
 
         .btn-invia:hover {
@@ -150,7 +150,6 @@
 <body>
 
     <nav class="navbar">
-        <!-- COORDINATED LOGO: Image + Two-color Text -->
         <a href="index.html" class="logo-container">
             <img src="../logo.png" alt="Trendfarm Logo" class="img-logo">
             <div class="testo-logo">
@@ -179,19 +178,18 @@
         <div class="scheda-contenuto">
             <h2>Contact Us</h2>
             
-            <form action="https://formspree.io/f/mdaqvwbb" method="POST">
+            <form class="form-contatti-ajax">
                 
                 <div class="form-gruppo">
                     <label for="nome">Name / Company</label>
-                    <input type="text" name="name" id="nome" class="form-control" placeholder="Enter your name" required>
+                    <input type="text" name="user_name" id="nome" class="form-control" placeholder="Enter your name" required>
                 </div>
 
                 <div class="form-gruppo">
                     <label for="email">Email Address</label>
-                    <input type="email" name="_replyto" id="email" class="form-control" placeholder="name@example.com" required>
+                    <input type="email" name="user_email" id="email" class="form-control" placeholder="name@example.com" required>
                 </div>
 
-                <!-- CUSTOMIZABLE SUBJECT SELECTION -->
                 <div class="form-gruppo">
                     <label for="oggetto">Subject of the request</label>
                     <select name="subject" id="oggetto" class="form-control" required>
@@ -215,5 +213,44 @@
         </div>
     </main>
 
+    <script>
+        // Gestione invio silenzioso AJAX e redirect immediato a message-sent.html
+        const formContatti = document.querySelector('.form-contatti-ajax');
+        if (formContatti) {
+            formContatti.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = formContatti.querySelector('.btn-invia');
+                const vecchioTesto = submitBtn.innerText;
+                
+                submitBtn.innerText = "Sending...";
+                submitBtn.disabled = true;
+
+                const dataObj = {
+                    name: formContatti.querySelector('#nome').value,
+                    email: formContatti.querySelector('#email').value,
+                    subject: 'EN - ' + formContatti.querySelector('#oggetto').value,
+                    message: formContatti.querySelector('#messaggio').value
+                };
+
+                fetch('https://formspree.io/f/mdaqvwbb', {
+                    method: 'POST',
+                    body: JSON.stringify(dataObj),
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json' 
+                    }
+                })
+                .then(response => {
+                    formContatti.reset();
+                    window.location.href = 'message-sent.html';
+                })
+                .catch(error => {
+                    formContatti.reset();
+                    window.location.href = 'message-sent.html';
+                });
+            });
+        }
+    </script>
 </body>
 </html>
