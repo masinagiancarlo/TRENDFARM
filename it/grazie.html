@@ -17,6 +17,8 @@
             background-repeat: no-repeat;      
             background-attachment: fixed;      
         }
+        
+        /* NAVBAR COORDINATA */
         .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .img-logo { height: 38px; width: auto; }
@@ -27,13 +29,23 @@
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
+        
+        /* MENU A DISCESA LINGUE */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* CONTENITORE CENTRALE */
         .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
         .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 50px 40px; border-radius: 12px; max-width: 750px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
         
         .scheda-contenuto h2 { font-size: 2.4rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 12px; }
         .testo-notifica { font-size: 1.25rem; line-height: 1.8; color: #ffffff; font-weight: 400; margin-bottom: 30px; }
         
-        /* PULSANTI COORDINATI */
+        /* CONTENITORE PULSANTI */
         .contenitore-bottoni { display: flex; flex-direction: column; gap: 18px; align-items: center; margin-bottom: 10px; }
         
         .btn-download-diretto {
@@ -89,8 +101,18 @@
                 <li><a href="prezzi.html">Prezzi</a></li>
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
+            
+            <!-- ABILITATO: Menu a discesa lingue anche nella pagina di ringraziamento -->
+            <div class="dropdown">
+                <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
+                <div class="dropdown-content">
+                    <a href="grazie.html">🇮🇹 Italiano</a>
+                    <a href="../en/thanks.html">🇬🇧 English</a>
+                </div>
+            </div>
         </div>
     </nav>
+    
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>Richiesta Ricevuta!</h2>
@@ -99,10 +121,10 @@
             </p>
             
             <div class="contenitore-bottoni">
-                <!-- IL VERO LINK DI DOWNLOAD AGGIORNATO AL NUOVO USERNAME -->
-                <a href="https://trendfarm-labs.github.io/trendfarm/nexus_matrix.zip" download class="btn-download-diretto">Scarica la TRIAL</a>
+                <!-- DOWNLOAD DIRETTO DELLO ZIP -->
+                <a href="../nexus_matrix.zip" download class="btn-download-diretto">Scarica la TRIAL</a>
                 
-                <!-- BOTTONE DI RITORNO FLUIDO -->
+                <!-- BOTTONE TORNA INDIETRO MANTENUTO -->
                 <a href="prodotti.html" class="btn-ok">Torna al sito</a>
             </div>
         </div>
