@@ -93,7 +93,7 @@
         <div class="scheda-contenuto">
             <h2>I Nostri Prodotti</h2>
             <div id="testo-dinamico">Caricamento descrizione...</div>
-            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form Formspree e sblocco Redirect -->
+            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form Formspree (Campi larghi e allineati) -->
             <div class="griglia-prodotti">
                 <!-- SCATOLA 1 -->
                 <div class="elemento-prodotto">
@@ -101,9 +101,9 @@
                     <div class="nome-versione">Versione Light</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form-spree" data-version="Light">
-                        <input type="text" name="name" placeholder="Il tuo Nome" required>
-                        <input type="email" name="_replyto" placeholder="La tua Email" required>
+                    <form class="mini-form" data-version="Light">
+                        <input type="text" placeholder="Il tuo Nome" required>
+                        <input type="email" placeholder="La tua Email" required>
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
@@ -114,9 +114,9 @@
                     <div class="nome-versione">Versione Gold</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form-spree" data-version="Gold">
-                        <input type="text" name="name" placeholder="Il tuo Nome" required>
-                        <input type="email" name="_replyto" placeholder="La tua Email" required>
+                    <form class="mini-form" data-version="Gold">
+                        <input type="text" placeholder="Il tuo Nome" required>
+                        <input type="email" placeholder="La tua Email" required>
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
@@ -147,27 +147,27 @@
             })
             .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
 
-        // 2. Gestione invio AJAX Formspree + Reindirizzamento forzato automatico gratuito a grazie.html
-        document.querySelectorAll('.mini-form-spree').forEach(form => {
+        // 2. Gestione invio AJAX Formspree corretta senza blocchi
+        document.querySelectorAll('.mini-form').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 const submitBtn = form.querySelector('button[type="submit"]');
                 const versione = form.getAttribute('data-version');
-                const vecchioTesto = submitBtn.innerText;
+                const inputs = form.querySelectorAll('input');
                 
                 submitBtn.innerText = "Invio in corso...";
                 submitBtn.disabled = true;
 
-                // Creazione del pacchetto dati specifico richiesto da Formspree
+                // Raccoglie i dati in base alla posizione esatta delle caselle (elimina errori di nome)
                 const dataObj = {
-                    name: form.querySelector('input[name="name"]').value,
-                    _replyto: form.querySelector('input[name="email"]').value,
+                    name: inputs[0].value,
+                    _replyto: inputs[1].value,
                     subject: 'Richiesta Nexus Trial - Versione ' + versione
                 };
 
-                // Spedizione in background all'endpoint Formspree mwvggpwb
-                fetch('https://formspree.io/f/mwvggpwb', {
+                // Spedizione sicura all'endpoint Formspree mwvggpwb
+                fetch('https://formspree.io/f/xeeyyzwa', {
                     method: 'POST',
                     body: JSON.stringify(dataObj),
                     headers: { 
@@ -176,12 +176,16 @@
                     }
                 })
                 .then(response => {
-                    // Successo! Dirotta istantaneamente e gratuitamente l'utente sulla tua pagina grazie.html
-                    window.location.href = 'https://masinagiancarlo.github.io/trendfarm/it/grazie.html';
+                    if (response.ok) {
+                        // Successo! Dirotta istantaneamente alla pagina grazie.html
+                        window.location.href = 'https://masinagiancarlo.github.io/trendfarm/it/grazie.html';
+                    } else {
+                        throw new Error();
+                    }
                 })
                 .catch(error => {
-                    alert('Si è verificato un errore di trasmissione. Riprova tra pochi istanti.');
-                    submitBtn.innerText = vecchioTesto;
+                    alert('Errore di trasmissione. Verifica i dati o riprova tra pochi istanti.');
+                    submitBtn.innerText = "Richiedi TRIAL 30gg";
                     submitBtn.disabled = false;
                 });
             });
