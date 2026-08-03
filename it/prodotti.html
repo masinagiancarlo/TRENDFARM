@@ -46,7 +46,6 @@
         #testo-dinamico, #testo-altro { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; }
         #testo-dinamico { margin-bottom: 40px; text-align: center; }
         
-        /* Titolo interno per la seconda sezione di testo */
         .titolo-secondario { font-size: 1.8rem; color: #00bcd4; margin: 40px 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; }
         #testo-altro { text-align: left; }
 
@@ -57,7 +56,7 @@
         .foto-scatola { max-width: 100%; height: auto; border-radius: 6px; margin-bottom: 15px; }
         .nome-versione { font-size: 1.4rem; font-weight: bold; color: #ffffff; margin-bottom: 15px; }
 
-        /* MINI FORM PROTETTO */
+        /* MINI FORM COORDIDATO FORMBOLD */
         .mini-form { text-align: left; margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
         .mini-form input { width: 100%; padding: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.9rem; }
         .mini-form input:focus { outline: none; border-color: #00bcd4; }
@@ -70,8 +69,6 @@
 
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } .griglia-prodotti { gap: 20px; } }
     </style>
-    <!-- MOTORE DI ATTIVAZIONE CAPTCHA -->
-    <script src="https://hcaptcha.com" async defer></script>
 </head>
 <body>
 
@@ -105,47 +102,30 @@
             
             <!-- 1. IN ALTO: Testo della descrizione iniziale -->
             <div id="testo-dinamico">Caricamento descrizione...</div>
-
-            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form Web3Forms -->
+            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form Formbold -->
             <div class="griglia-prodotti">
                 <!-- SCATOLA 1 -->
                 <div class="elemento-prodotto">
-                    <img src="../scatola1.png" alt="Scatola Versione A" class="foto-scatola">
+                    <img src="../scatola1.png" alt="Versione Light" class="foto-scatola">
                     <div class="nome-versione">Versione Light</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="1e65446d-f73d-49e4-9fcc-584e25311fe6">
-                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Light">
-                        <input type="hidden" name="redirect" value="https://masinagiancarlo.github.io/trendfarm/it/grazie.html">
-                        <input type="checkbox" name="botcheck" style="display: none;">
+                    <form class="mini-form" data-version="Light">
                         <input type="text" name="name" placeholder="Il tuo Nome" required>
                         <input type="email" name="email" placeholder="La tua Email" required>
-
-                        <!-- AGGIUNTO: Quadratino hCaptcha di sicurezza -->
-                        <div class="h-captcha" data-captcha="true" style="margin-bottom: 10px; transform:scale(0.85); transform-origin:0 0;"></div>
-
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
 
                 <!-- SCATOLA 2 -->
                 <div class="elemento-prodotto">
-                    <img src="../scatola2.png" alt="Scatola Versione B" class="foto-scatola">
+                    <img src="../scatola2.png" alt="Versione Gold" class="foto-scatola">
                     <div class="nome-versione">Versione Gold</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="1e65446d-f73d-49e4-9fcc-584e25311fe6">
-                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Gold">
-                        <input type="hidden" name="redirect" value="https://masinagiancarlo.github.io/trendfarm/it/grazie.html">
-                        <input type="checkbox" name="botcheck" style="display: none;">
+                    <form class="mini-form" data-version="Gold">
                         <input type="text" name="name" placeholder="Il tuo Nome" required>
                         <input type="email" name="email" placeholder="La tua Email" required>
-
-                        <!-- AGGIUNTO: Quadratino hCaptcha di sicurezza -->
-                        <div class="h-captcha" data-captcha="true" style="margin-bottom: 10px; transform:scale(0.85); transform-origin:0 0;"></div>
-
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
@@ -159,7 +139,7 @@
     </main>
 
     <script>
-        // Carica la descrizione iniziale supportando i doppi asterischi per il grassetto
+        // 1. Lettura dei file di testo dinamici e conversione dei doppi asterischi in grassetto
         fetch('testo-prodotti.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => { 
@@ -168,7 +148,6 @@
             })
             .catch(error => { document.getElementById('testo-dinamico').innerText = "Errore nel caricamento della descrizione."; });
 
-        // CORRETTO: Carica l'elenco dei benefici inferiore senza errori di battitura
         fetch('testo-altro-prodotti.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => {
@@ -176,7 +155,42 @@
                 document.getElementById('testo-altro').innerHTML = pulito;
             })
             .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
+
+        // 2. Intercettazione dell'invio dei form e redirect forzato tramite AJAX (Aggira i blocchi a pagamento)
+        document.querySelectorAll('.mini-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const versione = form.getAttribute('data-version');
+                const vecchioTestoBotton = submitBtn.innerText;
+                
+                submitBtn.innerText = "Invio in corso...";
+                submitBtn.disabled = true;
+
+                // Pacchetto di dati da spedire a Formbold
+                const formData = new FormData();
+                formData.append('name', form.querySelector('input[name="name"]').value);
+                formData.append('email', form.querySelector('input[name="email"]').value);
+                formData.append('subject', 'Richiesta Nexus Trial - Versione ' + versione);
+
+                // Spedizione in background all'endpoint Formbold 6rBbJ
+                fetch('https://formbold.com', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(response => {
+                    // Successo! Sposta immediatamente l'utente alla pagina di ringraziamento e sblocco download
+                    window.location.href = 'https://masinagiancarlo.github.io/trendfarm/it/grazie.html';
+                })
+                .catch(error => {
+                    alert('Si è verificato un errore di connessione. Riprova tra pochi istanti.');
+                    submitBtn.innerText = vecchioTestoBotton;
+                    submitBtn.disabled = false;
+                });
+            });
+        });
     </script>
 </body>
 </html>
-
