@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Management - Trendfarm</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('../home_ufficio_trendfarm.png'); 
+            background-size: cover;            
+            background-position: center;       
+            background-repeat: no-repeat;      
+            background-attachment: fixed;      
+        }
+        .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .img-logo { height: 38px; width: auto; }
+        .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #0b2f8f; }
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-links a:hover { color: #00bcd4; }
+        
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
+        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 50px 40px; border-radius: 12px; max-width: 700px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
+        
+        .scheda-contenuto h2 { font-size: 2.4rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 12px; }
+        .testo-notifica { font-size: 1.25rem; line-height: 1.8; color: #ffffff; font-weight: 400; margin-bottom: 35px; }
+        
+        .btn-ok {
+            display: inline-block;
+            max-width: 180px;
+            width: 100%;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #00bcd4;
+            color: #000000;
+            border: 1px solid #00bcd4;
+            border-radius: 4px;
+            transition: background 0.2s, border-color 0.2s;
+            margin: 0 auto;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.2);
+        }
+        .btn-ok:hover { background-color: #ffffff; border-color: #ffffff; color: #000000; }
+        @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Trendfarm Logo" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="about-us.html">About us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="prices.html">Prices</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+            </ul>
+            <div class="dropdown">
+                <button class="dropdown-btn">🇬🇧 English ▾</button>
+                <div class="dropdown-content">
+                    <a href="../it/messaggio-inviato.html">🇮🇹 Italiano</a>
+                    <a href="message-sent.html">🇬🇧 English</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="main-content">
+        <div class="scheda-contenuto">
+            <h2>Message Management</h2>
+            <p class="testo-notifica">
+                The message has been sent successfully and we will reply as soon as possible.
+            </p>
+            <a href="index.html" class="btn-ok">OK</a>
+        </div>
+    </main>
+</body>
+</html>
