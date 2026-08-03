@@ -33,12 +33,14 @@
         .scheda-contenuto h2 { font-size: 2.4rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 12px; }
         .testo-notifica { font-size: 1.25rem; line-height: 1.8; color: #ffffff; font-weight: 400; margin-bottom: 30px; }
         
-        /* NUOVO PULSANTE OK COORDINATO */
-        .btn-ok {
+        /* PULSANTI COORDINATI */
+        .contenitore-bottoni { display: flex; flex-direction: column; gap: 18px; align-items: center; margin-bottom: 10px; }
+        
+        .btn-download-diretto {
             display: inline-block;
-            max-width: 180px;
+            max-width: 340px;
             width: 100%;
-            padding: 12px 25px;
+            padding: 14px 25px;
             font-size: 1.1rem;
             font-weight: bold;
             text-decoration: none;
@@ -46,17 +48,29 @@
             color: #000000;
             border: 1px solid #00bcd4;
             border-radius: 4px;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+        .btn-download-diretto:hover { background-color: #ffffff; border-color: #ffffff; transform: translateY(-2px); }
+
+        .btn-ok {
+            display: inline-block;
+            max-width: 180px;
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: transparent;
+            color: #aaaaaa;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
             transition: background 0.2s, border-color 0.2s, color 0.2s;
-            margin: 0 auto;
             cursor: pointer;
         }
-        .btn-ok:hover {
-            background-color: #ffffff;
-            border-color: #ffffff;
-            color: #000000;
-        }
+        .btn-ok:hover { background-color: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.5); color: #ffffff; }
         
-        .nota-spam { margin-top: 30px; color: #aaaaaa; font-size: 0.95rem; font-style: italic; }
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } }
     </style>
 </head>
@@ -79,15 +93,18 @@
     </nav>
     <main class="main-content">
         <div class="scheda-contenuto">
-            <h2>Servizio inoltrato</h2>
+            <h2>Richiesta Ricevuta!</h2>
             <p class="testo-notifica">
-                Richiesta ricevuta con successo! Controlla subito la tua casella di posta elettronica: ti abbiamo appena inviato un messaggio con il link sicuro per scaricare la TRIAL di NEXUS MATRIX.
+                Grazie per l'interesse. Clicca sul pulsante azzurro qui sotto per scaricare immediatamente l'archivio compresso di NEXUS MATRIX ed avviare la tua prova.
             </p>
             
-            <!-- PULSANTE OK DI RITORNO -->
-            <a href="prodotti.html" class="btn-ok">OK</a>
-            
-            <p class="nota-spam">Se non ricevi l'e-mail entro un paio di minuti, controlla la cartella Spam o Promozioni.</p>
+            <div class="contenitore-bottoni">
+                <!-- IL VERO LINK DI DOWNLOAD AGGIORNATO AL NUOVO USERNAME -->
+                <a href="https://trendfarm-labs.github.io/trendfarm/nexus_matrix.zip" download class="btn-download-diretto">Scarica la TRIAL</a>
+                
+                <!-- BOTTONE DI RITORNO FLUIDO -->
+                <a href="prodotti.html" class="btn-ok">Torna al sito</a>
+            </div>
         </div>
     </main>
 </body>
