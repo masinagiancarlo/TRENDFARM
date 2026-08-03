@@ -32,7 +32,7 @@
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
         
-        /* STILI PER IL MENU A DISCESA LINGUE */
+        /* MENU A DISCESA LINGUE */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
@@ -82,7 +82,6 @@
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
             
-            <!-- ATTIVATO: Menu a discesa per la selezione della lingua -->
             <div class="dropdown">
                 <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
                 <div class="dropdown-content">
@@ -93,23 +92,6 @@
         </div>
     </nav>
 
-    <main class="main-content">
-
-        <a href="index.html" class="logo-container">
-            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
-            <div class="testo-logo">
-                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
-            </div>
-        </a>
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="chi-siamo.html">Chi siamo</a></li>
-                <li><a href="prodotti.html" style="color: #00bcd4;">Prodotti</a></li>
-                <li><a href="prezzi.html">Prezzi</a></li>
-                <li><a href="contatti.html">Contatti</a></li>
-            </ul>
-        </div>
-    </nav>
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>I Nostri Prodotti</h2>
@@ -168,7 +150,7 @@
             })
             .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
 
-        // 2. Invio JavaScript (AJAX) pulito: spedisce i dati a Formspree e salta la loro schermata bianca
+        // 2. Gestione invio AJAX Formspree leggera (Salva il dato e manda a grazie.html col tasto download)
         document.querySelectorAll('.mini-form').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -180,14 +162,14 @@
                 submitBtn.innerText = "Invio in corso...";
                 submitBtn.disabled = true;
 
-                // Creazione del pacchetto dati pulito accettato dal server
+                // Creazione del pacchetto dati pulito per Formspree (ID mwvggpwb)
                 const dataObj = {
                     name: form.querySelector('input[name="user_name"]').value,
                     email: form.querySelector('input[name="user_email"]').value,
                     subject: 'Richiesta Nexus Trial - Versione ' + versione
                 };
 
-                // Spedizione in background all'endpoint Formspree mwvggpwb
+                // Spedizione silenziosa in background
                 fetch('https://formspree.io/f/mwvggpwb', {
                     method: 'POST',
                     body: JSON.stringify(dataObj),
@@ -197,11 +179,11 @@
                     }
                 })
                 .then(response => {
-                    // Successo totale: forza l'atterraggio sulla tua pagina grazie.html personalizzata col tasto OK
+                    // Successo: dirotta immediatamente alla pagina grazie con il download diretto dello zip
                     window.location.href = 'https://trendfarm-labs.github.io/trendfarm/it/grazie.html';
                 })
                 .catch(error => {
-                    // Anche in caso di micro-conflitti di rete, sposta l'utente sulla pagina di ringraziamento per non bloccarlo
+                    // Sicurezza: forza il redirect anche in caso di micro-conflitti per non perdere l'utente
                     window.location.href = 'https://trendfarm-labs.github.io/trendfarm/it/grazie.html';
                 });
             });
