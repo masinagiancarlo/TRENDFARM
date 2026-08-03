@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Professional algorithmic trading platform with 5 independent strategic engines. Download the free 30-day TRIAL version.">
+    <meta name="description" content="Professional automated trading platform with 5 independent strategic engines. Download the free 30-day TRIAL version.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trendfarm - EN</title>
     <style>
@@ -31,7 +31,7 @@
             z-index: 1000;
         }
         
-        /* LOGO COORDINATO (Immagine + Testo Bicolore) */
+        /* COORDINATED LOGO (Image + Two-color Text) */
         .logo-container {
             display: flex;
             align-items: center;
@@ -47,95 +47,79 @@
             font-weight: bold;
             letter-spacing: 1px;
         }
-        .colore-trend { color: #dca122; } /* Oro dal logo */
-        .colore-farm { color: #0b2f8f; }  /* Blu dal logo */
+        .colore-trend { color: #dca122; } /* Gold from logo */
+        .colore-farm { color: #0b2f8f; }  /* Blue from logo */
 
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
         
-        /* MENU A DISCESA DELLE LINGUE */
-        .dropdown { 
-            position: relative; 
-            display: inline-block; 
+        /* DROPDOWN MENU STRUCTURE */
+        .dropdown {
+            position: relative;
+            display: inline-block;
         }
-        
-        .dropdown-btn { 
-            background: rgba(255, 255, 255, 0.1); 
-            color: white; 
-            padding: 8px 16px; 
-            font-size: 1rem; 
-            border: 1px solid rgba(255, 255, 255, 0.3); 
-            border-radius: 4px; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
+        .dropdown-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 16px;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        
-        /* LISTA LINGUE CORRETTA (Senza spazi vuoti) */
-        .dropdown-content { 
-            display: none; 
-            position: absolute; 
-            right: 0; 
-            background-color: rgba(0, 0, 0, 0.9); 
-            min-width: 140px; 
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.5); 
-            border-radius: 0 0 4px 4px; 
-            z-index: 1; 
-            margin-top: 0;        /* Azzera lo spazio vuoto */
-            padding-top: 5px;     /* Crea l'area di contatto sicura */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            min-width: 140px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+            border-radius: 0 0 4px 4px;
+            z-index: 1;
+            margin-top: 0;
+            padding-top: 5px;
         }
-        
-        .dropdown-content a { 
-            color: white; 
-            padding: 12px 16px; 
-            text-decoration: none; 
-            display: flex; 
-            gap: 10px; 
-            font-size: 0.95rem; 
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            gap: 10px;
+            font-size: 0.95rem;
+            text-align: left;
         }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 100px 20px; }
+        .titolo-principale { color: white; font-size: 3.5rem; text-align: center; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); }
         
-        .dropdown-content a:hover { 
-            background-color: #00bcd4; 
-            color: black; 
-        }
-        
-        .dropdown:hover .dropdown-content { 
-            display: block; 
-        }
-        
-        .main-content { 
-            flex-grow: 1; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 100px 20px; 
-        }
-        
-        .titolo-principale { 
-            color: white; 
-            font-size: 3.5rem; 
-            text-align: center; 
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); 
-        }
-        
-        @media (max-width: 768px) { 
-            .navbar { flex-direction: column; gap: 10px; } 
-            .nav-container { flex-direction: column; gap: 10px; width: 100%; } 
-            .dropdown { width: 100%; text-align: center; } 
-            .dropdown-btn { width: 100%; justify-content: center; } 
-            .dropdown-content { position: relative; width: 100%; } 
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 10px; }
+            .nav-container { flex-direction: column; gap: 10px; width: 100%; }
+            .dropdown { width: 100%; text-align: center; }
+            .dropdown-btn { width: 100%; justify-content: center; }
+            .dropdown-content { position: relative; width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">TRENDFARM</a>
+        <!-- COORDINATED LOGO: Image + Two-color Text -->
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Trendfarm Logo" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        
         <div class="nav-container">
-            <!-- VOCI DEL MENU IN INGLESE -->
             <ul class="nav-links">
                 <li><a href="about-us.html">About us</a></li>
                 <li><a href="products.html">Products</a></li>
@@ -143,7 +127,6 @@
                 <li><a href="contacts.html">Contacts</a></li>
             </ul>
             
-            <!-- MENU A DISCESA -->
             <div class="dropdown">
                 <button class="dropdown-btn">🇬🇧 English ▾</button>
                 <div class="dropdown-content">
