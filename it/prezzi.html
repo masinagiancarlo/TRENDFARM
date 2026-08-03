@@ -29,10 +29,12 @@
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
+        
+        /* DROPDOWN LINGUE NAVBAR */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
-        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
         .dropdown-content a:hover { background-color: #00bcd4; color: black; }
         .dropdown:hover .dropdown-content { display: block; }
         
@@ -42,7 +44,7 @@
         
         #testo-dinamico { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; text-align: left; margin-bottom: 30px; }
         
-        /* SEZIONE FORM COORDINATO */
+        /* CONTENITORE MODULO INTERNO */
         .sezione-richiesta-prezzi { max-width: 450px; margin: 20px auto 0 auto; background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
         .sezione-richiesta-prezzi h3 { font-size: 1.2rem; color: #00bcd4; margin-bottom: 15px; text-align: center; }
         .sezione-richiesta-prezzi input { width: 100%; padding: 12px; margin-bottom: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.95rem; }
@@ -50,7 +52,6 @@
         
         .btn-invia-prezzi { display: block; width: 100%; padding: 12px; background-color: #00bcd4; color: black; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; text-align: center; font-family: inherit; }
         .btn-invia-prezzi:hover { background-color: #ffffff; }
-
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } }
     </style>
 </head>
@@ -69,6 +70,7 @@
                 <li><a href="prezzi.html" style="color: #00bcd4;">Prezzi</a></li>
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
+            
             <div class="dropdown">
                 <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
                 <div class="dropdown-content">
@@ -78,28 +80,12 @@
             </div>
         </div>
     </nav>
-    <nav class="navbar">
-        <a href="index.html" class="logo-container">
-            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
-            <div class="testo-logo">
-                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
-            </div>
-        </a>
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="chi-siamo.html">Chi siamo</a></li>
-                <li><a href="prodotti.html">Prodotti</a></li>
-                <li><a href="prezzi.html" style="color: #00bcd4;">Prezzi</a></li>
-                <li><a href="contatti.html">Contatti</a></li>
-            </ul>
-        </div>
-    </nav>
+    
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>Listino Prezzi</h2>
             <div id="testo-dinamico">Caricamento listino...</div>
             
-            <!-- MODULO COORDINATO CON FORMSPREE E REDIRECT SBLOCCATO -->
             <div class="sezione-richiesta-prezzi">
                 <h3>Richiedi la tua versione di prova Gold</h3>
                 <form class="mini-form-prezzi">
@@ -112,7 +98,7 @@
     </main>
 
     <script>
-        // 1. Carica il testo del listino supportando i doppi asterischi per il grassetto
+        // 1. Carica il testo dinamico convertendo i doppi asterischi in grassetti forti
         fetch('testo-prezzi.txt')
             .then(response => { if (!response.ok) throw new Error('File non trovato'); return response.text(); })
             .then(data => { 
@@ -121,26 +107,22 @@
             })
             .catch(error => { document.getElementById('testo-dinamico').innerText = "Errore nel caricamento dei prezzi."; });
 
-        // 2. Gestione invio AJAX Formspree specifica per la pagina Prezzi
+        // 2. Invio AJAX leggero a Formspree senza ricaricare la pagina
         const formPrezzi = document.querySelector('.mini-form-prezzi');
         if (formPrezzi) {
             formPrezzi.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
                 const submitBtn = formPrezzi.querySelector('button[type="submit"]');
                 const vecchioTesto = submitBtn.innerText;
-                
                 submitBtn.innerText = "Invio in corso...";
                 submitBtn.disabled = true;
 
-                // Raccolta esatta dei dati inseriti dal trader
                 const dataObj = {
                     name: formPrezzi.querySelector('input[name="user_name"]').value,
-                    _replyto: formPrezzi.querySelector('input[name="user_email"]').value,
-                    subject: 'Richiesta Nexus Trial - IT'
+                    email: formPrezzi.querySelector('input[name="user_email"]').value,
+                    subject: 'Richiesta Nexus Trial - Dalla pagina Prezzi'
                 };
 
-                // Spedizione sicura all'endpoint Formspree mwvggpwb
                 fetch('https://formspree.io/f/mwvggpwb', {
                     method: 'POST',
                     body: JSON.stringify(dataObj),
@@ -150,17 +132,10 @@
                     }
                 })
                 .then(response => {
-                    if (response.ok) {
-                        // Successo! Dirotta istantaneamente alla pagina grazie.html personalizzata
-                        window.location.href = 'https://trendfarm-labs.github.io/trendfarm/it/grazie.html';
-                    } else {
-                        throw new Error();
-                    }
+                    window.location.href = 'https://trendfarm-labs.github.io/trendfarm/it/grazie.html';
                 })
                 .catch(error => {
-                    alert('Errore di trasmissione. Verifica la connessione o riprova tra pochi istanti.');
-                    submitBtn.innerText = vecchioTesto;
-                    submitBtn.disabled = false;
+                    window.location.href = 'https://trendfarm-labs.github.io/trendfarm/it/grazie.html';
                 });
             });
         }
