@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - Trendfarm</title>
+    <title>Request Forwarded - Trendfarm</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -18,120 +18,78 @@
             background-attachment: fixed;      
         }
         
-        /* NAVBAR */
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        
-        /* LOGO COORDINATO */
+        /* NAVBAR COORDINATA */
+        .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .img-logo { height: 38px; width: auto; }
         .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
         .colore-trend { color: #dca122; }
         .colore-farm { color: #0b2f8f; }
-
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
+        
+        /* MENU A DISCESA LINGUE */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        .dropdown:hover .dropdown-content { display: block; }
 
         /* CONTENITORE CENTRALE */
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 140px 20px 40px 20px;
-        }
-
-        .scheda-contenuto {
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);          
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 12px;
-            max-width: 700px;                     
-            width: 100%;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center;
-        }
-
-        .scheda-contenuto h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: #00bcd4;                        
-            border-bottom: 2px solid rgba(0, 188, 212, 0.3);
-            padding-bottom: 10px;
-            text-align: center;
-        }
+        .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
+        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 50px 40px; border-radius: 12px; max-width: 750px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
         
-        .testo-grazie {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: #e0e0e0;
-            margin-bottom: 30px;
-        }
-
-        .istruzioni {
-            text-align: left;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 30px;
-        }
-        .istruzioni ol {
-            padding-left: 20px;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-        .istruzioni li {
-            margin-bottom: 8px;
-        }
+        .scheda-contenuto h2 { font-size: 2.4rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 12px; }
+        .testo-notifica { font-size: 1.25rem; line-height: 1.8; color: #ffffff; font-weight: 400; margin-bottom: 30px; }
         
-        /* BOTTONE AZZURRO DI DOWNLOAD DIRETTO INGLESE */
+        /* CONTENITORE PULSANTI */
+        .contenitore-bottoni { display: flex; flex-direction: column; gap: 18px; align-items: center; margin-bottom: 10px; }
+        
         .btn-download-diretto {
             display: inline-block;
             max-width: 340px;
             width: 100%;
             padding: 14px 25px;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: bold;
             text-decoration: none;
             background-color: #00bcd4;
             color: #000000;
             border: 1px solid #00bcd4;
             border-radius: 4px;
-            transition: background 0.2s, border-color 0.2s;
-            margin: 0 auto;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+        .btn-download-diretto:hover { background-color: #ffffff; border-color: #ffffff; transform: translateY(-2px); }
+
+        .btn-ok {
+            display: inline-block;
+            max-width: 180px;
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: transparent;
+            color: #aaaaaa;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
             cursor: pointer;
         }
-        .btn-download-diretto:hover {
-            background-color: #ffffff;
-            border-color: #ffffff;
-        }
-
-        @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 10px; }
-            .nav-container { flex-direction: column; gap: 10px; width: 100%; }
-        }
+        .btn-ok:hover { background-color: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.5); color: #ffffff; }
+        
+        @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } }
     </style>
 </head>
 <body>
-
     <nav class="navbar">
         <a href="index.html" class="logo-container">
-            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <img src="../logo.png" alt="Trendfarm Logo" class="img-logo">
             <div class="testo-logo">
                 <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
             </div>
@@ -143,28 +101,33 @@
                 <li><a href="prices.html">Prices</a></li>
                 <li><a href="contacts.html">Contacts</a></li>
             </ul>
+            
+            <!-- ABILITATO: Menu a discesa lingue anche nella pagina di ringraziamento -->
+            <div class="dropdown">
+                <button class="dropdown-btn">🇬🇧 English ▾</button>
+                <div class="dropdown-content">
+                    <a href="../it/grazie.html">🇮🇹 Italiano</a>
+                    <a href="thanks.html">🇬🇧 English</a>
+                </div>
+            </div>
         </div>
     </nav>
-
+    
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>Request Received!</h2>
-            <p class="testo-grazie">Thank you for your interest. Your email address has been successfully registered in our system.</p>
+            <p class="testo-notifica">
+                Thank you for your interest. Click the blue button below to immediately download the NEXUS MATRIX compressed archive and start your trial.
+            </p>
             
-            <div class="istruzioni">
-                <strong style="color: #00bcd4; display:block; margin-bottom:10px;">What to do now:</strong>
-                <ol>
-                    <li>Click the blue button below to download the software setup.</li>
-                    <li>Extract the contents of the .zip file onto your computer.</li>
-                    <li>Follow the included technical guide to interface it with your platform.</li>
-                    <li>Upon first launch, enter the same email address to activate your 30-day Gold Trial.</li>
-                </ol>
+            <div class="contenitore-bottoni">
+                <!-- DOWNLOAD DIRETTO DELLO ZIP -->
+                <a href="../nexus_matrix.zip" download class="btn-download-diretto">Download the TRIAL</a>
+                
+                <!-- BOTTONE TORNA INDIETRO MANTENUTO -->
+                <a href="products.html" class="btn-ok">Back to website</a>
             </div>
-            
-            <!-- Link diretto allo zip nella radice principale -->
-            <a href="../nexus_matrix.zip" download class="btn-download-diretto">Download the TRIAL</a>
         </div>
     </main>
-
 </body>
 </html>
