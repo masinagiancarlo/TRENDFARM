@@ -216,19 +216,16 @@
     </main>
 
     <script>
-        // Gestione invio invisibile AJAX per eliminare la schermata Formspree
+        // Gestione invio silenzioso AJAX e redirect immediato alla Home italiana
         const formContatti = document.querySelector('.form-contatti-ajax');
         if (formContatti) {
             formContatti.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 const submitBtn = formContatti.querySelector('.btn-invia');
-                const vecchioTesto = submitBtn.innerText;
-                
                 submitBtn.innerText = "Invio in corso...";
                 submitBtn.disabled = true;
 
-                // Raccoglie i dati inseriti dall'utente
                 const dataObj = {
                     name: formContatti.querySelector('#nome').value,
                     email: formContatti.querySelector('#email').value,
@@ -236,7 +233,7 @@
                     message: formContatti.querySelector('#messaggio').value
                 };
 
-                // Spedisce a Formspree (ID mdaqvwbb) in background
+                // Spedisce a Formspree in background
                 fetch('https://formspree.io/f/mdaqvwbb', {
                     method: 'POST',
                     body: JSON.stringify(dataObj),
@@ -246,18 +243,14 @@
                     }
                 })
                 .then(response => {
-                    alert('Messaggio inviato con successo! Ti risponderemo il prima possibile.');
-                    // SVUOTA I CAMPI AUTOMATICAMENTE
+                    // Svuota il form e salta subito alla Home italiana senza messaggi
                     formContatti.reset();
-                    submitBtn.innerText = vecchioTesto;
-                    submitBtn.disabled = false;
+                    window.location.href = 'index.html';
                 })
                 .catch(error => {
-                    // Sicurezza: svuota comunque e conferma l'invio per evitare blocchi della cache
-                    alert('Messaggio inviato con successo! Ti risponderemo il prima possibile.');
+                    // Backup di sicurezza contro i blocchi di rete: reindirizza comunque
                     formContatti.reset();
-                    submitBtn.innerText = vecchioTesto;
-                    submitBtn.disabled = false;
+                    window.location.href = 'index.html';
                 });
             });
         }
