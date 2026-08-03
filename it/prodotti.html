@@ -18,15 +18,12 @@
             background-repeat: no-repeat;      
             background-attachment: fixed;      
         }
-        
-        /* NAVBAR */
         .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .img-logo { height: 38px; width: auto; }
         .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
         .colore-trend { color: #dca122; }
         .colore-farm { color: #0b2f8f; }
-
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
@@ -37,41 +34,30 @@
         .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; }
         .dropdown-content a:hover { background-color: #00bcd4; color: black; }
         .dropdown:hover .dropdown-content { display: block; }
-
-        /* CONTENITORE CENTRALE */
         .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
         .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 950px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; text-align: center; }
-        
         #testo-dinamico, #testo-altro { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; }
         #testo-dinamico { margin-bottom: 40px; text-align: center; }
-        
         .titolo-secondario { font-size: 1.8rem; color: #00bcd4; margin: 40px 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; }
         #testo-altro { text-align: left; }
-
-        /* GRIGLIA PRODOTTI */
         .griglia-prodotti { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 20px; }
         .elemento-prodotto { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 8px; max-width: 380px; width: 100%; transition: transform 0.3s ease; text-align: center; }
         .elemento-prodotto:hover { transform: translateY(-5px); }
         .foto-scatola { max-width: 100%; height: auto; border-radius: 6px; margin-bottom: 15px; }
         .nome-versione { font-size: 1.4rem; font-weight: bold; color: #ffffff; margin-bottom: 15px; }
-
-        /* MINI FORM COORDIDATO */
         .mini-form { text-align: left; margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
         .mini-form input { width: 100%; padding: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.9rem; }
         .mini-form input:focus { outline: none; border-color: #00bcd4; }
-        
         .btn-azione { display: block; width: 100%; padding: 10px 15px; font-size: 0.95rem; font-weight: bold; text-decoration: none; border-radius: 4px; text-align: center; cursor: pointer; transition: background 0.2s, color 0.2s; }
         .btn-prezzo { background-color: transparent; color: #00bcd4; border: 1px solid #00bcd4; margin-bottom: 5px; }
         .btn-prezzo:hover { background-color: #00bcd4; color: #000000; }
         .btn-invia-richiesta { background-color: #00bcd4; color: #000000; border: 1px solid #00bcd4; font-family: inherit; }
         .btn-invia-richiesta:hover { background-color: #ffffff; border-color: #ffffff; }
-
         @media (max-width: 768px) { .navbar { flex-direction: column; gap: 10px; } .nav-container { flex-direction: column; gap: 10px; width: 100%; } .griglia-prodotti { gap: 20px; } }
     </style>
 </head>
 <body>
-
     <nav class="navbar">
         <a href="index.html" class="logo-container">
             <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
@@ -88,35 +74,50 @@
             </ul>
         </div>
     </nav>
-
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>I Nostri Prodotti</h2>
             <div id="testo-dinamico">Caricamento descrizione...</div>
-            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form Formspree (Campi larghi e allineati) -->
+            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form ad attivazione automatica -->
             <div class="griglia-prodotti">
-                <!-- SCATOLA 1 -->
+                <!-- SCATOLA 1 (LIGHT) -->
                 <div class="elemento-prodotto">
                     <img src="../scatola1.png" alt="Versione Light" class="foto-scatola">
                     <div class="nome-versione">Versione Light</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" data-version="Light">
-                        <input type="text" placeholder="Il tuo Nome" required>
-                        <input type="email" placeholder="La tua Email" required>
+                    <form class="mini-form" action="https://formsubmit.co" method="POST">
+                        <!-- Indirizzo per il redirect forzato alla pagina grazie.html -->
+                        <input type="hidden" name="_next" value="https://trendfarm-labs.github.io/trendfarm/it/grazie.html">
+                        <!-- Oggetto della mail che arriva a te su Aruba -->
+                        <input type="hidden" name="_subject" value="Richiesta Nexus Trial - Versione Light">
+                        <!-- Disattiva la brutta pagina di controllo intermedia di FormSubmit -->
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <!-- TESTO DELL'E-MAIL DI RISPOSTA AUTOMATICA CHE ARRIVA AL CLIENTE -->
+                        <input type="hidden" name="_autoresponse" value="Gentile Cliente, grazie per l'interesse dimostrato verso NEXUS MATRIX. In questo messaggio trovi il collegamento sicuro per scaricare la tua versione TRIAL di 30 giorni completa. Copia l'indirizzo internet qui sotto, incollalo nel tuo browser e cancella gli spazi bianchi per unire il link e far partire il download: https://trendfarm-labs.github.io/trendfarm/nexus_matrix.zip -- Istruzioni: 1. Estrai il file .zip sul computer. 2. Segui la guida per interfacciarlo alla piattaforma. 3. Al primo avvio inserisci questa stessa e-mail per attivare i 30gg. Per assistenza: assistenza@trendfarm.it -- Team Trendfarm Labs">
+                        
+                        <input type="text" name="Nome" placeholder="Il tuo Nome" required style="width: 100%; display: block;">
+                        <input type="email" name="Email" placeholder="La tua Email" required style="width: 100%; display: block;">
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
 
-                <!-- SCATOLA 2 -->
+                <!-- SCATOLA 2 (GOLD) -->
                 <div class="elemento-prodotto">
                     <img src="../scatola2.png" alt="Versione Gold" class="foto-scatola">
                     <div class="nome-versione">Versione Gold</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" data-version="Gold">
-                        <input type="text" placeholder="Il tuo Nome" required>
-                        <input type="email" placeholder="La tua Email" required>
+                    <form class="mini-form" action="https://formsubmit.co" method="POST">
+                        <input type="hidden" name="_next" value="https://trendfarm-labs.github.io/trendfarm/it/grazie.html">
+                        <input type="hidden" name="_subject" value="Richiesta Nexus Trial - Versione Gold">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <input type="hidden" name="_autoresponse" value="Gentile Cliente, grazie per l'interesse dimostrato verso NEXUS MATRIX. In questo messaggio trovi il collegamento sicuro per scaricare la tua versione TRIAL di 30 giorni completa. Copia l'indirizzo internet qui sotto, incollalo nel tuo browser e cancella gli spazi bianchi per unire il link e far partire il download: https://trendfarm-labs.github.io/trendfarm/nexus_matrix.zip -- Istruzioni: 1. Estrai il file .zip sul computer. 2. Segui la guida per interfacciarlo alla piattaforma. 3. Al primo avvio inserisci questa stessa e-mail per attivare i 30gg. Per assistenza: assistenza@trendfarm.it -- Team Trendfarm Labs">
+                        
+                        <input type="text" name="Nome" placeholder="Il tuo Nome" required style="width: 100%; display: block;">
+                        <input type="email" name="Email" placeholder="La tua Email" required style="width: 100%; display: block;">
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
                     </form>
                 </div>
@@ -130,7 +131,7 @@
     </main>
 
     <script>
-        // 1. Lettura dei file di testo dinamici e conversione dei doppi asterischi in grassetto
+        // Lettura dei file di testo dinamici e conversione dei doppi asterischi in grassetto
         fetch('testo-prodotti.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => { 
@@ -146,50 +147,6 @@
                 document.getElementById('testo-altro').innerHTML = pulito;
             })
             .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
-
-        // 2. Gestione invio AJAX Formspree corretta senza blocchi
-        document.querySelectorAll('.mini-form').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const submitBtn = form.querySelector('button[type="submit"]');
-                const versione = form.getAttribute('data-version');
-                const inputs = form.querySelectorAll('input');
-                
-                submitBtn.innerText = "Invio in corso...";
-                submitBtn.disabled = true;
-
-                // Raccoglie i dati in base alla posizione esatta delle caselle (elimina errori di nome)
-                const dataObj = {
-                    name: inputs[0].value,
-                    _replyto: inputs[1].value,
-                    subject: 'Richiesta Nexus Trial - IT'
-                };
-
-                // Spedizione sicura all'endpoint Formspree mwvggpwb
-                fetch('https://formspree.io/f/mwvggpwb', {
-                    method: 'POST',
-                    body: JSON.stringify(dataObj),
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json' 
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Successo! Dirotta istantaneamente alla pagina grazie.html
-                        window.location.href = 'https://trendfarm-labs.github.io/trendfarm/it/grazie.html';
-                    } else {
-                        throw new Error();
-                    }
-                })
-                .catch(error => {
-                    alert('Errore di trasmissione. Verifica i dati o riprova tra pochi istanti.');
-                    submitBtn.innerText = "Richiedi TRIAL 30gg";
-                    submitBtn.disabled = false;
-                });
-            });
-        });
     </script>
 </body>
 </html>
