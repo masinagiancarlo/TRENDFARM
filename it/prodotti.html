@@ -56,7 +56,7 @@
         .foto-scatola { max-width: 100%; height: auto; border-radius: 6px; margin-bottom: 15px; }
         .nome-versione { font-size: 1.4rem; font-weight: bold; color: #ffffff; margin-bottom: 15px; }
 
-        /* MINI FORM COORDIDATO FORMBOLD */
+        /* MINI FORM STANDARD */
         .mini-form { text-align: left; margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
         .mini-form input { width: 100%; padding: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.9rem; }
         .mini-form input:focus { outline: none; border-color: #00bcd4; }
@@ -86,23 +86,14 @@
                 <li><a href="prezzi.html">Prezzi</a></li>
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
-            <div class="dropdown">
-                <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
-                <div class="dropdown-content">
-                    <a href="prodotti.html">🇮🇹 Italiano</a>
-                    <a href="../en/products.html">🇬🇧 English</a>
-                </div>
-            </div>
         </div>
     </nav>
 
     <main class="main-content">
         <div class="scheda-contenuto">
             <h2>I Nostri Prodotti</h2>
-            
-            <!-- 1. IN ALTO: Testo della descrizione iniziale -->
             <div id="testo-dinamico">Caricamento descrizione...</div>
-            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form Formbold -->
+            <!-- 2. AL CENTRO: Le Scatole con i rispettivi form nativi Formbold -->
             <div class="griglia-prodotti">
                 <!-- SCATOLA 1 -->
                 <div class="elemento-prodotto">
@@ -110,7 +101,8 @@
                     <div class="nome-versione">Versione Light</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" data-version="Light">
+                    <form class="mini-form" action="https://formbold.com" method="POST">
+                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Light">
                         <input type="text" name="name" placeholder="Il tuo Nome" required>
                         <input type="email" name="email" placeholder="La tua Email" required>
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
@@ -123,7 +115,8 @@
                     <div class="nome-versione">Versione Gold</div>
                     <a href="prezzi.html" class="btn-azione btn-prezzo">Vedi Prezzo</a>
                     
-                    <form class="mini-form" data-version="Gold">
+                    <form class="mini-form" action="https://formbold.com" method="POST">
+                        <input type="hidden" name="subject" value="Richiesta Nexus Trial - Versione Gold">
                         <input type="text" name="name" placeholder="Il tuo Nome" required>
                         <input type="email" name="email" placeholder="La tua Email" required>
                         <button type="submit" class="btn-azione btn-invia-richiesta">Richiedi TRIAL 30gg</button>
@@ -139,7 +132,7 @@
     </main>
 
     <script>
-        // 1. Lettura dei file di testo dinamici e conversione dei doppi asterischi in grassetto
+        // Lettura dei file di testo dinamici e conversione dei doppi asterischi in grassetto
         fetch('testo-prodotti.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => { 
@@ -155,42 +148,6 @@
                 document.getElementById('testo-altro').innerHTML = pulito;
             })
             .catch(error => { document.getElementById('testo-altro').innerText = "Errore nel caricamento dei benefici."; });
-
-        // 2. Intercettazione dell'invio dei form e redirect forzato tramite AJAX (Aggira i blocchi a pagamento)
-        document.querySelectorAll('.mini-form').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const submitBtn = form.querySelector('button[type="submit"]');
-                const versione = form.getAttribute('data-version');
-                const vecchioTestoBotton = submitBtn.innerText;
-                
-                submitBtn.innerText = "Invio in corso...";
-                submitBtn.disabled = true;
-
-                // Pacchetto di dati da spedire a Formbold
-                const formData = new FormData();
-                formData.append('name', form.querySelector('input[name="name"]').value);
-                formData.append('email', form.querySelector('input[name="email"]').value);
-                formData.append('subject', 'Richiesta Nexus Trial - Versione ' + versione);
-
-                // Spedizione in background all'endpoint Formbold 6rBbJ
-                fetch('https://formbold.com', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                })
-                .then(response => {
-                    // Successo! Sposta immediatamente l'utente alla pagina di ringraziamento e sblocco download
-                    window.location.href = 'https://masinagiancarlo.github.io/trendfarm/it/grazie.html';
-                })
-                .catch(error => {
-                    alert('Si è verificato un errore di connessione. Riprova tra pochi istanti.');
-                    submitBtn.innerText = vecchioTestoBotton;
-                    submitBtn.disabled = false;
-                });
-            });
-        });
     </script>
 </body>
 </html>
