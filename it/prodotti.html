@@ -18,25 +18,33 @@
             background-repeat: no-repeat;      
             background-attachment: fixed;      
         }
+        
+        /* NAVBAR */
         .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
         .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .img-logo { height: 38px; width: auto; }
         .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
         .colore-trend { color: #dca122; }
         .colore-farm { color: #0b2f8f; }
+
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
+        
+        /* STILI PER IL MENU A DISCESA LINGUE */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
-        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
         .dropdown-content a:hover { background-color: #00bcd4; color: black; }
         .dropdown:hover .dropdown-content { display: block; }
+
+        /* CONTENITORE CENTRALE */
         .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
         .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 950px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; text-align: center; }
+        
         #testo-dinamico, #testo-altro { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; }
         #testo-dinamico { margin-bottom: 40px; text-align: center; }
         .titolo-secondario { font-size: 1.8rem; color: #00bcd4; margin: 40px 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-align: center; }
@@ -58,7 +66,35 @@
     </style>
 </head>
 <body>
+
     <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="chi-siamo.html">Chi siamo</a></li>
+                <li><a href="prodotti.html" style="color: #00bcd4;">Prodotti</a></li>
+                <li><a href="prezzi.html">Prezzi</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+            
+            <!-- ATTIVATO: Menu a discesa per la selezione della lingua -->
+            <div class="dropdown">
+                <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
+                <div class="dropdown-content">
+                    <a href="prodotti.html">🇮🇹 Italiano</a>
+                    <a href="../en/products.html">🇬🇧 English</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
         <a href="index.html" class="logo-container">
             <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
             <div class="testo-logo">
