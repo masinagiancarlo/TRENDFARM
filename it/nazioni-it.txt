@@ -1,0 +1,194 @@
+Italia
+Albania
+Andorra
+Austria
+Belgio
+Bielorussia
+Bosnia ed Erzegovina
+Bulgaria
+Cipro
+Città del Vaticano
+Croazia
+Danimarca
+Estonia
+Finlandia
+Francia
+Germania
+Grecia
+Irlanda
+Islanda
+Lettonia
+Liechtenstein
+Lituania
+Lussemburgo
+Macedonia del Nord
+Malta
+Moldavia
+Monaco
+Montenegro
+Norvegia
+Paesi Bassi
+Polonia
+Portogallo
+Regno Unito
+Repubblica Ceca
+Romania
+Russia
+San Marino
+Serbia
+Slovacchia
+Slovenia
+Spagna
+Svezia
+Svizzera
+Ucraina
+Ungheria
+------------------------------
+Afghanistan
+Algeria
+Angola
+Antigua e Barbuda
+Arabia Saudita
+Argentina
+Armenia
+Australia
+Azerbaigian
+Bahamas
+Bahrein
+Bangladesh
+Barbados
+Belize
+Benin
+Bhutan
+Birmania
+Bolivia
+Botswana
+Brasile
+Brunei
+Burkina Faso
+Burundi
+Cambogia
+Camerun
+Canada
+Capo Verde
+Ciad
+Cile
+Cina
+Colombia
+Comore
+Corea del Nord
+Corea del Sud
+Costa d'Avorio
+Costa Rica
+Cuba
+Dominica
+Ecuador
+Egitto
+El Salvador
+Emirati Arabi Uniti
+Eritrea
+Etiopia
+Figi
+Filippine
+Gabon
+Gambia
+Georgia
+Ghana
+Giamaica
+Giappone
+Gibuti
+Giordania
+Grenada
+Guatemala
+Guinea
+Guinea-Bissau
+Guinea Equatoriale
+Guyana
+Haiti
+Honduras
+India
+Indonesia
+Iran
+Iraq
+Isole Marshall
+Isole Salomone
+Israele
+Kazakistan
+Kenya
+Kirghizistan
+Kiribati
+Kuwait
+Laos
+Lesotho
+Libano
+Liberia
+Libia
+Malawi
+Malesia
+Maldive
+Mali
+Marocco
+Mauritania
+Mauritius
+Messico
+Micronesia
+Mongolia
+Mozambico
+Namibia
+Nauru
+Nepal
+Nicaragua
+Niger
+Nigeria
+Nuova Zelanda
+Oman
+Pakistan
+Palau
+Panama
+Papua Nuova Guinea
+Paraguay
+Perù
+Qatar
+Repubblica Centrafricana
+Repubblica del Congo
+Repubblica Democratica del Congo
+Repubblica Dominicana
+Ruanda
+Saint Kitts e Nevis
+Saint Lucia
+Saint Vincent e Grenadine
+Samoa
+Sao Tomé e Príncipe
+Senegal
+Seychelles
+Sierra Leone
+Singapore
+Siria
+Somalia
+Sri Lanka
+Sudafrica
+Sudan
+Sudan del Sud
+Suriname
+Swaziland
+Tagikistan
+Taiwan
+Tanzania
+Thailandia
+Timor Est
+Togo
+Tonga
+Trinidad e Tobago
+Tunisia
+Turchia
+Turkmenistan
+Tuvalu
+Uganda
+Uruguay
+Uzbekistan
+Vanuatu
+Venezuela
+Vietnam
+Yemen
+Zambia
+Zimbabwe
