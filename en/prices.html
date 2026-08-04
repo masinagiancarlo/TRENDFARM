@@ -85,6 +85,7 @@
             <h2>Price List</h2>
             <div id="testo-dinamico">Loading price list...</div>
             
+            <!-- UNLIMITED AJAX FORMSUBMIT MODULE FOR PRICES -->
             <div class="sezione-richiesta-prezzi">
                 <h3>Try the 30-day TRIAL version</h3>
                 <form class="mini-form-prezzi">
@@ -106,7 +107,7 @@
             })
             .catch(error => { document.getElementById('testo-dinamico').innerText = "Error loading prices."; });
 
-        // 2. Lightweight Formspree AJAX submission management (Saves data and redirects to thanks.html)
+        // 2. New AJAX logic for FormSubmit (Sends data seamlessly to info-en@trendfarm.it)
         const formPrezzi = document.querySelector('.mini-form-prezzi');
         if (formPrezzi) {
             formPrezzi.addEventListener('submit', function(e) {
@@ -116,26 +117,25 @@
                 submitBtn.innerText = "Sending...";
                 submitBtn.disabled = true;
 
-                const dataObj = {
-                    name: formPrezzi.querySelector('input[name="user_name"]').value,
-                    email: formPrezzi.querySelector('input[name="user_email"]').value,
-                    subject: 'Richiesta Nexus Trial - Dalla pagina Prezzi (EN)'
-                };
+                // Create the data layout requested by FormSubmit
+                const formData = new FormData();
+                formData.append('name', formPrezzi.querySelector('input[name="user_name"]').value);
+                formData.append('email', formPrezzi.querySelector('input[name="user_email"]').value);
+                formData.append('subject', 'Richiesta Nexus Trial - Dalla pagina Prezzi (EN)');
+                formData.append('_captcha', 'false'); // Disables visual captcha screens
 
-                fetch('https://formspree.io/f/mwvggpwb', {
+                // Asynchronous post transmission targeting the English FormSubmit endpoint
+                fetch('https://formsubmit.co/info@trendfarm.it', {
                     method: 'POST',
-                    body: JSON.stringify(dataObj),
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json' 
-                    }
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
                 })
                 .then(response => {
-                    // Success: immediately redirect to the English thanks page
+                    // Success: jumps straight to the English thanks page with direct zip download
                     window.location.href = 'https://trendfarm-labs.github.io/trendfarm/en/thanks.html';
                 })
                 .catch(error => {
-                    // Backup redirect to ensure the user gets their download
+                    // Fail-safe redirect fallback to keep the user experience smooth
                     window.location.href = 'https://trendfarm-labs.github.io/trendfarm/en/thanks.html';
                 });
             });
