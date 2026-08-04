@@ -104,27 +104,17 @@
         
         /* 📱 Ottimizzazione Universale per Visualizzazione su Smartphone */
         @media (max-width: 768px) {
-            /* 1. Gestione della Navbar e dei Menu verticali */
             .navbar { flex-direction: column; gap: 10px; padding: 15px; }
             .nav-container { flex-direction: column; gap: 10px; width: 100%; }
             .nav-links { flex-direction: column; gap: 12px; text-align: center; }
-            
-            /* 2. Gestione del Menu Lingue (Dropdown) */
             .dropdown { width: 100%; text-align: center; }
             .dropdown-btn { width: 100%; justify-content: center; }
             .dropdown-content { position: relative; width: 100%; }
-            
-            /* 3. Spaziatura del Contenitore Centrale */
             .main-content { padding: 160px 20px 40px 20px; }
             .scheda-contenuto { padding: 25px; }
-            
-            /* 4. RIMPCIOLLIMENTO DEI CARATTERI SU MOBILE */
-            .titolo-principale { font-size: 2.2rem !important; line-height: 1.3 !important; }
             .scheda-contenuto h2 { font-size: 1.6rem !important; border-bottom-width: 1px !important; padding-bottom: 8px !important; }
-            #testo-dinamico, #testo-altro, .testo-notifica { font-size: 0.95rem !important; line-height: 1.6 !important; }
-            .nome-versione { font-size: 1.1rem !important; }
+            .testo-notifica { font-size: 0.95rem !important; line-height: 1.6 !important; }
             
-            /* Adattamenti specifici per il box banca su mobile */
             .box-coordinate-bonifico { padding: 15px; }
             .riga-dato-banca { flex-direction: column; align-items: flex-start; gap: 5px; }
             .valore-iban { font-size: 0.95rem; word-break: break-all; }
@@ -167,22 +157,22 @@
             <div class="box-coordinate-bonifico">
                 <div class="riga-dato-banca">
                     <span class="etichetta-banca">Beneficiario:</span>
-                    <span class="valore-banca">Giancarlo Masina</span>
+                    <span class="valore-banca" id="banca-beneficiario">Caricamento...</span>
                 </div>
                 <div class="riga-dato-banca">
                     <span class="etichetta-banca">Banca:</span>
-                    <span class="valore-banca">REVOLUT</span>
+                    <span class="valore-banca" id="banca-nome">Caricamento...</span>
                 </div>
                 <div class="riga-dato-banca">
                     <span class="etichetta-banca">IBAN:</span>
                     <div>
-                        <span class="valore-iban" id="codice-iban">LT383250009732384193</span>
+                        <span class="valore-iban" id="codice-iban">Caricamento...</span>
                         <button class="btn-copia-iban" onclick="copiaIban()">COPIA 📋</button>
                     </div>
                 </div>
                 <div class="riga-dato-banca">
                     <span class="etichetta-banca">BIC / SWIFT:</span>
-                    <span class="valore-banca">REVOLT21</span>
+                    <span class="valore-banca" id="banca-swift">Caricamento...</span>
                 </div>
                 <div class="riga-dato-banca">
                     <span class="etichetta-banca">Causale Obbligatoria:</span>
@@ -195,29 +185,53 @@
     </main>
 
     <script>
-        // GENERATORE DINAMICO UNIVERSALE DEL NUMERO D'ORDINE (FORMATO: TF-YYMMDD-HHMM)
+        // 1. GENERATORE DINAMICO UNIVERSALE DEL NUMERO D'ORDINE (FORMATO: TF-YYMMDD-HHMM)
         function generaNumeroOrdine() {
             const oraDati = new Date();
-            
-            // Estrae l'anno a 2 cifre (es. 26), il mese e il giorno con lo zero iniziale
             const anno = String(oraDati.getFullYear()).slice(-2);
             const mese = String(oraDati.getMonth() + 1).padStart(2, '0');
             const giorno = String(oraDati.getDate()).padStart(2, '0');
-            
-            // Estrae ore e minuti dell'invio
             const ore = String(oraDati.getHours()).padStart(2, '0');
             const minuti = String(oraDati.getMinutes()).padStart(2, '0');
-            
-            // Ritorna la stringa nel formato preciso richiesto
             return `TF-${anno}${mese}${giorno}-${ore}${minuti}`;
         }
-
-        // Stampa il numero d'ordine generato all'istante dentro alla casella della causale
         document.getElementById('numero-ordine-visualizzato').innerText = generaNumeroOrdine();
 
-        // FUNZIONE INTELLIGENTE COPIA-INCOLLA AUTOMATICO PER TUTTI I DISPOSITIVI
+        // 2. LETTURA DINAMICA DEL FILE BANCA.TXT ED ESTRAZIONE DEI TAG
+        fetch('banca.txt')
+            .then(response => { if (!response.ok) throw new Error(); return response.text(); })
+            .then(data => {
+                let righe = data.split('\n');
+                righe.forEach(riga => {
+                    let rigaPulita = riga.trim();
+                    if(rigaPulita !== '') {
+                        // Funzione di estrazione per ogni singolo tag [tag] valore
+                        let tagMatch = rigaPulita.match(/^\[(.*?)\]/);
+                        if(tagMatch) {
+                            let tag = tagMatch[1];
+                            let valore = rigaPulita.replace(/^\[.*?\]/, '').trim();
+                            
+                            // Assegna il valore estratto al rispettivo elemento HTML sulla pagina
+                            if(tag === 'beneficiario') document.getElementById('banca-beneficiario').innerText = valore;
+                            if(tag === 'banca') document.getElementById('banca-nome').innerText = valore;
+                            if(tag === 'iban') document.getElementById('codice-iban').innerText = valore;
+                            if(tag === 'swift') document.getElementById('banca-swift').innerText = valore;
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                // Messaggio di errore protettivo se il file non viene trovato
+                document.querySelectorAll('.box-coordinate-bonifico .valore-banca, .valore-iban').forEach(el => {
+                    el.innerText = "Errore caricamento dati.";
+                });
+            });
+
+        // 3. FUNZIONE INTELLIGENTE COPIA-INCOLLA AUTOMATICO PER TUTTI I DISPOSITIVI
         function copiaIban() {
             const ibanTesto = document.getElementById('codice-iban').innerText;
+            if(ibanTesto === "Caricamento..." || ibanTesto.includes("Errore")) return;
+            
             navigator.clipboard.writeText(ibanTesto).then(() => {
                 const btn = document.querySelector('.btn-copia-iban');
                 btn.innerText = "COPIATO! ✔";
