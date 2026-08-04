@@ -1,9 +1,9 @@
 **SINGLE MODULE EXPERT ADVISOR - LIGHT**
-Licenza Mensile: 29,00 €.
-Licenza Annuale: 329,00 €.
-Licenza Vitalizia (Lifetime) - 499,00 Euro
+[light-mensile] **Licenza Mensile** - Prezzo: 29,00 Euro
+[light-annuale] **Licenza Annuale** - Prezzo: 329,00 Euro
+[light-lifetime] **Licenza Vitalizia** - Prezzo: 499,00 Euro
 
 **MULTI-MODULE EXPERT ADVISOR - GOLD**
-Licenza Mensile: 49,00 €.
-Licenza Annuale: 499,00 €.
-Licenza Vitalizia (Lifetime) - 899,00 Euro
+[gold-mensile] **Licenza Mensile** - Prezzo: 49,00 Euro
+[gold-annuale] **Licenza Annuale** - Prezzo: 499,00 Euro
+[gold-lifetime] **Licenza Vitalizia** - Prezzo: 899,00 Euro
