@@ -1,0 +1,4 @@
+[beneficiario] Giancarlo Masina
+[banca] REVOLUT
+[iban] LT383250009732384193
+[swift] REVOLT21
