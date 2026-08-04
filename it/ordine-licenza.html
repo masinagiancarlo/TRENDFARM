@@ -247,11 +247,11 @@
                 .then(response => {
                     formOrdine.reset();
                     // Salto istantaneo verso la pagina di istruzioni del bonifico bancario
-                    window.location.href = 'conferma-ordine.html';
+                    window.location.href = 'visualizza-banca.html';
                 })
                 .catch(error => {
                     formOrdine.reset();
-                    window.location.href = 'conferma-ordine.html';
+                    window.location.href = 'visualizza-banca.html';
                 });
             });
         }
