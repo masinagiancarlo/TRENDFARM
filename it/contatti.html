@@ -179,7 +179,7 @@
         <div class="scheda-contenuto">
             <h2>Contattaci</h2>
             
-            <!-- MODULO AGGIORNATO CON CLASSE PER AJAX -->
+            <!-- FORM AGGIORNATO PER REINDIRIZZAMENTO AJAX ILLIMITATO -->
             <form class="form-contatti-ajax">
                 
                 <div class="form-gruppo">
@@ -216,41 +216,42 @@
     </main>
 
     <script>
-        // Gestione invio silenzioso AJAX e redirect immediato alla Home italiana
+        // NUOVA LOGICA AJAX PER FORMSUBMIT CONTATTI SENZA SCHERMATE BIANCHE
         const formContatti = document.querySelector('.form-contatti-ajax');
         if (formContatti) {
             formContatti.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 const submitBtn = formContatti.querySelector('.btn-invia');
+                const vecchioTesto = submitBtn.innerText;
+                
                 submitBtn.innerText = "Invio in corso...";
                 submitBtn.disabled = true;
 
-                const dataObj = {
-                    name: formContatti.querySelector('#nome').value,
-                    email: formContatti.querySelector('#email').value,
-                    subject: formContatti.querySelector('#oggetto').value,
-                    message: formContatti.querySelector('#messaggio').value
-                };
+                // Creazione del pacchetto dati specifico per FormSubmit
+                const formData = new FormData();
+                formData.append('name', formContatti.querySelector('#nome').value);
+                formData.append('email', formContatti.querySelector('#email').value);
+                formData.append('subject', formContatti.querySelector('#oggetto').value);
+                formData.append('message', formContatti.querySelector('#messaggio').value);
+                formData.append('_captcha', 'false'); // Disattiva i robot visivi di controllo
 
-                // Spedisce a Formspree in background
-                fetch('https://formspree.io/f/mdaqvwbb', {
+                // Spedizione asincrona all'endpoint di FormSubmit italiano
+                fetch('https://formsubmit.co/info@trendfarm.it', {
                     method: 'POST',
-                    body: JSON.stringify(dataObj),
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json' 
-                    }
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
                 })
-				// Cerca questa sezione in fondo a it/contatti.html e modificala così:
-				.then(response => {
-					formContatti.reset();
-					window.location.href = 'messaggio-inviato.html'; // <--- AGGIORNATO QUI
-				})
-				.catch(error => {
-					formContatti.reset();
-					window.location.href = 'messaggio-inviato.html'; // <--- AGGIORNATO QUI
-				});
+                .then(response => {
+                    formContatti.reset();
+                    // Successo: si salta alla pagina di gestione messaggi col tasto OK
+                    window.location.href = 'messaggio-inviato.html';
+                })
+                .catch(error => {
+                    // Sicurezza: forza il redirect anche in caso di intoppi di rete
+                    formContatti.reset();
+                    window.location.href = 'messaggio-inviato.html';
+                });
             });
         }
     </script>
