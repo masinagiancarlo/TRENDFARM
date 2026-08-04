@@ -178,6 +178,7 @@
         <div class="scheda-contenuto">
             <h2>Contact Us</h2>
             
+            <!-- UNLIMITED AJAX FORMSUBMIT MODULE FOR CONTACTS -->
             <form class="form-contatti-ajax">
                 
                 <div class="form-gruppo">
@@ -190,6 +191,7 @@
                     <input type="email" name="user_email" id="email" class="form-control" placeholder="name@example.com" required>
                 </div>
 
+                <!-- CUSTOMIZABLE SUBJECT SELECTION -->
                 <div class="form-gruppo">
                     <label for="oggetto">Subject of the request</label>
                     <select name="subject" id="oggetto" class="form-control" required>
@@ -214,7 +216,7 @@
     </main>
 
     <script>
-        // Gestione invio silenzioso AJAX e redirect immediato a message-sent.html
+        // NEW AJAX LOGIC FOR FORMSUBMIT CONTACTS WITHOUT WHITE SCREENS
         const formContatti = document.querySelector('.form-contatti-ajax');
         if (formContatti) {
             formContatti.addEventListener('submit', function(e) {
@@ -226,26 +228,27 @@
                 submitBtn.innerText = "Sending...";
                 submitBtn.disabled = true;
 
-                const dataObj = {
-                    name: formContatti.querySelector('#nome').value,
-                    email: formContatti.querySelector('#email').value,
-                    subject: 'EN - ' + formContatti.querySelector('#oggetto').value,
-                    message: formContatti.querySelector('#messaggio').value
-                };
+                // Create the data layout requested by FormSubmit
+                const formData = new FormData();
+                formData.append('name', formContatti.querySelector('#nome').value);
+                formData.append('email', formContatti.querySelector('#email').value);
+                formData.append('subject', 'EN - ' + formContatti.querySelector('#oggetto').value);
+                formData.append('message', formContatti.querySelector('#messaggio').value);
+                formData.append('_captcha', 'false'); // Disables visual captcha screens
 
-                fetch('https://formspree.io/f/mdaqvwbb', {
+                // Asynchronous post transmission targeting the English FormSubmit endpoint
+                fetch('https://formsubmit.co/info@trendfarm.it', {
                     method: 'POST',
-                    body: JSON.stringify(dataObj),
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json' 
-                    }
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
                 })
                 .then(response => {
                     formContatti.reset();
+                    // Success: jumps straight to the English message sent page
                     window.location.href = 'message-sent.html';
                 })
                 .catch(error => {
+                    // Fail-safe redirect fallback to keep the user experience smooth
                     formContatti.reset();
                     window.location.href = 'message-sent.html';
                 });
