@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferma Ordine - Trendfarm</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('../home_ufficio_trendfarm.png'); 
+            background-size: cover;            
+            background-position: center;       
+            background-repeat: no-repeat;      
+            background-attachment: fixed;      
+        }
+        
+        /* NAVBAR COORDINATA */
+        .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .img-logo { height: 38px; width: auto; }
+        .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #ffffff; }
+        
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-links a:hover { color: #00bcd4; }
+        
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* CONTENITORE CENTRALE EFFECT GLASS */
+        .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
+        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 45px 40px; border-radius: 12px; max-width: 750px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
+        
+        .scheda-contenuto h2 { font-size: 2.4rem; margin-bottom: 20px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 12px; }
+        .testo-notifica { font-size: 1.2rem; line-height: 1.7; color: #ffffff; font-weight: 400; margin-bottom: 30px; text-align: center; }
+        
+        /* BOX DATI BANCARI STRUTTURATO */
+        .box-coordinate-bonifico {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .riga-dato-banca {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1.05rem;
+        }
+        .riga-dato-banca:last-child { border-bottom: none; }
+        .etichetta-banca { color: #aaaaaa; font-weight: 500; }
+        .valore-banca { color: #ffffff; font-weight: bold; letter-spacing: 0.5px; }
+        .valore-iban { color: #00bcd4; font-family: monospace; font-size: 1.15rem; letter-spacing: 1px; }
+        .valore-causale { color: #dca122; font-family: monospace; font-size: 1.2rem; font-weight: bold; }
+        
+        /* BOTTONI DI AZIONE */
+        .btn-copia-iban {
+            background: rgba(0, 188, 212, 0.15);
+            color: #00bcd4;
+            border: 1px solid #00bcd4;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+        .btn-copia-iban:hover { background: #00bcd4; color: #000000; }
+
+        .btn-ok {
+            display: inline-block;
+            max-width: 180px;
+            width: 100%;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #00bcd4;
+            color: #000000;
+            border: 1px solid #00bcd4;
+            border-radius: 4px;
+            transition: background 0.2s, border-color 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.2);
+            margin-top: 10px;
+        }
+        .btn-ok:hover { background-color: #ffffff; border-color: #ffffff; }
+        
+        /* 📱 Ottimizzazione Universale per Visualizzazione su Smartphone */
+        @media (max-width: 768px) {
+            /* 1. Gestione della Navbar e dei Menu verticali */
+            .navbar { flex-direction: column; gap: 10px; padding: 15px; }
+            .nav-container { flex-direction: column; gap: 10px; width: 100%; }
+            .nav-links { flex-direction: column; gap: 12px; text-align: center; }
+            
+            /* 2. Gestione del Menu Lingue (Dropdown) */
+            .dropdown { width: 100%; text-align: center; }
+            .dropdown-btn { width: 100%; justify-content: center; }
+            .dropdown-content { position: relative; width: 100%; }
+            
+            /* 3. Spaziatura del Contenitore Centrale */
+            .main-content { padding: 160px 20px 40px 20px; }
+            .scheda-contenuto { padding: 25px; }
+            
+            /* 4. RIMPCIOLLIMENTO DEI CARATTERI SU MOBILE */
+            .titolo-principale { font-size: 2.2rem !important; line-height: 1.3 !important; }
+            .scheda-contenuto h2 { font-size: 1.6rem !important; border-bottom-width: 1px !important; padding-bottom: 8px !important; }
+            #testo-dinamico, #testo-altro, .testo-notifica { font-size: 0.95rem !important; line-height: 1.6 !important; }
+            .nome-versione { font-size: 1.1rem !important; }
+            
+            /* Adattamenti specifici per il box banca su mobile */
+            .box-coordinate-bonifico { padding: 15px; }
+            .riga-dato-banca { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .valore-iban { font-size: 0.95rem; word-break: break-all; }
+            .btn-copia-iban { margin-left: 0; margin-top: 5px; width: 100%; text-align: center; padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="chi-siamo.html">Chi siamo</a></li>
+                <li><a href="prodotti.html">Prodotti</a></li>
+                <li><a href="prezzi.html">Prezzi</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+            <div class="dropdown">
+                <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
+                <div class="dropdown-content">
+                    <a href="conferma-ordine.html">🇮🇹 Italiano</a>
+                    <a href="../en/order-confirmation.html">🇬🇧 English</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <div class="scheda-contenuto">
+            <h2>Grazie! I tuoi dati sono stati registrati.</h2>
+            <p class="testo-notifica">
+                Per attivare la tua licenza commerciale, effettua il Bonifico Bancario alle seguenti coordinate istituzionali. Appena registrato l'accredito, invieremo all'indirizzo fornito il codice di sblocco della licenza.
+            </p>
+            
+            <div class="box-coordinate-bonifico">
+                <div class="riga-dato-banca">
+                    <span class="etichetta-banca">Beneficiario:</span>
+                    <span class="valore-banca">Giancarlo Masina</span>
+                </div>
+                <div class="riga-dato-banca">
+                    <span class="etichetta-banca">Banca:</span>
+                    <span class="valore-banca">REVOLUT</span>
+                </div>
+                <div class="riga-dato-banca">
+                    <span class="etichetta-banca">IBAN:</span>
+                    <div>
+                        <span class="valore-iban" id="codice-iban">LT383250009732384193</span>
+                        <button class="btn-copia-iban" onclick="copiaIban()">COPIA 📋</button>
+                    </div>
+                </div>
+                <div class="riga-dato-banca">
+                    <span class="etichetta-banca">BIC / SWIFT:</span>
+                    <span class="valore-banca">REVOLT21</span>
+                </div>
+                <div class="riga-dato-banca">
+                    <span class="etichetta-banca">Causale Obbligatoria:</span>
+                    <span class="valore-causale" id="numero-ordine-visualizzato">TF-XXXXXX-XXXX</span>
+                </div>
+            </div>
+            
+            <a href="index.html" class="btn-ok">OK</a>
+        </div>
+    </main>
+
+    <script>
+        // GENERATORE DINAMICO UNIVERSALE DEL NUMERO D'ORDINE (FORMATO: TF-YYMMDD-HHMM)
+        function generaNumeroOrdine() {
+            const oraDati = new Date();
+            
+            // Estrae l'anno a 2 cifre (es. 26), il mese e il giorno con lo zero iniziale
+            const anno = String(oraDati.getFullYear()).slice(-2);
+            const mese = String(oraDati.getMonth() + 1).padStart(2, '0');
+            const giorno = String(oraDati.getDate()).padStart(2, '0');
+            
+            // Estrae ore e minuti dell'invio
+            const ore = String(oraDati.getHours()).padStart(2, '0');
+            const minuti = String(oraDati.getMinutes()).padStart(2, '0');
+            
+            // Ritorna la stringa nel formato preciso richiesto
+            return `TF-${anno}${mese}${giorno}-${ore}${minuti}`;
+        }
+
+        // Stampa il numero d'ordine generato all'istante dentro alla casella della causale
+        document.getElementById('numero-ordine-visualizzato').innerText = generaNumeroOrdine();
+
+        // FUNZIONE INTELLIGENTE COPIA-INCOLLA AUTOMATICO PER TUTTI I DISPOSITIVI
+        function copiaIban() {
+            const ibanTesto = document.getElementById('codice-iban').innerText;
+            navigator.clipboard.writeText(ibanTesto).then(() => {
+                const btn = document.querySelector('.btn-copia-iban');
+                btn.innerText = "COPIATO! ✔";
+                setTimeout(() => { btn.innerText = "COPIA 📋"; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
