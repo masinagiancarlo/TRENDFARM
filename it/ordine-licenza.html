@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo d'Ordine Licenza - Trendfarm</title>
+    
+    <!-- FAVICON INTEGRATA E PROTETTA DA CACHE -->
+    <link rel="icon" type="image/png" href="../favicon.png?v=2">
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('../home_ufficio_trendfarm.png'); 
+            background-size: cover;            
+            background-position: center;       
+            background-repeat: no-repeat;      
+            background-attachment: fixed;      
+        }
+        
+        /* NAVBAR */
+        .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .img-logo { height: 38px; width: auto; }
+        .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #ffffff; }
+
+        .nav-container { display: flex; align-items: center; gap: 30px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
+        .nav-links a:hover { color: #00bcd4; }
+        
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
+        .dropdown-content a { color: white; padding: 12px 16px; text-decoration: none; display: flex; gap: 10px; font-size: 0.95rem; text-align: left; }
+        .dropdown-content a:hover { background-color: #00bcd4; color: black; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* CONTENITORE CENTRALE EFFECT GLASS */
+        .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
+        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 650px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; text-align: center; }
+        
+        .testo-avviso-cassa { font-size: 1rem; line-height: 1.6; color: #cccccc; margin-bottom: 25px; text-align: center; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
+
+        /* STRUTTURA CAMPI FORM */
+        .form-gruppo { margin-bottom: 20px; text-align: left; }
+        .form-gruppo label { display: block; margin-bottom: 8px; font-weight: 500; color: #e0e0e0; font-size: 0.95rem; }
+        .form-control { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: white; font-size: 1rem; font-family: inherit; transition: border-color 0.3s; }
+        .form-control:focus { outline: none; border-color: #00bcd4; background: rgba(255, 255, 255, 0.15); }
+        
+        select.form-control { cursor: pointer; }
+        select.form-control option { background-color: #1a1a1a; color: white; }
+
+        .btn-invia { width: 100%; padding: 14px; background-color: #00bcd4; color: black; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-top: 15px; font-family: inherit; box-shadow: 0 4px 15px rgba(0, 188, 212, 0.2); }
+        .btn-invia:hover { background-color: #ffffff; }
+
+        /* 📱 EMULATORE E OTTIMIZZAZIONE SMARTPHONE UNIVERSALE UNIFICATA */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 10px; padding: 15px; }
+            .nav-container { flex-direction: column; gap: 10px; width: 100%; }
+            .nav-links { flex-direction: column; gap: 12px; text-align: center; }
+            .dropdown { width: 100%; text-align: center; }
+            .dropdown-btn { width: 100%; justify-content: center; }
+            .dropdown-content { position: relative; width: 100%; }
+            .main-content { padding: 160px 20px 40px 20px; }
+            .scheda-contenuto { padding: 25px; }
+            .scheda-contenuto h2 { font-size: 1.6rem !important; border-bottom-width: 1px !important; padding-bottom: 8px !important; }
+            #testo-dinamico, #testo-altro, .testo-avviso-cassa { font-size: 0.95rem !important; line-height: 1.6 !important; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="chi-siamo.html">Chi siamo</a></li>
+                <li><a href="prodotti.html">Prodotti</a></li>
+                <li><a href="prezzi.html">Prezzi</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+            <div class="dropdown">
+                <button class="dropdown-btn">🇮🇹 Italiano ▾</button>
+                <div class="dropdown-content">
+                    <a href="ordine-licenza.html">🇮🇹 Italiano</a>
+                    <a href="../en/license-order.html">🇬🇧 English</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="scheda-contenuto">
+            <h2>Modulo d'Inoltro Ordine</h2>
+            <p class="testo-avviso-cassa">
+                Compila i campi richiesti per registrare i tuoi dati commerciali. Al termine, visualizzerai le coordinate bancarie istituzionali per completare l'accredito.
+            </p>
+
+            <!-- FORM PRINCIPALE COLLEGATO A FORMSUBMIT TRAMITE AJAX -->
+            <form class="form-ordine-licenza-ajax">
+                
+                <!-- CAMPO 1: TIPO LICENZA (GESTITO AUTOMATICAMENTE) -->
+                <div class="form-gruppo">
+                    <label for="tipo-licenza">Tipo Licenza Richiesta</label>
+                    <select name="license_type" id="tipo-licenza" class="form-control" required>
+                        <option value="" disabled selected>Seleziona la tua licenza...</option>
+                        <option value="light-mensile">Single Module EA - Light Mensile (29€)</option>
+                        <option value="light-annuale">Single Module EA - Light Annuale (329€)</option>
+                        <option value="light-lifetime">Single Module EA - Light Vitalizia (499€)</option>
+                        <option value="gold-mensile">Multi-Module EA - Gold Mensile (49€)</option>
+                        <option value="gold-annuale">Multi-Module EA - Gold Annuale (499€)</option>
+                        <option value="gold-lifetime">Multi-Module EA - Gold Vitalizia (899€)</option>
+                    </select>
+                </div>
+
+                <!-- CAMPO 2: NOME E COGNOME / AZIENDA -->
+                <div class="form-gruppo">
+                    <label for="nome-cliente">Nome e Cognome / Ragione Sociale</label>
+                    <input type="text" name="customer_name" id="nome-cliente" class="form-control" placeholder="Inserisci l'intestatario della licenza" required>
+                </div>
+
+                <!-- CAMPO 3: NAZIONE (LETTA DINAMICAMENTE DA NAZIONI-IT.TXT) -->
+                <div class="form-gruppo">
+                    <label for="nazione-selettore">Nazione di Residenza / Sede</label>
+                    <select name="customer_country" id="nazione-selettore" class="form-control" required>
+                        <option value="" disabled selected>Caricamento nazioni...</option>
+                    </select>
+                </div>
+
+                <!-- CAMPO 4: INDIRIZZO E-MAIL REALE -->
+                <div class="form-gruppo">
+                    <label for="email-cliente">Indirizzo Email Referente</label>
+                    <input type="email" name="customer_email" id="email-cliente" class="form-control" placeholder="esempio@dominio.com" required>
+                </div>
+
+                <!-- CAMPO 5: NUMERO CONTO BROKER MT4/MT5 -->
+                <div class="form-gruppo">
+                    <label for="conto-broker">Numero Conto Broker (per blocco licenza)</label>
+                    <input type="text" name="broker_account" id="conto-broker" class="form-control" placeholder="Inserisci il numero di conto del terminale" required>
+                </div>
+
+                <!-- CAMPO 6: COME CI HAI CONOSCIUTO -->
+                <div class="form-gruppo">
+                    <label for="fonte-conoscenza">Come ci hai conosciuto?</label>
+                    <select name="how_found" id="fonte-conoscenza" class="form-control" required>
+                        <option value="" disabled selected>Seleziona un'opzione...</option>
+                        <option value="Google / Motori di Ricerca">Google / Motori di Ricerca</option>
+                        <option value="Social Media (Telegram, YouTube)">Social Media (Telegram, YouTube)</option>
+                        <option value="Passaparola / Amici">Passaparola / Amici</option>
+                        <option value="Forum di Trading / Blog">Forum di Trading / Blog</option>
+                        <option value="Altro">Altro canale</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-invia">Registra Dati e Vedi Coordinate ➔</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // 1. GENERATORE UNIVERSALE DEL NUMERO D'ORDINE (FORMATO: TF-YYMMDD-HHMM)
+        function calcolaCodiceOrdine() {
+            const oraAttuale = new Date();
+            const anno = String(oraAttuale.getFullYear()).slice(-2);
+            const mese = String(oraAttuale.getMonth() + 1).padStart(2, '0');
+            const giorno = String(oraAttuale.getDate()).padStart(2, '0');
+            const ore = String(oraAttuale.getHours()).padStart(2, '0');
+            const minuti = String(oraAttuale.getMinutes()).padStart(2, '0');
+            return `TF-${anno}${mese}${giorno}-${ore}${minuti}`;
+        }
+
+        // 2. PARSE AUTOMATICO DELLID LICENZA DALLURL PARAMETER (?licenza=...)
+        const urlParametri = new URLSearchParams(window.location.search);
+        const licenzaScelta = urlParametri.get('licenza');
+        if (licenzaScelta) {
+            const selettoreLicenza = document.getElementById('tipo-licenza');
+            selettoreLicenza.value = licenzaScelta;
+        }
+
+        // 3. LETTURA DINAMICA DEL FILE NAZIONI-IT.TXT ED INIEZIONE NELLA TENDINA
+        fetch('nazioni-it.txt')
+            .then(response => { if (!response.ok) throw new Error(); return response.text(); })
+            .then(data => {
+                let righe = data.split('\n');
+                let opzioniHTML = '<option value="" disabled selected>Seleziona il tuo Paese...</option>';
+                
+                righe.forEach(riga => {
+                    let nazionePura = riga.trim();
+                    if(nazionePura !== '') {
+                        if(nazionePura.startsWith('---')) {
+                            opzioniHTML += `<option value="" disabled>------------------------------</option>`;
+                        } else {
+                            opzioniHTML += `<option value="${nazionePura}">${nazionePura}</option>`;
+                        }
+                    }
+                });
+                document.getElementById('nazione-selettore').innerHTML = opzioniHTML;
+            })
+            .catch(error => {
+                document.getElementById('nazione-selettore').innerHTML = '<option value="Italia">Italia (Errore caricamento lista)</option>';
+            });
+
+        // 4. INVIO ASINCRONO AJAX ILLIMITATO A FORMSUBMIT CON REINDIRIZZAMENTO DI SICUREZZA
+        const formOrdine = document.querySelector('.form-ordine-licenza-ajax');
+        if (formOrdine) {
+            formOrdine.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = formOrdine.querySelector('.btn-invia');
+                submitBtn.innerText = "Registrazione ordine in corso...";
+                submitBtn.disabled = true;
+
+                // Calcola il numero d'ordine univoco per iniettarlo nel database mail
+                const numeroOrdineIdentificativo = calcolaCodiceOrdine();
+                const codiceLicenzaSelezionato = document.getElementById('tipo-licenza').value;
+
+                const formData = new FormData();
+                formData.append('customer_name', document.getElementById('nome-cliente').value);
+                formData.append('customer_email', document.getElementById('email-cliente').value);
+                formData.append('customer_country', document.getElementById('nazione-selettore').value);
+                formData.append('broker_account', document.getElementById('conto-broker').value);
+                formData.append('how_found', document.getElementById('fonte-conoscenza').value);
+                
+                // Campi di smistamento specifici richiesti da FormSubmit per la casella di posta
+                formData.append('license_code', codiceLicenzaSelezionato);
+                formData.append('subject', `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
+                formData.append('_captcha', 'false');
+
+                // Trasmissione in background
+                fetch('https://formsubmit.co/info@trendfarm.it', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(response => {
+                    formOrdine.reset();
+                    // Salto istantaneo verso la pagina di istruzioni del bonifico bancario
+                    window.location.href = 'conferma-ordine.html';
+                })
+                .catch(error => {
+                    formOrdine.reset();
+                    window.location.href = 'conferma-ordine.html';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
