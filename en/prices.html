@@ -190,9 +190,9 @@
                 righe.forEach(riga => {
                     let rigaPulita = riga.trim();
                     if(rigaPulita !== '') {
-                        // Check for section headers (e.g., **SINGLE MODULE...**)
+                        // CORRETTO: Controllo e pulizia esatta dei doppi asterischi di intestazione
                         if (rigaPulita.startsWith('**') && !rigaPulita.includes('[')) {
-                            let titoloSezione = rigaPulita.replace(/\*\/g, '');
+                            let titoloSezione = rigaPulita.replace(/\*\*/g, '');
                             contenitoreHTML += `<div class="titolo-categoria-prezzi">${titoloSezione}</div>`;
                         } else {
                             // Extract license identifier enclosed in brackets
@@ -233,7 +233,7 @@
                 formData.append('subject', 'Trial Request from Prices Page (EN)');
                 formData.append('_captcha', 'false');
 
-                fetch(''https://formsubmit.co/info@trendfarm.it', {
+                fetch('https://formsubmit.co/info@trendfarm.it', {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
