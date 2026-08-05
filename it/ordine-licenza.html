@@ -1,3 +1,28 @@
+subject (meglio Oggetto):
+ORDINE [TF-260805-0749] - [light-annuale]
+
+Prezzo_Applicato:
+329,00 Euro
+
+Nome_e_Ragione_Sociale:
+masina giancarlo
+
+Nazione:
+Italia
+
+Email_Contatto:
+masinagiancarlo@gmail.com
+
+Conto_Broker_Abilitato:
+1520276
+
+Canale_Conoscenza:
+Google / Motori di Ricerca
+
+
+
+it/ordine-licenza.html
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -109,10 +134,10 @@
             </p>
 
             <form class="form-ordine-licenza-ajax">
-                
+                <!-- CAMPO 1: TIPO LICENZA SELEZIONATA -->
                 <div class="form-gruppo">
                     <label for="tipo-licenza">Tipo Licenza Richiesta</label>
-                    <select name="license_type" id="tipo-licenza" class="form-control" required>
+                    <select id="tipo-licenza" class="form-control" required>
                         <option value="" disabled selected>Seleziona la tua licenza...</option>
                         <option value="light-mensile">Single Module EA - Light Mensile (29€)</option>
                         <option value="light-annuale">Single Module EA - Light Annuale (329€)</option>
@@ -123,31 +148,36 @@
                     </select>
                 </div>
 
+                <!-- CAMPO 2: NOME E COGNOME / RAGIONE SOCIALE -->
                 <div class="form-gruppo">
                     <label for="nome-cliente">Nome e Cognome / Ragione Sociale</label>
-                    <input type="text" name="customer_name" id="nome-cliente" class="form-control" placeholder="Inserisci l'intestatario della licenza" required>
+                    <input type="text" id="nome-cliente" class="form-control" placeholder="Inserisci l'intestatario della licenza" required>
                 </div>
 
+                <!-- CAMPO 3: NAZIONE (DINAMICA DA NAZIONI-IT.TXT) -->
                 <div class="form-gruppo">
                     <label for="nazione-selettore">Nazione di Residenza / Sede</label>
-                    <select name="customer_country" id="nazione-selettore" class="form-control" required>
+                    <select id="nazione-selettore" class="form-control" required>
                         <option value="" disabled selected>Caricamento nazioni...</option>
                     </select>
                 </div>
 
+                <!-- CAMPO 4: INDIRIZZO E-MAIL -->
                 <div class="form-gruppo">
                     <label for="email-cliente">Indirizzo Email Referente</label>
-                    <input type="email" name="customer_email" id="email-cliente" class="form-control" placeholder="esempio@dominio.com" required>
+                    <input type="email" id="email-cliente" class="form-control" placeholder="esempio@dominio.com" required>
                 </div>
 
+                <!-- CAMPO 5: NUMERO CONTO BROKER MT4/MT5 -->
                 <div class="form-gruppo">
                     <label for="conto-broker">Numero Conto Broker (per blocco licenza)</label>
-                    <input type="text" name="broker_account" id="conto-broker" class="form-control" placeholder="Inserisci il numero di conto del terminale" required>
+                    <input type="text" id="conto-broker" class="form-control" placeholder="Inserisci il numero di conto del terminale" required>
                 </div>
 
+                <!-- CAMPO 6: COME CI HAI CONOSCIUTO -->
                 <div class="form-gruppo">
                     <label for="fonte-conoscenza">Come ci hai conosciuto?</label>
-                    <select name="how_found" id="fonte-conoscenza" class="form-control" required>
+                    <select id="fonte-conoscenza" class="form-control" required>
                         <option value="" disabled selected>Seleziona un'opzione...</option>
                         <option value="Google / Motori di Ricerca">Google / Motori di Ricerca</option>
                         <option value="Social Media (Telegram, YouTube)">Social Media (Telegram, YouTube)</option>
@@ -216,16 +246,19 @@
                 const numeroOrdineIdentificativo = calcolaCodiceOrdine();
                 const codiceLicenzaSelezionato = document.getElementById('tipo-licenza').value;
 
+                // 🚨 COSTRUZIONE SEQUENZIALE RIGIDA DEL PACCHETTO DATI PER FORMSUBMIT
                 const formData = new FormData();
-                formData.append('customer_name', document.getElementById('nome-cliente').value);
-                formData.append('customer_email', document.getElementById('email-cliente').value);
-                formData.append('customer_country', document.getElementById('nazione-selettore').value);
-                formData.append('broker_account', document.getElementById('conto-broker').value);
-                formData.append('how_found', document.getElementById('fonte-conoscenza').value);
                 
-                formData.append('license_code', codiceLicenzaSelezionato);
-                formData.append('price_applied', prezzoApplicato);
+                // FormSubmit ordina la mail seguendo l'ordine esatto di inserimento di queste righe:
                 formData.append('subject', `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
+                formData.append('Prezzo_Applicato', prezzoApplicato);
+                formData.append('Nome_e_Ragione_Sociale', document.getElementById('nome-cliente').value);
+                formData.append('Nazione', document.getElementById('nazione-selettore').value);
+                formData.append('Email_Contatto', document.getElementById('email-cliente').value);
+                formData.append('Conto_Broker_Abilitato', document.getElementById('conto-broker').value);
+                formData.append('Canale_Conoscenza', document.getElementById('fonte-conoscenza').value);
+                
+                // Parametri tecnici di controllo in fondo
                 formData.append('_captcha', 'false');
 
                 fetch('https://formsubmit.co/info@trendfarm.it', {
