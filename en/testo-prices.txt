@@ -1,9 +1,9 @@
 **SINGLE MODULE EXPERT ADVISOR - LIGHT**
-Monthly License: €29.00
-Annual License: €329.00
-Lifetime License: €499.00
+[light-monthly] **Monthly License** - Price: 29.00 Euro
+[light-annual] **Annual License** - Price: 329.00 Euro
+[light-lifetime] **Lifetime License** - Price: 499.00 Euro
 
 **MULTI-MODULE EXPERT ADVISOR - GOLD**
-Monthly License: €49.00
-Annual License: €499.00
-Lifetime License: €899.00
+[gold-monthly] **Monthly License** - Price: 49.00 Euro
+[gold-annual] **Annual License** - Price: 499.00 Euro
+[gold-lifetime] **Lifetime License** - Price: 899.00 Euro
