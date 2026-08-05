@@ -225,7 +225,8 @@
                 // SEQUENTIAL DATA STRUCTURING KEEPING FIELD NAMES IN ITALIAN FOR HOMOGENEOUS ARUBA STORAGE
                 const formData = new FormData();
                 
-                formData.append('subject', `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
+                //formData.append('subject', `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
+                formData.append('subject', `ORDINE [EN] [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
                 formData.append('Prezzo_Applicato', prezzoApplicato);
                 formData.append('Nome_e_Ragione_Sociale', document.getElementById('nome-cliente').value);
                 formData.append('Nazione', document.getElementById('nazione-selettore').value);
