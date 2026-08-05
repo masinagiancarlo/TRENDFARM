@@ -181,21 +181,22 @@
             return `TF-${anno}${mese}${giorno}-${ore}${minuti}`;
         }
 
-        // 2. PARSE AUTOMATICO DELLID LICENZA DALLURL PARAMETER (?licenza=...)
+        // 2. PARSE AUTOMATICO DELLID LICENZA E DEL PREZZO DALLURL PARAMETER (?licenza=...&prezzo=...)
         const urlParametri = new URLSearchParams(window.location.search);
         const licenzaScelta = urlParametri.get('licenza');
+        const prezzoApplicato = urlParametri.get('prezzo') ? decodeURIComponent(urlParametri.get('prezzo')) : 'Da verificare da listino';
+        
         if (licenzaScelta) {
             const selettoreLicenza = document.getElementById('tipo-licenza');
             selettoreLicenza.value = licenzaScelta;
         }
 
-        // 3. LETTURA DINAMICA DEL FILE NAZIONI-IT.TXT ED INIEZIONE NELLA TENDINA
+        // 3. LETTURA DINAMICA DEL FILE NAZIONI-IT.TXT ED INIEZIONE NELLA TENDINA (Rimane identico)
         fetch('nazioni-it.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => {
                 let righe = data.split('\n');
                 let opzioniHTML = '<option value="" disabled selected>Seleziona il tuo Paese...</option>';
-                
                 righe.forEach(riga => {
                     let nazionePura = riga.trim();
                     if(nazionePura !== '') {
@@ -208,11 +209,9 @@
                 });
                 document.getElementById('nazione-selettore').innerHTML = opzioniHTML;
             })
-            .catch(error => {
-                document.getElementById('nazione-selettore').innerHTML = '<option value="Italia">Italia (Errore caricamento lista)</option>';
-            });
+            .catch(error => { document.getElementById('nazione-selettore').innerHTML = '<option value="Italia">Italia</option>'; });
 
-        // 4. INVIO ASINCRONO AJAX ILLIMITATO A FORMSUBMIT CON REINDIRIZZAMENTO DI SICUREZZA
+        // 4. INVIO ASINCRONO AJAX ILLIMITATO A FORMSUBMIT CON PREZZO PROMOZIONALE REALE
         const formOrdine = document.querySelector('.form-ordine-licenza-ajax');
         if (formOrdine) {
             formOrdine.addEventListener('submit', function(e) {
@@ -222,7 +221,6 @@
                 submitBtn.innerText = "Registrazione ordine in corso...";
                 submitBtn.disabled = true;
 
-                // Calcola il numero d'ordine univoco per iniettarlo nel database mail
                 const numeroOrdineIdentificativo = calcolaCodiceOrdine();
                 const codiceLicenzaSelezionato = document.getElementById('tipo-licenza').value;
 
@@ -233,12 +231,12 @@
                 formData.append('broker_account', document.getElementById('conto-broker').value);
                 formData.append('how_found', document.getElementById('fonte-conoscenza').value);
                 
-                // Campi di smistamento specifici richiesti da FormSubmit per la casella di posta
+                // DATI ECONOMICI TRASMESSI A FORMSUBMIT
                 formData.append('license_code', codiceLicenzaSelezionato);
+                formData.append('price_applied', prezzoApplicato); // <--- ECCO IL PREZZO DINAMICO CHE ARRIVA SULLA MAIL
                 formData.append('subject', `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
                 formData.append('_captcha', 'false');
 
-                // Trasmissione in background
                 fetch('https://formsubmit.co/info@trendfarm.it', {
                     method: 'POST',
                     body: formData,
@@ -246,7 +244,6 @@
                 })
                 .then(response => {
                     formOrdine.reset();
-                    // Salto istantaneo verso la pagina di istruzioni del bonifico bancario
                     window.location.href = 'visualizza-banca.html';
                 })
                 .catch(error => {
