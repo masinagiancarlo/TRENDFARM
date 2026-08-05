@@ -225,7 +225,8 @@
                 const formData = new FormData();
                 
                 // FormSubmit ordina la mail seguendo l'ordine esatto di inserimento di queste righe:
-                formData.append('subject', `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
+                // formData.append('subject', `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
+                formData.append('subject', `ORDINE [IT] [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
                 formData.append('Prezzo_Applicato', prezzoApplicato);
                 formData.append('Nome_e_Ragione_Sociale', document.getElementById('nome-cliente').value);
                 formData.append('Nazione', document.getElementById('nazione-selettore').value);
