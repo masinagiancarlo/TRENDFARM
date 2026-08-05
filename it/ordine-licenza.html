@@ -108,14 +108,9 @@
                 Compila i campi richiesti per registrare i tuoi dati commerciali. Al termine, visualizzerai le coordinate bancarie istituzionali per completare l'accredito.
             </p>
 
-            <!-- FORM PRINCIPALE CON CAMPO CORRETTO _SUBJECT -->
             <form class="form-ordine-licenza-ajax">
                 
-                <!-- 🚨 CORREZIONE: Uso di _subject con l'underscore per sbloccare FormSubmit -->
-                <input type="hidden" name="_subject" id="formsubmit-oggetto-reale" value="Nuovo Ordine Licenza">
-                <input type="hidden" name="_captcha" value="false">
-                
-                <!-- CAMPO 1: TIPO LICENZA SELEZIONATA -->
+                <!-- 1. TIPO LICENZA SELEZIONATA -->
                 <div class="form-gruppo">
                     <label for="tipo-licenza">Tipo Licenza Richiesta</label>
                     <select name="Licenza_Richiesta" id="tipo-licenza" class="form-control" required>
@@ -129,13 +124,13 @@
                     </select>
                 </div>
 
-                <!-- CAMPO 2: NOME E COGNOME / AZIENDA -->
+                <!-- 2. NOME E COGNOME / RAGIONE SOCIALE -->
                 <div class="form-gruppo">
                     <label for="nome-cliente">Nome e Cognome / Ragione Sociale</label>
                     <input type="text" name="Nome_e_Ragione_Sociale" id="nome-cliente" class="form-control" placeholder="Inserisci l'intestatario della licenza" required>
                 </div>
 
-                <!-- CAMPO 3: NAZIONE (DINAMICA DA NAZIONI-IT.TXT) -->
+                <!-- 3. NAZIONE (DINAMICA DA NAZIONI-IT.TXT) -->
                 <div class="form-gruppo">
                     <label for="nazione-selettore">Nazione di Residenza / Sede</label>
                     <select name="Nazione" id="nazione-selettore" class="form-control" required>
@@ -143,19 +138,19 @@
                     </select>
                 </div>
 
-                <!-- CAMPO 4: INDIRIZZO E-MAIL REALE -->
+                <!-- 4. INDIRIZZO E-MAIL -->
                 <div class="form-gruppo">
                     <label for="email-cliente">Indirizzo Email Referente</label>
                     <input type="email" name="Email_Contatto" id="email-cliente" class="form-control" placeholder="esempio@dominio.com" required>
                 </div>
 
-                <!-- CAMPO 5: NUMERO CONTO BROKER MT4/MT5 -->
+                <!-- 5. NUMERO CONTO BROKER MT4/MT5 -->
                 <div class="form-gruppo">
                     <label for="conto-broker">Numero Conto Broker (per blocco licenza)</label>
                     <input type="text" name="Conto_Broker_Abilitato" id="conto-broker" class="form-control" placeholder="Inserisci il numero di conto del terminale" required>
                 </div>
 
-                <!-- CAMPO 6: COME CI HAI CONOSCIUTO -->
+                <!-- 6. COME CI HAI CONOSCIUTO -->
                 <div class="form-gruppo">
                     <label for="fonte-conoscenza">Come ci hai conosciuto?</label>
                     <select name="Canale_Conoscenza" id="fonte-conoscenza" class="form-control" required>
@@ -174,7 +169,6 @@
     </main>
 
     <script>
-        // 1. GENERATORE UNIVERSALE DEL NUMERO D'ORDINE (FORMATO: TF-YYMMDD-HHMM)
         function calcolaCodiceOrdine() {
             const oraAttuale = new Date();
             const anno = String(oraAttuale.getFullYear()).slice(-2);
@@ -185,7 +179,6 @@
             return `TF-${anno}${mese}${giorno}-${ore}${minuti}`;
         }
 
-        // 2. PARSE AUTOMATICO DELLID LICENZA E DEL PREZZO DALLURL PARAMETER
         const urlParametri = new URLSearchParams(window.location.search);
         const licenzaScelta = urlParametri.get('licenza');
         const prezzoApplicato = urlParametri.get('prezzo') ? decodeURIComponent(urlParametri.get('prezzo')) : 'Da verificare da listino';
@@ -195,7 +188,6 @@
             selettoreLicenza.value = licenzaScelta;
         }
 
-        // 3. LETTURA DINAMICA DEL FILE NAZIONI-IT.TXT ED INIEZIONE NELLA TENDINA
         fetch('nazioni-it.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => {
@@ -218,7 +210,6 @@
                 document.getElementById('nazione-selettore').innerHTML = '<option value="Italia">Italia</option>';
             });
 
-        // 4. INVIO ASINCRONO AJAX ILLIMITATO CON COSTRUTTO FORM REALE
         const formOrdine = document.querySelector('.form-ordine-licenza-ajax');
         if (formOrdine) {
             formOrdine.addEventListener('submit', function(e) {
@@ -231,18 +222,20 @@
                 const numeroOrdineIdentificativo = calcolaCodiceOrdine();
                 const codiceLicenzaSelezionato = document.getElementById('tipo-licenza').value;
 
-                // 🚨 SCRIVE L'OGGETTO DINAMICO CON L'UNDERSCORE PRIMA DELL'INVIO
-                const campoOggettoReale = document.getElementById('formsubmit-oggetto-reale');
-                campoOggettoReale.value = `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`;
-
-                // Cattura l'intero form HTML incluse le chiavi hidden speciali
-                const formData = new FormData(formOrdine);
+                // COSTRUZIONE STRUTTURA SICURA SENZA FILTRI BLOCCANTI
+                const formData = new FormData();
                 
-                // Campi aggiuntivi per arricchire il corpo del testo
-                formData.append('Numero_Ordine', numeroOrdineIdentificativo);
+                // Passiamo i dati dell'ordine come stringhe di testo semplici e pulite
+                formData.append('Tipo_Operazione', `ORDINE LICENZA COMMERCIAL_`);
+                formData.append('Identificativo_Ordine', numeroOrdineIdentificativo);
+                formData.append('Licenza_Richiesta', codiceLicenzaSelezionato);
                 formData.append('Prezzo_Applicato', prezzoApplicato);
+                formData.append('Nome_e_Ragione_Sociale', document.getElementById('nome-cliente').value);
+                formData.append('Nazione', document.getElementById('nazione-selettore').value);
+                formData.append('Email_Contatto', document.getElementById('email-cliente').value);
+                formData.append('Conto_Broker_Abilitato', document.getElementById('conto-broker').value);
+                formData.append('Canale_Conoscenza', document.getElementById('fonte-conoscenza').value);
 
-                // Chiamata asincrona
                 fetch('https://formsubmit.co', {
                     method: 'POST',
                     body: formData,
