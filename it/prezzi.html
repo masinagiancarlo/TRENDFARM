@@ -173,7 +173,7 @@
     </main>
 
     <script>
-        // 1. LETTURA DEL FILE TXT E TRASFORMAZIONE DELLE RIGHE IN BOTTONI CON ID
+        // 1. LETTURA DEL FILE TXT E TRASFORMAZIONE DELLE RIGHE IN BOTTONI CON ID E PREZZO DINAMICO
         fetch('testo-prezzi.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => { 
@@ -183,7 +183,6 @@
                 righe.forEach(riga => {
                     let rigaPulita = riga.trim();
                     if(rigaPulita !== '') {
-                        // Se la riga contiene i doppi asterischi di categoria senza ID (es. **SINGLE MODULE...**)
                         if (rigaPulita.startsWith('**') && !rigaPulita.includes('[')) {
                             let titoloSezione = rigaPulita.replace(/\*\*/g, '');
                             contenitoreHTML += `<div class="titolo-categoria-prezzi">${titoloSezione}</div>`;
@@ -194,11 +193,16 @@
                             
                             // Pulisce la riga rimuovendo l'ID tecnico iniziale
                             let testoVisualizzato = rigaPulita.replace(/^\[.*?\]/, '').trim();
+                            
+                            // Estrae il prezzo dinamico dopo la parola "Prezzo:" per passarlo alla cassa
+                            let prezzoMatch = testoVisualizzato.match(/Prezzo:\s*(.*)$/i);
+                            let prezzoEstratto = prezzoMatch ? prezzoMatch[1] : 'Vedi listino';
+                            
                             // Converte i doppi asterischi interni in testo grassetto strong
                             testoVisualizzato = testoVisualizzato.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                             
-                            // Compone il blocco div cliccabile passandogli l'ID tramite URL parameter
-                            contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='ordine-licenza.html?licenza=${idLicenza}'">${testoVisualizzato}</div>`;
+                            // Passa sia l'ID della licenza sia il prezzo esatto alla pagina d'ordine
+                            contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='ordine-licenza.html?licenza=${idLicenza}&prezzo=${encodeURIComponent(prezzoEstratto)}'">${testoVisualizzato}</div>`;
                         }
                     }
                 });
