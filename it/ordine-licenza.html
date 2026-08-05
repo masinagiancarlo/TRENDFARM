@@ -108,13 +108,17 @@
                 Compila i campi richiesti per registrare i tuoi dati commerciali. Al termine, visualizzerai le coordinate bancarie istituzionali per completare l'accredito.
             </p>
 
-            <!-- FORM PRINCIPALE AGGIORNATO IN ITALIANO E RIORDINATO -->
+            <!-- FORM PRINCIPALE CON CAMPI AGGIORNATI E FORZATI PER L'OGGETTO -->
             <form class="form-ordine-licenza-ajax">
                 
-                <!-- 1. CAMPO NASCOSTO IN CIMA: TIPO LICENZA SELEZIONATA -->
+                <!-- 🚨 TAG REALI RICHIESTI DA FORMSUBMIT PER L'OGGETTO E IL CAPTCHA -->
+                <input type="hidden" name="subject" id="formsubmit-oggetto-reale" value="Nuovo Ordine Licenza">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <!-- CAMPO 1: TIPO LICENZA SELEZIONATA -->
                 <div class="form-gruppo">
                     <label for="tipo-licenza">Tipo Licenza Richiesta</label>
-                    <select name="Licenza_Scelta" id="tipo-licenza" class="form-control" required>
+                    <select name="Licenza_Richiesta" id="tipo-licenza" class="form-control" required>
                         <option value="" disabled selected>Seleziona la tua licenza...</option>
                         <option value="light-mensile">Single Module EA - Light Mensile (29€)</option>
                         <option value="light-annuale">Single Module EA - Light Annuale (329€)</option>
@@ -125,13 +129,13 @@
                     </select>
                 </div>
 
-                <!-- 2. CAMPO 2: NOME E COGNOME / AZIENDA -->
+                <!-- CAMPO 2: NOME E COGNOME / AZIENDA -->
                 <div class="form-gruppo">
                     <label for="nome-cliente">Nome e Cognome / Ragione Sociale</label>
-                    <input type="text" name="Nome_e_Cognome_Azienda" id="nome-cliente" class="form-control" placeholder="Inserisci l'intestatario della licenza" required>
+                    <input type="text" name="Nome_e_Ragione_Sociale" id="nome-cliente" class="form-control" placeholder="Inserisci l'intestatario della licenza" required>
                 </div>
 
-                <!-- 3. CAMPO 3: NAZIONE (DINAMICA DA NAZIONI-IT.TXT) -->
+                <!-- CAMPO 3: NAZIONE (DINAMICA DA NAZIONI-IT.TXT) -->
                 <div class="form-gruppo">
                     <label for="nazione-selettore">Nazione di Residenza / Sede</label>
                     <select name="Nazione" id="nazione-selettore" class="form-control" required>
@@ -139,22 +143,22 @@
                     </select>
                 </div>
 
-                <!-- 4. CAMPO 4: INDIRIZZO E-MAIL REALE -->
+                <!-- CAMPO 4: INDIRIZZO E-MAIL REALE -->
                 <div class="form-gruppo">
                     <label for="email-cliente">Indirizzo Email Referente</label>
-                    <input type="email" name="Email_Cliente" id="email-cliente" class="form-control" placeholder="esempio@dominio.com" required>
+                    <input type="email" name="Email_Contatto" id="email-cliente" class="form-control" placeholder="esempio@dominio.com" required>
                 </div>
 
-                <!-- 5. CAMPO 5: NUMERO CONTO BROKER MT4/MT5 -->
+                <!-- CAMPO 5: NUMERO CONTO BROKER MT4/MT5 -->
                 <div class="form-gruppo">
                     <label for="conto-broker">Numero Conto Broker (per blocco licenza)</label>
-                    <input type="text" name="Numero_Conto_Broker" id="conto-broker" class="form-control" placeholder="Inserisci il numero di conto del terminale" required>
+                    <input type="text" name="Conto_Broker_Abilitato" id="conto-broker" class="form-control" placeholder="Inserisci il numero di conto del terminale" required>
                 </div>
 
-                <!-- 6. CAMPO 6: COME CI HAI CONOSCIUTO -->
+                <!-- CAMPO 6: COME CI HAI CONOSCIUTO -->
                 <div class="form-gruppo">
                     <label for="fonte-conoscenza">Come ci hai conosciuto?</label>
-                    <select name="Canale_Provenienza" id="fonte-conoscenza" class="form-control" required>
+                    <select name="Canale_Conoscenza" id="fonte-conoscenza" class="form-control" required>
                         <option value="" disabled selected>Seleziona un'opzione...</option>
                         <option value="Google / Motori di Ricerca">Google / Motori di Ricerca</option>
                         <option value="Social Media (Telegram, YouTube)">Social Media (Telegram, YouTube)</option>
@@ -181,7 +185,7 @@
             return `TF-${anno}${mese}${giorno}-${ore}${minuti}`;
         }
 
-        // 2. PARSE AUTOMATICO DELLID LICENZA E DEL PREZZO DALLURL PARAMETER (?licenza=...&prezzo=...)
+        // 2. PARSE AUTOMATICO DELLID LICENZA E DEL PREZZO DALLURL PARAMETER
         const urlParametri = new URLSearchParams(window.location.search);
         const licenzaScelta = urlParametri.get('licenza');
         const prezzoApplicato = urlParametri.get('prezzo') ? decodeURIComponent(urlParametri.get('prezzo')) : 'Da verificare da listino';
@@ -214,7 +218,7 @@
                 document.getElementById('nazione-selettore').innerHTML = '<option value="Italia">Italia</option>';
             });
 
-        // 4. INVIO ASINCRONO AJAX ILLIMITATO A FORMSUBMIT CON REINDIRIZZAMENTO SU VISUALIZZA-BANCA
+        // 4. INVIO ASINCRONO AJAX ILLIMITATO CON CORREZIONE OGGETTO SICURA
         const formOrdine = document.querySelector('.form-ordine-licenza-ajax');
         if (formOrdine) {
             formOrdine.addEventListener('submit', function(e) {
@@ -224,26 +228,19 @@
                 submitBtn.innerText = "Registrazione ordine in corso...";
                 submitBtn.disabled = true;
 
-                // Calcola il numero d'ordine univoco per iniettarlo in cima alle mail
                 const numeroOrdineIdentificativo = calcolaCodiceOrdine();
                 const codiceLicenzaSelezionato = document.getElementById('tipo-licenza').value;
 
-                // COSTRUZIONE FORM DATA ORDINATA IN ITALIANO PER IL CORPO DELLA MAIL
-                const formData = new FormData();
-                
-                // Questi due campi speciali in cima controllano l'oggetto e disattivano il captcha
-                formData.append('subject', `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`);
-                formData.append('_captcha', 'false');
+                // 🚨 FORZATURA DELL'OGGETTO DIRETTAMENTE DENTRO AL CAMPO INPUT REALE DEL FORM
+                const campoOggettoReale = document.getElementById('formsubmit-oggetto-reale');
+                campoOggettoReale.value = `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`;
 
-                // Corpo dati principale ordinato e in italiano
+                // Costruiamo il pacchetto prendendo i dati reali compilati nel form (che ora include l'oggetto valido)
+                const formData = new FormData(formOrdine);
+                
+                // Aggiungiamo i dati dinamici calcolati a schermo
                 formData.append('Numero_Ordine', numeroOrdineIdentificativo);
-                formData.append('Licenza_Richiesta', codiceLicenzaSelezionato);
                 formData.append('Prezzo_Applicato', prezzoApplicato);
-                formData.append('Nome_e_Ragione_Sociale', document.getElementById('nome-cliente').value);
-                formData.append('Nazione', document.getElementById('nazione-selettore').value);
-                formData.append('Email_Contatto', document.getElementById('email-cliente').value);
-                formData.append('Conto_Broker_Abilitato', document.getElementById('conto-broker').value);
-                formData.append('Canale_Conoscenza', document.getElementById('fonte-conoscenza').value);
 
                 // Trasmissione silenziata in background
                 fetch('https://formsubmit.co/info@trendfarm.it', {
