@@ -108,11 +108,11 @@
                 Compila i campi richiesti per registrare i tuoi dati commerciali. Al termine, visualizzerai le coordinate bancarie istituzionali per completare l'accredito.
             </p>
 
-            <!-- FORM PRINCIPALE CON CAMPI AGGIORNATI E FORZATI PER L'OGGETTO -->
+            <!-- FORM PRINCIPALE CON CAMPO CORRETTO _SUBJECT -->
             <form class="form-ordine-licenza-ajax">
                 
-                <!-- 🚨 TAG REALI RICHIESTI DA FORMSUBMIT PER L'OGGETTO E IL CAPTCHA -->
-                <input type="hidden" name="subject" id="formsubmit-oggetto-reale" value="Nuovo Ordine Licenza">
+                <!-- 🚨 CORREZIONE: Uso di _subject con l'underscore per sbloccare FormSubmit -->
+                <input type="hidden" name="_subject" id="formsubmit-oggetto-reale" value="Nuovo Ordine Licenza">
                 <input type="hidden" name="_captcha" value="false">
                 
                 <!-- CAMPO 1: TIPO LICENZA SELEZIONATA -->
@@ -218,7 +218,7 @@
                 document.getElementById('nazione-selettore').innerHTML = '<option value="Italia">Italia</option>';
             });
 
-        // 4. INVIO ASINCRONO AJAX ILLIMITATO CON CORREZIONE OGGETTO SICURA
+        // 4. INVIO ASINCRONO AJAX ILLIMITATO CON COSTRUTTO FORM REALE
         const formOrdine = document.querySelector('.form-ordine-licenza-ajax');
         if (formOrdine) {
             formOrdine.addEventListener('submit', function(e) {
@@ -231,19 +231,19 @@
                 const numeroOrdineIdentificativo = calcolaCodiceOrdine();
                 const codiceLicenzaSelezionato = document.getElementById('tipo-licenza').value;
 
-                // 🚨 FORZATURA DELL'OGGETTO DIRETTAMENTE DENTRO AL CAMPO INPUT REALE DEL FORM
+                // 🚨 SCRIVE L'OGGETTO DINAMICO CON L'UNDERSCORE PRIMA DELL'INVIO
                 const campoOggettoReale = document.getElementById('formsubmit-oggetto-reale');
                 campoOggettoReale.value = `ORDINE [${numeroOrdineIdentificativo}] - [${codiceLicenzaSelezionato}]`;
 
-                // Costruiamo il pacchetto prendendo i dati reali compilati nel form (che ora include l'oggetto valido)
+                // Cattura l'intero form HTML incluse le chiavi hidden speciali
                 const formData = new FormData(formOrdine);
                 
-                // Aggiungiamo i dati dinamici calcolati a schermo
+                // Campi aggiuntivi per arricchire il corpo del testo
                 formData.append('Numero_Ordine', numeroOrdineIdentificativo);
                 formData.append('Prezzo_Applicato', prezzoApplicato);
 
-                // Trasmissione silenziata in background
-                fetch('https://formsubmit.co/info@trendfarm.it', {
+                // Chiamata asincrona
+                fetch('https://formsubmit.co', {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
