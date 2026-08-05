@@ -1,11 +1,41 @@
+**SINGLE MODULE EXPERT ADVISOR - LIGHT**
+[light-mensile] **Licenza Mensile** - Prezzo: 29,00 Euro
+[light-annuale] **Licenza Annuale** - Prezzo: 329,00 Euro
+[light-lifetime] **Licenza Vitalizia** - Prezzo: 499,00 Euro
+
+**MULTI-MODULE EXPERT ADVISOR - GOLD**
+[gold-mensile] **Licenza Mensile** - Prezzo: 49,00 Euro
+[gold-annuale] **Licenza Annuale** - Prezzo: 499,00 Euro
+[gold-lifetime] **Licenza Vitalizia** - Prezzo: 899,00 Euro
+
+
+
+
+**SINGLE MODULE EXPERT ADVISOR - LIGHT**
+[light-monthly] **Monthly License** - Price: 29.00 Euro
+[light-annual] **Annual License** - Price: 329.00 Euro
+[light-lifetime] **Lifetime License** - Price: 499.00 Euro
+
+**MULTI-MODULE EXPERT ADVISOR - GOLD**
+[gold-monthly] **Monthly License** - Price: 49.00 Euro
+[gold-annual] **Annual License** - Price: 499.00 Euro
+[gold-lifetime] **Lifetime License** - Price: 899.00 Euro
+
+
+
+en/prices.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Check the official NEXUS MATRIX price list. Choose the commercial license that best suits your algorithmic trading needs.">
+    <meta name="description" content="Check the official NEXUS MATRIX price list. Choose the commercial license that best suits your systematic trading needs.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prices - Trendfarm</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- FAVICON INTEGRATA E PROTETTA DA CACHE -->
+    <link rel="icon" type="image/png" href="../favicon.png?v=2">
+    
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -24,14 +54,13 @@
         .img-logo { height: 38px; width: auto; }
         .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
         .colore-trend { color: #dca122; }
-        .colore-farm { color: #ffffff; }  /* Bianco dal logo */
+        .colore-farm { color: #ffffff; }
 
         .nav-container { display: flex; align-items: center; gap: 30px; }
         .nav-links { list-style: none; display: flex; gap: 20px; }
         .nav-links a { color: #e0e0e0; text-decoration: none; font-size: 1rem; font-weight: 500; }
         .nav-links a:hover { color: #00bcd4; }
         
-        /* DROPDOWN LINGUE NAVBAR */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-btn { background: rgba(255, 255, 255, 0.1); color: white; padding: 8px 16px; font-size: 1rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .dropdown-content { display: none; position: absolute; right: 0; background-color: rgba(0, 0, 0, 0.9); min-width: 140px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); border-radius: 0 0 4px 4px; z-index: 1; margin-top: 0; padding-top: 5px; }
@@ -41,20 +70,75 @@
         
         .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
         .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px; max-width: 800px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
-        .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 20px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
+        .scheda-contenuto h2 { font-size: 2.2rem; margin-bottom: 25px; color: #00bcd4; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
         
-        #testo-dinamico { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; white-space: pre-line; text-align: left; margin-bottom: 30px; }
+        #testo-dinamico { text-align: left; margin-bottom: 30px; }
         
-        /* CONTENITORE MODULO INTERNO */
-        .sezione-richiesta-prezzi { max-width: 450px; margin: 20px auto 0 auto; background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
-        .sezione-richiesta-prezzi h3 { font-size: 1.2rem; color: #00bcd4; margin-bottom: 15px; text-align: center; }
+        /* TITOLI DELLE SEZIONI LIGHT E GOLD NELLISTINO */
+        .titolo-categoria-prezzi {
+            font-size: 1.25rem;
+            color: #00bcd4;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            border-left: 3px solid #dca122;
+            padding-left: 10px;
+        }
+
+        /* RIGHE LISTINO CLICCABILI AD EFFETTO VETRO */
+        .riga-licenza { 
+            position: relative; 
+            padding: 16px 20px; 
+            margin-bottom: 12px; 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 6px; 
+            cursor: pointer; 
+            transition: all 0.2s ease;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+        .riga-licenza:hover { 
+            background: rgba(0, 188, 212, 0.08); 
+            border-color: #00bcd4; 
+            transform: translateX(4px);
+        }
+        
+        /* FUMETTO PERSONALIZZATO (TOOLTIP) LATO WEB IN INGLESE */
+        .riga-licenza::after {
+            content: "Buy this commercial license 🛒";
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            background: #00bcd4;
+            color: #000000;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+            z-index: 10;
+        }
+        .riga-licenza:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .sezione-richiesta-prezzi { max-width: 450px; margin: 35px auto 0 auto; background: rgba(255, 255, 255, 0.02); padding: 25px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
+        .sezione-richiesta-prezzi h3 { font-size: 1.1rem; color: #00bcd4; margin-bottom: 15px; text-align: center; }
         .sezione-richiesta-prezzi input { width: 100%; padding: 12px; margin-bottom: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; font-size: 0.95rem; }
         .sezione-richiesta-prezzi input:focus { outline: none; border-color: #00bcd4; }
-        
         .btn-invia-prezzi { display: block; width: 100%; padding: 12px; background-color: #00bcd4; color: black; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; text-align: center; font-family: inherit; }
         .btn-invia-prezzi:hover { background-color: #ffffff; }
 
-        /* Ottimizzazione Universale per Visualizzazione su Smartphone */
+        /* 📱 Ottimizzazione Universale per Visualizzazione su Smartphone */
         @media (max-width: 768px) {
             /* 1. Gestione della Navbar e dei Menu verticali */
             .navbar { flex-direction: column; gap: 10px; padding: 15px; }
@@ -75,6 +159,7 @@
             .scheda-contenuto h2 { font-size: 1.6rem !important; border-bottom-width: 1px !important; padding-bottom: 8px !important; }
             #testo-dinamico, #testo-altro, .testo-notifica { font-size: 0.95rem !important; line-height: 1.6 !important; }
             .nome-versione { font-size: 1.1rem !important; }
+            .riga-licenza:hover { transform: none; }
         }
     </style>
 </head>
@@ -93,7 +178,6 @@
                 <li><a href="prices.html" style="color: #00bcd4;">Prices</a></li>
                 <li><a href="contacts.html">Contacts</a></li>
             </ul>
-            
             <div class="dropdown">
                 <button class="dropdown-btn">🇬🇧 English ▾</button>
                 <div class="dropdown-content">
@@ -103,63 +187,89 @@
             </div>
         </div>
     </nav>
+    
     <main class="main-content">
         <div class="scheda-contenuto">
-            <h2>Price List</h2>
+            <h2>Commercial Price List</h2>
+            
+            <!-- DYNAMIC CONTAINER FOR AUTOMATIC BUTTON GENERATION -->
             <div id="testo-dinamico">Loading price list...</div>
             
-            <!-- UNLIMITED AJAX FORMSUBMIT MODULE FOR PRICES -->
             <div class="sezione-richiesta-prezzi">
-                <h3>Try the 30-day TRIAL version</h3>
+                <h3>Not ready to buy? Try the Gold TRIAL version</h3>
                 <form class="mini-form-prezzi">
-                    <input type="text" name="user_name" placeholder="Enter your Name / Company" required style="width: 100%; display: block;">
-                    <input type="email" name="user_email" placeholder="Enter your Email address" required style="width: 100%; display: block;">
-                    <button type="submit" class="btn-invia-prezzi">Download NEXUS MATRIX GOLD</button>
+                    <input type="text" name="user_name" placeholder="Enter your Name" required style="width: 100%; display: block;">
+                    <input type="email" name="user_email" placeholder="Enter your Email" required style="width: 100%; display: block;">
+                    <button type="submit" class="btn-invia-prezzi">Download Free Trial</button>
                 </form>
             </div>
         </div>
     </main>
 
     <script>
-        // 1. Fetch dynamic text files and convert double asterisks to strong tags
+        // 1. FETCH THE TXT FILE AND CONVERT LINES INTO BUTTONS WITH ID AND DYNAMIC PRICE
         fetch('testo-prices.txt')
-            .then(response => { if (!response.ok) throw new Error('File not found'); return response.text(); })
+            .then(response => { if (!response.ok) throw new Error(); return response.text(); })
             .then(data => { 
-                let testoFormattato = data.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                document.getElementById('testo-dinamico').innerHTML = testoFormattato; 
+                let righe = data.split('\n');
+                let contenitoreHTML = '';
+                
+                righe.forEach(riga => {
+                    let rigaPulita = riga.trim();
+                    if(rigaPulita !== '') {
+                        // Check for section headers (e.g., **SINGLE MODULE...**)
+                        if (rigaPulita.startsWith('**') && !rigaPulita.includes('[')) {
+                            let titoloSezione = rigaPulita.replace(/\*\/g, '');
+                            contenitoreHTML += `<div class="titolo-categoria-prezzi">${titoloSezione}</div>`;
+                        } else {
+                            // Extract license identifier enclosed in brackets
+                            let idMatch = rigaPulita.match(/^\[(.*?)\]/);
+                            let idLicenza = idMatch ? idMatch[1] : 'generic';
+                            
+                            // Clean line text by removing technical ID prefix
+                            let testoVisualizzato = rigaPulita.replace(/^\[.*?\]/, '').trim();
+                            
+                            // Extract dynamic price after "Price:" or "Prezzo:" for checkout passing
+                            let prezzoMatch = testoVisualizzato.match(/(?:Price|Prezzo):\s*(.*)$/i);
+                            let prezzoEstratto = prezzoMatch ? prezzoMatch[1] : 'Check list';
+                            
+                            // Convert internal double asterisks to strong bold tags
+                            testoVisualizzato = testoVisualizzato.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                            
+                            // Compiles clickable layout div passing parameters via URL query string
+                            contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='license-order.html?licenza=${idLicenza}&prezzo=${encodeURIComponent(prezzoEstratto)}'">${testoVisualizzato}</div>`;
+                        }
+                    }
+                });
+                document.getElementById('testo-dinamico').innerHTML = contenitoreHTML; 
             })
-            .catch(error => { document.getElementById('testo-dinamico').innerText = "Error loading prices."; });
+            .catch(error => { document.getElementById('testo-dinamico').innerText = "Error loading the price list."; });
 
-        // 2. New AJAX logic for FormSubmit (Sends data seamlessly to info-en@trendfarm.it)
+        // 2. Classic FormSubmit AJAX submission for free trial requests
         const formPrezzi = document.querySelector('.mini-form-prezzi');
         if (formPrezzi) {
             formPrezzi.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const submitBtn = formPrezzi.querySelector('button[type="submit"]');
-                const vecchioTesto = submitBtn.innerText;
                 submitBtn.innerText = "Sending...";
                 submitBtn.disabled = true;
 
-                // Create the data layout requested by FormSubmit
                 const formData = new FormData();
                 formData.append('name', formPrezzi.querySelector('input[name="user_name"]').value);
                 formData.append('email', formPrezzi.querySelector('input[name="user_email"]').value);
-                formData.append('subject', 'Richiesta Nexus Trial - Dalla pagina Prezzi (EN)');
-                formData.append('_captcha', 'false'); // Disables visual captcha screens
+                formData.append('subject', 'Trial Request from Prices Page (EN)');
+                formData.append('_captcha', 'false');
 
-                // Asynchronous post transmission targeting the English FormSubmit endpoint
-                fetch('https://formsubmit.co/info@trendfarm.it', {
+                fetch(''https://formsubmit.co/info@trendfarm.it', {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 })
                 .then(response => {
-                    // Success: jumps straight to the English thanks page with direct zip download
-                    window.location.href = 'https://trendfarm-labs.github.io/trendfarm/en/thanks.html';
+                    window.location.href = 'thanks.html';
                 })
                 .catch(error => {
-                    // Fail-safe redirect fallback to keep the user experience smooth
-                    window.location.href = 'https://trendfarm-labs.github.io/trendfarm/en/thanks.html';
+                    window.location.href = 'thanks.html';
                 });
             });
         }
