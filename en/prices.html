@@ -275,7 +275,8 @@
                             testoVisualizzato = testoVisualizzato.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                             
                             // Compiles clickable layout div passing parameters via URL query string
-                            contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='license-order.html?licenza=${idLicenza}&prezzo=${encodeURIComponent(prezzoEstratto)}'">${testoVisualizzato}</div>`;
+                            //contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='license-order.html?licenza=${idLicenza}&prezzo=${encodeURIComponent(prezzoEstratto)}'">${testoVisualizzato}</div>`;
+                            contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='license-order.html?licenza=${idLicenza}&prezzo=${encodeURIComponent(prezzoEstratto)}&nomebello=${encodeURIComponent(testoVisualizzato)}'">${testoVisualizzato}</div>`;
                         }
                     }
                 });
