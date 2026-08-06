@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <script async src="https://googletagmanager.com/gtag/js?id=G-S0LHQNBMHG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-  
-        // 🟢 CONFIGURAZIONE DI SICUREZZA PER LE LEGGI EUROPEE (SEE)
-       gtag('consent', 'default', {
-          'ad_storage': 'denied',
-          'ad_user_data': 'denied',
-          'ad_personalization': 'denied',
-          'analytics_storage': 'denied',
-          'wait_for_update': 500
-       });
-       gtag('js', new Date());
-       gtag('config', 'G-S0LHQNBMHG');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation - Trendfarm</title>
@@ -141,56 +125,6 @@
             .btn-copia-iban { margin-left: 0; margin-top: 5px; width: 100%; text-align: center; padding: 8px; }
         }
     </style>
-<!-- START BANNER COOKIE -->   
-    <!-- 3. Struttura Interfaccia HTML del Banner -->
-    <div id="cookiePrivacyBanner" class="cookie-banner-glass">
-        <div class="cookie-testo">
-            <strong>Trendfarm Labs Privacy and Cookies:</strong> We use cookies and measurement tools to ensure site functionality and analyze aggregate traffic. By clicking "Accept", you consent to statistical tracking via Google Analytics in full compliance with European GDPR regulations.
-        </div>
-        <div class="cookie-bottoni">
-            <button class="cookie-btn cookie-btn-rifiuta" onclick="gestisciConsensoCookie(false)">Reject</button>
-            <button class="cookie-btn cookie-btn-accetta" onclick="gestisciConsensoCookie(true)">Accept</button>
-        </div>
-    </div>    <!-- 4. Logica JavaScript di Controllo Memoria e Sblocco Consent Mode -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        // Controlla se l'utente ha già fatto una scelta in passato
-        const consensoPrecedente = localStorage.getItem("trendfarm_cookie_consent");
-    
-        if (consensoPrecedente === null) {
-          // Se è un nuovo utente, mostra il banner ad effetto vetro facendolo salire dal basso
-          setTimeout(function() {
-            document.getElementById("cookiePrivacyBanner").classList.add("show");
-          }, 1000);
-        } else if (consensoPrecedente === "granted") {
-          // Se aveva già accettato, sblocca immediatamente il tracciamento in background
-          aggiornaConsentModeGoogle(true);
-        }
-      });
-
-      function gestisciConsensoCookie(accettato) {
-        if (accettato) {
-          localStorage.setItem("trendfarm_cookie_consent", "granted");
-          aggiornaConsentModeGoogle(true);
-        } else {
-          localStorage.setItem("trendfarm_cookie_consent", "denied");
-          aggiornaConsentModeGoogle(false);
-        }
-        // Fa sparire il banner facendolo scivolare verso il basso
-        document.getElementById("cookiePrivacyBanner").classList.remove("show");
-      }
-
-      function aggiornaConsentModeGoogle(concesso) {
-        const statoConsenso = concesso ? 'granted' : 'denied';
-        gtag('consent', 'update', {
-          'ad_storage': statoConsenso,
-          'ad_user_data': statoConsenso,
-          'ad_personalization': statoConsenso,
-          'analytics_storage': statoConsenso
-        });
-      }
-    </script>
-<!-- END GOOGLE ANALYTICS + CONSENT MODE V2 + BANNER COOKIE -->   
 </head>
 <body>
     <nav class="navbar">
