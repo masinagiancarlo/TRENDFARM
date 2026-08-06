@@ -176,17 +176,11 @@
             </p>
 
             <form class="form-ordine-licenza-ajax">
-                <!-- CAMPO 1: TIPO LICENZA SELEZIONATA -->
+                <!-- CAMPO 1: TIPO LICENZA SELEZIONATA (100% DINAMICA) -->
                 <div class="form-gruppo">
                     <label for="tipo-licenza">Tipo Licenza Richiesta</label>
                     <select id="tipo-licenza" class="form-control" required>
-                        <option value="" disabled selected>Seleziona la tua licenza...</option>
-                        <option value="light-mensile">Single Module EA - Light Mensile (29€)</option>
-                        <option value="light-annuale">Single Module EA - Light Annuale (329€)</option>
-                        <option value="light-lifetime">Single Module EA - Light Vitalizia (499€)</option>
-                        <option value="gold-mensile">Multi-Module EA - Gold Mensile (49€)</option>
-                        <option value="gold-annuale">Multi-Module EA - Gold Annuale (499€)</option>
-                        <option value="gold-lifetime">Multi-Module EA - Gold Vitalizia (899€)</option>
+                        <option value="" disabled selected>Caricamento licenza...</option>
                     </select>
                 </div>
 
@@ -245,14 +239,21 @@
             return `TF-${anno}${mese}${giorno}-${ore}${minuti}`;
         }
 
+        // 2. LETTURA 100% DINAMICA DEI DATI PROVENIENTI DAL LISTINO .TXT
         const urlParametri = new URLSearchParams(window.location.search);
-        const licenzaScelta = urlParametri.get('licenza');
-        const prezzoApplicato = urlParametri.get('prezzo') ? decodeURIComponent(urlParametri.get('prezzo')) : 'Da verificare da listino';
+        const licenzaScelta = urlParametri.get('licenza') || 'generica';
+        const prezzoApplicato = urlParametri.get('prezzo') ? decodeURIComponent(urlParametri.get('prezzo')) : 'Vedi listino';
         
-        if (licenzaScelta) {
-            const selettoreLicenza = document.getElementById('tipo-licenza');
-            selettoreLicenza.value = licenzaScelta;
-        }
+        // Sgancia il testo completo passato dal listino (Rimuove i tag strong se presenti)
+        let nomeBelloLicenza = urlParametri.get('nomebello') ? decodeURIComponent(urlParametri.get('nomebello')) : 'Licenza Commerciale';
+        nomeBelloLicenza = nomeBelloLicenza.replace(/<\/?strong>/gi, ''); // Pulisce eventuale codice grafico
+
+        const selettoreLicenza = document.getElementById('tipo-licenza');
+
+        // Inietta direttamente il testo del file .txt come unica opzione valida e selezionata
+        selettoreLicenza.innerHTML = `
+            <option value="${licenzaScelta}" selected>${nomeBelloLicenza}</option>
+        `;
 
         fetch('nazioni-it.txt')
             .then(response => { if (!response.ok) throw new Error(); return response.text(); })
