@@ -153,12 +153,14 @@
     </style>
 <!-- START BANNER COOKIE -->   
     <!-- 3. Struttura Interfaccia HTML del Banner -->
-    <div class="cookie-testo">
-        <strong>Trendfarm Labs Privacy &amp; Cookies:</strong> We use cookies and measurement tools to ensure site functionality and analyze aggregate traffic. By clicking "Accept", you consent to statistical tracking via Google Analytics in full compliance with European GDPR regulations.
-    </div>
-    <div class="cookie-bottoni">
-      <button class="cookie-btn cookie-btn-rifiuta" onclick="gestisciConsensoCookie(false)">Reject</button>
-      <button class="cookie-btn cookie-btn-accetta" onclick="gestisciConsensoCookie(true)">Accept</button>
+    <div id="cookiePrivacyBanner" class="cookie-banner-glass">
+        <div class="cookie-testo">
+            <strong>Trendfarm Labs Privacy and Cookies:</strong> We use cookies and measurement tools to ensure site functionality and analyze aggregate traffic. By clicking "Accept", you consent to statistical tracking via Google Analytics in full compliance with European GDPR regulations.
+        </div>
+        <div class="cookie-bottoni">
+            <button class="cookie-btn cookie-btn-rifiuta" onclick="gestisciConsensoCookie(false)">Reject</button>
+            <button class="cookie-btn cookie-btn-accetta" onclick="gestisciConsensoCookie(true)">Accept</button>
+        </div>
     </div>
     <!-- 4. Logica JavaScript di Controllo Memoria e Sblocco Consent Mode -->
     <script>
