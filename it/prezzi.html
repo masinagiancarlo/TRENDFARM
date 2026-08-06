@@ -269,7 +269,9 @@
                             testoVisualizzato = testoVisualizzato.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                             
                             // Passa sia l'ID della licenza sia il prezzo esatto alla pagina d'ordine
-                            contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='ordine-licenza.html?licenza=${idLicenza}&prezzo=${encodeURIComponent(prezzoEstratto)}'">${testoVisualizzato}</div>`;
+                            //contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='ordine-licenza.html?licenza=${idLicenza}&prezzo=${encodeURIComponent(prezzoEstratto)}'">${testoVisualizzato}</div>`;        
+                            contenitoreHTML += `<div class="riga-licenza" onclick="window.location.href='ordine-licenza.html?licenza=${idLicenza}&prezzo=${encodeURIComponent(prezzoEstratto)}&nomebello=${encodeURIComponent(testoVisualizzato)}'">${testoVisualizzato}</div>`;
+
                         }
                     }
                 });
