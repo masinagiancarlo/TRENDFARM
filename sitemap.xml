@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- 1. HOME PRINCIPALE E SMISTAMENTO -->
   <url>
     <loc>https://trendfarm-labs.github.io/trendfarm/index.html</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.00</priority>
   </url>
-
-  <!-- 2. SEZIONE ITALIANA (it/) -->
   <url>
     <loc>https://trendfarm-labs.github.io/trendfarm/it/index.html</loc>
     <lastmod>2026-08-05</lastmod>
@@ -45,8 +42,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.30</priority>
   </url>
-
-  <!-- 3. SEZIONE INGLESE (en/) -->
   <url>
     <loc>https://trendfarm-labs.github.io/trendfarm/en/index.html</loc>
     <lastmod>2026-08-05</lastmod>
