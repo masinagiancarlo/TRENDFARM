@@ -91,6 +91,55 @@
             #testo-dinamico, #testo-altro, .testo-avviso-cassa { font-size: 0.95rem !important; line-height: 1.6 !important; }
         }
     </style>
+<!-- START BANNER COOKIE -->   
+    <!-- 3. Struttura Interfaccia HTML del Banner -->
+    <div class="cookie-testo">
+        <strong>Trendfarm Labs Privacy &amp; Cookies:</strong> We use cookies and measurement tools to ensure site functionality and analyze aggregate traffic. By clicking "Accept", you consent to statistical tracking via Google Analytics in full compliance with European GDPR regulations.
+    </div>
+    <div class="cookie-bottoni">
+      <button class="cookie-btn cookie-btn-rifiuta" onclick="gestisciConsensoCookie(false)">Reject</button>
+      <button class="cookie-btn cookie-btn-accetta" onclick="gestisciConsensoCookie(true)">Accept</button>
+    </div>
+    <!-- 4. Logica JavaScript di Controllo Memoria e Sblocco Consent Mode -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Controlla se l'utente ha già fatto una scelta in passato
+        const consensoPrecedente = localStorage.getItem("trendfarm_cookie_consent");
+    
+        if (consensoPrecedente === null) {
+          // Se è un nuovo utente, mostra il banner ad effetto vetro facendolo salire dal basso
+          setTimeout(function() {
+            document.getElementById("cookiePrivacyBanner").classList.add("show");
+          }, 1000);
+        } else if (consensoPrecedente === "granted") {
+          // Se aveva già accettato, sblocca immediatamente il tracciamento in background
+          aggiornaConsentModeGoogle(true);
+        }
+      });
+
+      function gestisciConsensoCookie(accettato) {
+        if (accettato) {
+          localStorage.setItem("trendfarm_cookie_consent", "granted");
+          aggiornaConsentModeGoogle(true);
+        } else {
+          localStorage.setItem("trendfarm_cookie_consent", "denied");
+          aggiornaConsentModeGoogle(false);
+        }
+        // Fa sparire il banner facendolo scivolare verso il basso
+        document.getElementById("cookiePrivacyBanner").classList.remove("show");
+      }
+
+      function aggiornaConsentModeGoogle(concesso) {
+        const statoConsenso = concesso ? 'granted' : 'denied';
+        gtag('consent', 'update', {
+          'ad_storage': statoConsenso,
+          'ad_user_data': statoConsenso,
+          'ad_personalization': statoConsenso,
+          'analytics_storage': statoConsenso
+        });
+      }
+    </script>
+<!-- END GOOGLE ANALYTICS + CONSENT MODE V2 + BANNER COOKIE -->   
 </head>
 <body>
     <nav class="navbar">
