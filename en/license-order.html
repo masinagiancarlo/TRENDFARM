@@ -174,17 +174,11 @@
             </p>
 
             <form class="form-ordine-licenza-ajax">
-                <!-- FIELD 1: LICENSE TYPE (AUTOMATICALLY GATHERED) -->
+                <!-- FIELD 1: REQUESTED LICENSE TYPE (100% DYNAMIC) -->
                 <div class="form-gruppo">
                     <label for="tipo-licenza">Requested License Type</label>
                     <select id="tipo-licenza" class="form-control" required>
-                        <option value="" disabled selected>Select your license...</option>
-                        <option value="light-mensile">Single Module EA - Light Monthly (29€)</option>
-                        <option value="light-annuale">Single Module EA - Light Annual (329€)</option>
-                        <option value="light-lifetime">Single Module EA - Light Lifetime (499€)</option>
-                        <option value="gold-mensile">Multi-Module EA - Gold Monthly (49€)</option>
-                        <option value="gold-annuale">Multi-Module EA - Gold Annual (499€)</option>
-                        <option value="gold-lifetime">Multi-Module EA - Gold Lifetime (899€)</option>
+                        <option value="" disabled selected>Loading license...</option>
                     </select>
                 </div>
 
@@ -243,14 +237,20 @@
             return `TF-${anno}${mese}${giorno}-${ore}${minuti}`;
         }
 
+        // 2. 100% DYNAMIC EXTRACTION FROM THE INCOMING ENGINE
         const urlParametri = new URLSearchParams(window.location.search);
-        const licenzaScelta = urlParametri.get('licenza');
+        const licenzaScelta = urlParametri.get('licenza') || 'generic';
         const prezzoApplicato = urlParametri.get('prezzo') ? decodeURIComponent(urlParametri.get('prezzo')) : 'Check list';
         
-        if (licenzaScelta) {
-            const selettoreLicenza = document.getElementById('tipo-licenza');
-            selettoreLicenza.value = licenzaScelta;
-        }
+        let nomeBelloLicenza = urlParametri.get('nomebello') ? decodeURIComponent(urlParametri.get('nomebello')) : 'Commercial License';
+        nomeBelloLicenza = nomeBelloLicenza.replace(/<\/?strong>/gi, '');
+
+        const selettoreLicenza = document.getElementById('tipo-licenza');
+
+        // Injects the raw string directly inherited from the remote .txt file
+        selettoreLicenza.innerHTML = `
+            <option value="${licenzaScelta}" selected>${nomeBelloLicenza}</option>
+        `;
 
         // FETCH COUNTRIES IN ENGLISH FROM THE CORRESPONDING DATABASE FILE
         fetch('countries-en.txt')
