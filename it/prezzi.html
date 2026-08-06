@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0LHQNBMHG"></script>
+    <script async src="https://googletagmanager.com"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-S0LHQNBMHG');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+  
+        // 🟢 CONFIGURAZIONE DI SICUREZZA PER LE LEGGI EUROPEE (SEE)
+       gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied',
+          'wait_for_update': 500
+       });
+       gtag('js', new Date());
+       gtag('config', 'G-S0LHQNBMHG');
     </script>
     <meta charset="UTF-8">
     <meta name="description" content="Consulta il listino prezzi ufficiale di NEXUS MATRIX. Scegli la licenza commerciale più adatta alle tue esigenze di trading sistematico.">
