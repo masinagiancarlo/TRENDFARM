@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- START GOOGLE ANALYTICS + CONSENT MODE V2 -->
+    <script async src="https://googletagmanager.com/gtag/js?id=G-S0LHQNBMHG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+  
+        // 🟢 CONFIGURAZIONE DI SICUREZZA PER LE LEGGI EUROPEE (SEE)
+       gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied',
+          'wait_for_update': 500
+       });
+       gtag('js', new Date());
+       gtag('config', 'G-S0LHQNBMHG');
+    </script>
+    <!-- END GOOGLE ANALYTICS + CONSENT MODE V2 -->
     <meta charset="UTF-8">
     <meta name="description" content="Professional automated trading platform with 5 independent strategic engines. Download the free 30-day TRIAL version.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,6 +141,86 @@
             .nome-versione { font-size: 1.1rem !important; }
         }
     </style>
+<!-- START BANNER COOKIE -->
+<style>
+  .cookie-banner-glass {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(150%);
+    width: 90%;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .cookie-banner-glass.show { transform: translateX(-50%) translateY(0); }
+  .cookie-testo { font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.9rem; line-height: 1.5; text-align: left; color: #e0e0e0; }
+  .cookie-testo strong { color: #00bcd4; }
+  .cookie-bottoni { display: flex; gap: 10px; justify-content: flex-end; }
+  .cookie-btn { padding: 10px 20px; font-size: 0.85rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
+  .cookie-btn-accetta { background-color: #00bcd4; color: #000000; border: 1px solid #00bcd4; box-shadow: 0 4px 15px rgba(0, 188, 212, 0.2); }
+  .cookie-btn-accetta:hover { background-color: #ffffff; border-color: #ffffff; }
+  .cookie-btn-rifiuta { background: rgba(255, 255, 255, 0.05); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); }
+  .cookie-btn-rifiuta:hover { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.4); }
+  @media (max-width: 600px) {
+    .cookie-banner-glass { bottom: 10px; padding: 15px; gap: 12px; }
+    .cookie-testo { font-size: 0.8rem; }
+    .cookie-bottoni { flex-direction: column; width: 100%; width: 100%; }
+    .cookie-btn { width: 100%; text-align: center; padding: 12px; }
+  }
+</style>
+
+<div id="cookiePrivacyBanner" class="cookie-banner-glass">
+  <div class="cookie-testo">
+    📋 <strong>Trendfarm Labs Privacy and Cookies:</strong> We use cookies and measurement tools to ensure site functionality and analyze aggregate traffic. By clicking "Accept", you consent to statistical tracking via Google Analytics in full compliance with European GDPR regulations.
+  </div>
+  <div class="cookie-bottoni">
+    <button class="cookie-btn cookie-btn-rifiuta" onclick="gestisciConsensoCookie(false)">Reject</button>
+    <button class="cookie-btn cookie-btn-accetta" onclick="gestisciConsensoCookie(true)">Accept</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const consensoPrecedente = localStorage.getItem("trendfarm_cookie_consent");
+    if (consensoPrecedente === null) {
+      setTimeout(function() { document.getElementById("cookiePrivacyBanner").classList.add("show"); }, 1000);
+    } else if (consensoPrecedente === "granted") {
+      aggiornaConsentModeGoogle(true);
+    }
+  });
+  function gestisciConsensoCookie(accettato) {
+    if (accettato) {
+      localStorage.setItem("trendfarm_cookie_consent", "granted");
+      aggiornaConsentModeGoogle(true);
+    } else {
+      localStorage.setItem("trendfarm_cookie_consent", "denied");
+      aggiornaConsentModeGoogle(false);
+    }
+    document.getElementById("cookiePrivacyBanner").classList.remove("show");
+  }
+  function aggiornaConsentModeGoogle(concesso) {
+    const statoConsenso = concesso ? 'granted' : 'denied';
+    gtag('consent', 'update', {
+      'ad_storage': statoConsenso,
+      'ad_user_data': statoConsenso,
+      'ad_personalization': statoConsenso,
+      'analytics_storage': statoConsenso
+    });
+  }
+</script>
+<!-- END BANNER COOKIE -->
 </head>
 <body>
     <nav class="navbar">
