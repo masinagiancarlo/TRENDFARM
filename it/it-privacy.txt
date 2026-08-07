@@ -1,0 +1,36 @@
+INFORMATIVA SULLA PRIVACY E TRATTAMENTO DEI DATI PERSONALI (GDPR)
+Data ultimo aggiornamento: Agosto 2026
+
+Benvenuto su Trendfarm Labs. La riservatezza e la sicurezza dei dati dei nostri utenti sono una priorità assoluta. Questa informativa illustra in modo trasparente quali dati raccogliamo, come li trattiamo e come garantiamo la piena conformità al Regolamento Europeo (UE) 2016/679 (GDPR) e al Digital Markets Act (DMA).
+
+1. TITOLARE DEL TRATTAMENTO
+Il Titolare del trattamento dei dati personali è raggiungibile per qualsiasi comunicazione o richiesta di esercizio dei diritti legali al seguente indirizzo e-mail istituzionale: info@trendfarm.it.
+
+2. TIPOLOGIA DI DATI RACCOLTI E FINALITA
+Questo portale web raccoglie solo ed esclusivamente i dati strettamente necessari all'erogazione dei servizi commerciali richiesti dall'utente, divisi in due categorie:
+
+A) Dati forniti volontariamente dall'utente (Moduli d'Ordine):
+Tramite la compilazione del modulo per l'attivazione della licenza del software, l'utente fornisce: Nome e Cognome / Ragione Sociale, Paese di residenza, Indirizzo E-mail e Numero del Conto del Broker abilitato.
+Finalità: Gestione dell'ordine, emissione della fattura fiscale obbligatoria per legge, generazione della chiave di sblocco dell'Expert Advisor e comunicazioni di assistenza tecnica.
+
+B) Dati di navigazione e misurazione statistica (Google Analytics 4):
+Previo consenso esplicito fornito tramite il banner presente nella Home Page, il sito raccoglie dati aggregati e anonimi relativi alla navigazione (pagine visitate, tempo di permanenza, provenienza geografica generica).
+Finalità: Ottimizzazione delle prestazioni del sito e monitoraggio statistico delle visite.
+
+3. BASE GIURIDICA DEL TRATTAMENTO
+Il trattamento dei dati per la finalità di acquisto (A) si fonda sull'esecuzione di un contratto o di misure precontrattuali. Il trattamento dei dati statistici (B) si fonda esclusivamente sul consenso esplicito e libero espresso dall'utente.
+
+4. MODALITA DI CONSERVAZIONE E SICUREZZA
+I dati personali e commerciali inseriti nei moduli non vengono in alcun modo salvati o archiviati in database online vulnerabili ad attacchi informatici. Le informazioni vengono trasmesse in modo criptato e sicuro tramite il protocollo HTTPS / FormSubmit direttamente alla casella e-mail protetta di Aruba del Titolare. I dati saranno conservati solo per il tempo stabilito dalle normative fiscali vigenti.
+
+5. MODALITA DI CONSENSO (GOOGLE CONSENT MODE V2)
+Il sito integra i più recenti standard di sicurezza europei. All'ingresso dell'utente, tutte le funzioni di tracciamento di Google Analytics sono impostate in modalità bloccata (denied). Solo qualora l'utente prema esplicitamente il tasto "Accetta", il sistema sbloccherà la misurazione. In caso di rifiuto, la navigazione proseguirà in modo totalmente anonimo senza rilascio di cookie di profilazione.
+
+6. DIRITTI DELL'INTERESSATO
+Ai sensi degli articoli 15-22 del GDPR, l'utente ha il diritto in qualsiasi momento di:
+- Richiedere l'accesso ai propri dati personali e riceverne copia.
+- Richiedere la rettifica o la correzione di dati inesatti.
+- Richiedere la cancellazione totale e definitiva dei propri dati (Diritto all'oblio).
+- Revocare in qualsiasi momento il consenso statistico precedentemente fornito.
+
+Per esercitare uno qualsiasi di questi diritti, e sufficiente inviare una richiesta scritta senza alcuna formalità all'indirizzo e-mail: info@trendfarm.it. Il Titolare provvederà a fornire riscontro entro 24 ore lavorative.
