@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Trendfarm</title>
+    <link rel="icon" type="image/png" href="../favicon.png?v=2">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('../home_ufficio_trendfarm.png'); 
+            background-size: cover;            
+            background-position: center;       
+            background-repeat: no-repeat;      
+            background-attachment: fixed;      
+        }
+        
+        .navbar { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .img-logo { height: 38px; width: auto; }
+        .testo-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .colore-trend { color: #dca122; }
+        .colore-farm { color: #ffffff; }
+        
+        .main-content { flex-grow: 1; display: flex; justify-content: center; align-items: center; padding: 140px 20px 40px 20px; }
+        .scheda-contenuto { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 45px 40px; border-radius: 12px; max-width: 800px; width: 100%; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: left; }
+        
+        .testo-privacy-dinamico { 
+            font-size: 1.05rem; 
+            line-height: 1.7; 
+            color: #e0e0e0; 
+            white-space: pre-line; 
+            max-height: 500px; 
+            overflow-y: auto; 
+            padding-right: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .testo-privacy-dinamico::-webkit-scrollbar { width: 6px; }
+        .testo-privacy-dinamico::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
+        .testo-privacy-dinamico::-webkit-scrollbar-thumb { background: #00bcd4; border-radius: 4px; }
+
+        .btn-contenitore { text-align: center; }
+        .btn-ok {
+            display: inline-block;
+            max-width: 180px;
+            width: 100%;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #00bcd4;
+            color: #000000;
+            border: 1px solid #00bcd4;
+            border-radius: 4px;
+            transition: background 0.2s, border-color 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.2);
+        }
+        .btn-ok:hover { background-color: #ffffff; border-color: #ffffff; }
+        
+        @media (max-width: 768px) {
+            .navbar { padding: 15px; justify-content: center; }
+            .main-content { padding: 100px 15px 30px 15px; }
+            .scheda-contenuto { padding: 25px 20px; }
+            .testo-privacy-dinamico { font-size: 0.9rem !important; line-height: 1.6 !important; max-height: 400px; }
+            .btn-ok { font-size: 1rem; padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="../logo.png" alt="Logo Trendfarm" class="img-logo">
+            <div class="testo-logo">
+                <span class="colore-trend">TREND</span><span class="colore-farm">FARM</span>
+            </div>
+        </a>
+    </nav>
+
+    <main class="main-content">
+        <div class="scheda-contenuto">
+            <div id="blocco-privacy-testo" class="testo-privacy-dinamico">Loading privacy policy...</div>
+            
+            <div class="btn-contenitore">
+                <a href="index.html" class="btn-ok">OK</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Lettura asincrona del file en-privacy.txt
+        fetch('en-privacy.txt')
+            .then(response => { if (!response.ok) throw new Error(); return response.text(); })
+            .then(data => {
+                document.getElementById('blocco-privacy-testo').innerText = data;
+            })
+            .catch(error => {
+                document.getElementById('blocco-privacy-testo').innerText = "Privacy notice temporarily unavailable. Please contact info@trendfarm.it";
+            });
+    </script>
+</body>
+</html>
