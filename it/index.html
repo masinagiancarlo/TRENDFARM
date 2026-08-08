@@ -220,19 +220,35 @@
   }
 </script>
 <!-- END BANNER COOKIE -->
-<!--Start of Tawk.to Script-->
+    
+<!-- START TAWK.TO SMART MULTILANGUAGE WIDGET -->
 <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/6a763a85e014d81d4ab62324/1jvet969t';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-    })();
+var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+(function(){
+    // 1. Rileva automaticamente l'indirizzo della pagina corrente
+    var urlAttuale = window.location.href;
+    
+    // 2. ID della tua proprietà Trendfarm (Rimane identico per entrambi)
+    var proprietaId = '6a763a85e014d81d4ab62324';
+    
+    // 3. Assegnazione dinamica del Widget ID in base alla cartella della lingua
+    var widgetId = '1jvgia86j'; // Default: Italiano
+    
+    if (urlAttuale.indexOf('/en/') !== -1) {
+        widgetId = '1jvginkc4'; // Se la pagina contiene /en/, passa all'Inglese
+    }
+
+    // 4. Iniezione pulita nel browser senza conflitti di memoria
+    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/' + proprietaId + '/' + widgetId;
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+})();
 </script>
-<!--End of Tawk.to Script-->
+<!-- END TAWK.TO SMART MULTILANGUAGE WIDGET -->
+
 </head>
 <body>
 
